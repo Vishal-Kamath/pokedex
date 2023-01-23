@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
         <div className="contacts">
           <h2 className="mb-1 text-xl">Contacts</h2>
           <a
-            href="https://github.com/Vishal-Kamath/ui-designs-react"
+            href="https://github.com/Vishal-Kamath/PokeDex"
             target="_blank"
             className="flex items-center gap-1 text-base text-gray-400 hover:text-white"
           >
