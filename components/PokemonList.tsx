@@ -1,31 +1,26 @@
-import Image from 'next/image';
+import { Pokemon } from '@/pages';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 
-type Pokemon = {
-  name: string;
-  url: string;
-}[];
-
 const PokemonList: React.FC<{
-  pokemons: Pokemon;
-  prev: boolean;
-  goToNextPage: VoidFunction;
-  goToPrevPage: VoidFunction;
-}> = ({ pokemons, prev, goToNextPage, goToPrevPage }) => {
+  pokemons: Pokemon['results'];
+}> = ({ pokemons }) => {
+  const router = useRouter();
+  const pageNo = Number(router.query.pokemonPage) || 0;
   return (
     <div className="max-w-6xl m-auto">
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
         {pokemons.map((pokemon) => (
           <Link
             href={`pokemon/${pokemon.name}`}
-            className="hover:bg-slate-800 rounded-2xl"
+            className="hover:bg-red-300 dark:hover:bg-red-900 rounded-2xl"
             key={pokemon.name}
           >
             <h1 className="text-2xl my-2 text-center">{pokemon.name}</h1>
             <div className="aspect-square">
               <img
-                className="border-4 border-slate-600 border-solid rounded-2xl w-full h-full"
+                className="border-4 border-red-600 dark:border-red-700 border-solid rounded-2xl w-full h-full"
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
                   pokemon.url.split('/')[6]
                 }.png`}
@@ -36,20 +31,20 @@ const PokemonList: React.FC<{
         ))}
       </section>
       <section className="flex justify-between mt-4">
-        {prev ? (
-          <button
-            className="text-xl py-2 px-4 bg-slate-700 rounded-xl hover:bg-blue-900"
-            onClick={goToPrevPage}
+        {pageNo !== 0 ? (
+          <Link
+            className="text-xl py-2 px-4 bg-red-500 hover:bg-red-600 dark:bg-red-800 rounded-xl dark:hover:bg-red-700"
+            href={pageNo - 1 !== 0 ? `/${pageNo - 1}` : '/'}
           >
             ← Prev
-          </button>
+          </Link>
         ) : null}
-        <button
-          className="text-xl py-2 px-4 bg-slate-700 rounded-xl hover:bg-blue-900"
-          onClick={goToNextPage}
+        <Link
+          className="text-xl py-2 px-4 bg-red-500 hover:bg-red-600 dark:bg-red-800 rounded-xl dark:hover:bg-red-700"
+          href={`/${pageNo + 1}`}
         >
           Next →
-        </button>
+        </Link>
       </section>
     </div>
   );
