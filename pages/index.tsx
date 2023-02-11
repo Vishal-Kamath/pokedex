@@ -1,17 +1,21 @@
-import Pagination from '@/components/pagination';
+import PaginationButton from '@/components/pagination';
 import { PokemonList } from '@/models/pokemon';
 import { GetServerSideProps } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
+import axios from 'axios';
 
 const Home: React.FC<{ pokemonList: PokemonList }> = ({ pokemonList }) => {
   return (
     <div className="padding-x">
+      <PaginationButton />
       <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-3">
         {pokemonList.results.map((pokemon) => {
           const id = pokemon.url.split('/')[6];
           return (
-            <div
+            <Link
+              href={`/pokemon/${pokemon.name}`}
               key={pokemon.name}
               className="rounded-xl border-4 border-slate-800 hover:border-sky-700 hover:bg-sky-900"
             >
@@ -26,11 +30,11 @@ const Home: React.FC<{ pokemonList: PokemonList }> = ({ pokemonList }) => {
                 width="500"
                 height="500"
               />
-            </div>
+            </Link>
           );
         })}
       </div>
-      <Pagination />
+      <PaginationButton />
     </div>
   );
 };
@@ -40,10 +44,10 @@ export default Home;
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const pageNo = Number(query.pageNo) || 0;
 
-  const response = await fetch(
+  const response = await axios(
     `https://pokeapi.co/api/v2/pokemon?limit=18&offset=${18 * pageNo}`
   );
-  const data = await response.json();
+  const data = response.data;
 
   return {
     props: {
