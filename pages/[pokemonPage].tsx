@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import axios from 'axios';
 import { Pokemon, Props } from './index';

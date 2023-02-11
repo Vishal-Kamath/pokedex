@@ -10,8 +10,7 @@ type PokemonDetailProps = {
   sprites: {
     other: {
       'official-artwork': {
-        front_default: string;
-        front_shiny: string;
+        front_shiny: string | undefined;
       };
     };
   };
@@ -28,8 +27,6 @@ type Prop = {
     id: number;
     name: string;
     base_experience: number;
-    front_default: string;
-    front_shiny: string;
     types: {
       type: {
         name: string;
@@ -42,35 +39,33 @@ type Prop = {
 const PokemonDetail = ({ pokemonDetail }: Prop) => {
   const [shiny, setShiny] = useState(false);
   return (
-    <div className="pt-24 pb-8 min-h-full padding-x flex flex-col md:flex-row gap-5">
-      <div className="aspect-square rounded-3xl bg-gray-100 relative md:w-1/3">
-        {pokemonDetail.front_shiny !== null ? (
-          <button
-            className="p-2 text-lg absolute top-2 left-2 rounded-full bg-white text-yellow-300"
-            onClick={() => setShiny(!shiny)}
-          >
-            {shiny ? <FaStar /> : <FaRegStar />}
-          </button>
-        ) : null}
+    <div className="padding-x flex min-h-full flex-col gap-5 pt-24 pb-8 md:flex-row">
+      <div className="relative aspect-square rounded-3xl bg-gray-100 md:w-1/3">
+        <button
+          className="absolute top-2 left-2 rounded-full bg-white p-2 text-lg text-yellow-300"
+          onClick={() => setShiny(!shiny)}
+        >
+          {shiny ? <FaStar /> : <FaRegStar />}
+        </button>
         {!shiny && (
           <img
-            src={pokemonDetail.front_default}
+            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonDetail.id}.png`}
             alt={pokemonDetail.name}
-            className="w-full h-full"
+            className="h-full w-full"
           />
         )}
         {shiny && (
           <img
-            src={pokemonDetail.front_shiny}
+            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${pokemonDetail.id}.png`}
             alt={pokemonDetail.name}
-            className="w-full h-full"
+            className="h-full w-full"
           />
         )}
       </div>
       <div className="w-full">
-        <div className="dark:border-white flex justify-between items-center pb-2 border-b-4 border-black">
+        <div className="flex items-center justify-between border-b-4 border-black pb-2 dark:border-white">
           <div>
-            <h1 className="font-bold text-4xl">{pokemonDetail.name}</h1>
+            <h1 className="text-4xl font-bold">{pokemonDetail.name}</h1>
             <div className="opacity-50">
               {pokemonDetail.types.map((types, index) => {
                 if (index === 0) {
@@ -82,7 +77,7 @@ const PokemonDetail = ({ pokemonDetail }: Prop) => {
           </div>
           <i className="text-3xl">#{pokemonDetail.id}</i>
         </div>
-        <div className="flex flex-col w-full mt-2 text-lg">
+        <div className="mt-2 flex w-full flex-col text-lg">
           <span>name: {pokemonDetail.name}</span>
           <span>weight: {pokemonDetail.weight}</span>
           <span>base experience: {pokemonDetail.base_experience}</span>
@@ -101,28 +96,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
         params: { pokemonName: 'bulbasaur' },
       },
       {
-        params: { pokemonName: 'ivysaur' },
-      },
-      {
-        params: { pokemonName: 'venusaur' },
-      },
-      {
         params: { pokemonName: 'charmander' },
       },
       {
-        params: { pokemonName: 'charmeleon' },
-      },
-      {
-        params: { pokemonName: 'charizard' },
-      },
-      {
         params: { pokemonName: 'squirtle' },
-      },
-      {
-        params: { pokemonName: 'wartortle' },
-      },
-      {
-        params: { pokemonName: 'blastoise' },
       },
     ],
     fallback: true,
@@ -153,8 +130,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
           id: data.id,
           name: data.name,
           base_experience: data.base_experience,
-          front_default: data.sprites.other['official-artwork'].front_default,
-          front_shiny: data.sprites.other['official-artwork'].front_shiny,
           types: data.types,
           weight: data.weight,
         },

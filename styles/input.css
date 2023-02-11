@@ -7,8 +7,8 @@
 }
 
 .padding-x {
-  padding-left: 4vw;
-  padding-right: 4vw;
+  padding-left: max(4vw, 50vw - 37rem);
+  padding-right: max(4vw, 50vw - 37rem);
 }
 
 .text-drop-shadow {

@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { GetStaticProps } from 'next';
 import axios from 'axios';
-import { useRouter } from 'next/router';
 import PokemonPage from '@/components/pokemonPage';
 
 export type Pokemon = {
