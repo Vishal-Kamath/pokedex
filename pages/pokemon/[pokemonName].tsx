@@ -1,56 +1,31 @@
+import PokemonImage from '@/components/pokemon/pokemonImage';
 import PokemonTag from '@/components/pokemon/pokemonTypeTag';
-import { Pokemon } from '@/models/pokemon';
+import { Pokemon, PokemonFetch, PokemonSpeciesFetch } from '@/models/pokemon';
 import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
-import React, { useState } from 'react';
-import { FaStar, FaRegStar } from 'react-icons/fa';
+import React from 'react';
 
 const PokemonPage: React.FC<{
   pokemon: Pokemon;
 }> = ({ pokemon }) => {
-  const [shiny, setShiny] = useState(false);
   return (
     <>
       <Head>
         <title>PokéDex - {pokemon.name}</title>
       </Head>
       <div className="padding-x w-full">
-        {/* pokemon image */}
         <div className="flex w-full flex-col gap-4 md:flex-row">
-          <div className="relative aspect-square w-full rounded-3xl bg-sky-400 dark:bg-sky-800 md:w-full lg:w-5/12">
-            <button
-              className="absolute top-3 left-3 grid h-8 w-8 place-content-center rounded-full bg-white text-lg text-yellow-300"
-              onClick={() => setShiny(!shiny)}
-            >
-              {!shiny ? <FaRegStar /> : <FaStar />}
-            </button>
-            {!shiny ? (
-              <Image
-                alt={pokemon.name}
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
-                className="aspect-square w-full"
-                loading="lazy"
-                width="500"
-                height="500"
-              />
-            ) : (
-              <Image
-                alt={pokemon.name}
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${pokemon.id}.png
-                `}
-                className="aspect-square w-full"
-                loading="lazy"
-                width="500"
-                height="500"
-              />
-            )}
-          </div>
+          {/* pokemon image */}
+          <PokemonImage
+            name={pokemon.name}
+            id={pokemon.id}
+            color={pokemon.color.name}
+          />
 
           {/* pokemon details */}
           <div className="w-full">
-            <div className="mb-2 flex gap-2 border-b-4 border-black pb-2 text-2xl font-bold dark:border-white">
+            <div className="dark:border-white mb-2 flex gap-2 border-b-4 border-black pb-2 text-2xl font-bold">
               <i className="text-slate-500">#{pokemon.id}</i>
               {pokemon.name}
               <div className="flex gap-1">
@@ -86,13 +61,13 @@ const PokemonPage: React.FC<{
           <table className="w-full border-separate text-center">
             <thead>
               <tr>
-                <td className="rounded-md border-2 border-sky-800 bg-sky-300 dark:border-sky-300 dark:bg-sky-800">
+                <td className="dark:border-sky-300 dark:bg-sky-800 rounded-md border-2 border-sky-800 bg-sky-300">
                   name
                 </td>
-                <td className="rounded-md border-2 border-sky-800 bg-sky-300 dark:border-sky-300 dark:bg-sky-800">
+                <td className="dark:border-sky-300 dark:bg-sky-800 rounded-md border-2 border-sky-800 bg-sky-300">
                   base stat
                 </td>
-                <td className="rounded-md border-2 border-sky-800 bg-sky-300 dark:border-sky-300 dark:bg-sky-800">
+                <td className="dark:border-sky-300 dark:bg-sky-800 rounded-md border-2 border-sky-800 bg-sky-300">
                   effort
                 </td>
               </tr>
@@ -100,13 +75,13 @@ const PokemonPage: React.FC<{
             <tbody>
               {pokemon.stats.map((stat) => (
                 <tr key={stat.stat.name}>
-                  <td className="rounded-md border-2 border-sky-500 dark:border-slate-700">
+                  <td className="dark:border-slate-700 rounded-md border-2 border-sky-500">
                     {stat.stat.name}
                   </td>
-                  <td className="rounded-md border-2 border-sky-500 dark:border-slate-700">
+                  <td className="dark:border-slate-700 rounded-md border-2 border-sky-500">
                     {stat.base_stat}
                   </td>
-                  <td className="rounded-md border-2 border-sky-500 dark:border-slate-700">
+                  <td className="dark:border-slate-700 rounded-md border-2 border-sky-500">
                     {stat.effort}
                   </td>
                 </tr>
@@ -124,14 +99,15 @@ export default PokemonPage;
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   try {
     const name = params?.pokemonName || undefined;
-    const pokemonResponse = await axios<Pokemon>(
+    const pokemonResponse = await axios<PokemonFetch>(
       `https://pokeapi.co/api/v2/pokemon/${name}`
     );
     const pokemon = pokemonResponse.data;
 
-    // const speciesResponse = await axios(
-    //   `https://pokeapi.co/api/v2/pokemon-species/${pokemon.id}/`
-    // );
+    const speciesResponse = await axios<PokemonSpeciesFetch>(
+      `https://pokeapi.co/api/v2/pokemon-species/${pokemon.id}/`
+    );
+    const species = speciesResponse.data;
     // const evolutionurl = speciesResponse.data.evolution_chain.url;
 
     return {
@@ -144,6 +120,9 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
           weight: pokemon.weight,
           stats: pokemon.stats,
           types: pokemon.types,
+
+          color: species.color,
+          varieties: species.varieties,
         },
       },
     };

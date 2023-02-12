@@ -1,3 +1,5 @@
+import { type } from 'os';
+
 export type PokemonList = {
   results: {
     name: string;
@@ -5,7 +7,9 @@ export type PokemonList = {
   }[];
 };
 
-export type Pokemon = {
+export type Pokemon = PokemonFetch & PokemonSpeciesFetch;
+
+export type PokemonFetch = {
   id: number;
   name: string;
   base_experience: number;
@@ -18,6 +22,17 @@ export type Pokemon = {
   }[];
   types: {
     type: { name: PokemonType };
+  }[];
+};
+
+export type PokemonSpeciesFetch = {
+  color: { name: PokemonColor };
+  evolution_chain: { url: string };
+  varieties: {
+    pokemon: {
+      name: string;
+      url: string;
+    };
   }[];
 };
 
@@ -63,3 +78,15 @@ export type PokemonType =
   | 'fairy'
   | 'unknown'
   | 'shadow';
+
+export type PokemonColor =
+  | 'black'
+  | 'blue'
+  | 'brown'
+  | 'gray'
+  | 'green'
+  | 'pink'
+  | 'purple'
+  | 'red'
+  | 'white'
+  | 'yellow';

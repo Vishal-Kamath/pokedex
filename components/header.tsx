@@ -4,6 +4,7 @@ import PokéDex from '@/assets/PokéDex.png';
 import { BiMenuAltRight } from 'react-icons/bi';
 import { RxCross1 } from 'react-icons/rx';
 import Link from 'next/link';
+import Toggle from './toggle';
 
 const Header: React.FC<{
   menuOpen: boolean;
@@ -16,6 +17,7 @@ const Header: React.FC<{
           <Image alt="PokéDex" src={PokéDex} className="w-28" />
         </Link>
 
+        <Toggle />
         <div className="md:hidden">
           {!menuOpen ? (
             <BiMenuAltRight size={25} onClick={() => setMenuOpen(true)} />
