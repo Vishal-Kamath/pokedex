@@ -17,14 +17,14 @@ export const PaginationButton: React.FC = () => {
     <div className="my-4 flex justify-between">
       {pageNo !== 0 && (
         <button
-          className="flex items-center gap-2 rounded-md px-4 py-2 dark:bg-slate-800 dark:hover:bg-sky-700"
+          className="dark:bg-slate-800 dark:hover:bg-sky-700 flex items-center gap-2 rounded-md bg-sky-400 px-4 py-2 hover:bg-sky-300"
           onClick={_prev}
         >
           <FaLongArrowAltLeft /> prev
         </button>
       )}
       <button
-        className="flex items-center gap-2 rounded-md px-4 py-2 dark:bg-slate-800 dark:hover:bg-sky-700"
+        className="dark:bg-slate-800 dark:hover:bg-sky-700 flex items-center gap-2 rounded-md bg-sky-400 px-4 py-2 hover:bg-sky-300"
         onClick={_next}
       >
         next <FaLongArrowAltRight />

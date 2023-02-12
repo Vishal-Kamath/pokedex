@@ -10,7 +10,7 @@ const Header: React.FC<{
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }> = ({ menuOpen, setMenuOpen }) => {
   return (
-    <header className="fixed top-0 left-0 w-full">
+    <header className="fixed top-0 left-0 z-50 w-full">
       <div className="padding-x flex min-w-full items-center justify-between border-b-4 border-red-500 bg-red-600 py-1 dark:border-red-600 dark:bg-red-800">
         <Link href="/">
           <Image alt="PokéDex" src={PokéDex} className="w-28" />

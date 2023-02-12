@@ -17,7 +17,7 @@ const Home: React.FC<{ pokemonList: PokemonList }> = ({ pokemonList }) => {
             <Link
               href={`/pokemon/${pokemon.name}`}
               key={pokemon.name}
-              className="rounded-xl border-4 border-slate-800 hover:border-sky-700 hover:bg-sky-900"
+              className="dark:border-slate-800 dark:hover:border-sky-700 dark:hover:bg-sky-900 rounded-xl border-4 border-sky-500 hover:border-sky-400 hover:bg-sky-300"
             >
               <div className="mx-2 pt-2 text-center text-2xl font-semibold">
                 #{id} {pokemon.name}
