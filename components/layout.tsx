@@ -14,7 +14,7 @@ const Layout: React.FC<{ children: JSX.Element | JSX.Element[] }> = ({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="dark:bg-slate-900 dark:text-white flex min-h-screen flex-col bg-sky-200">
+      <div className="dark:bg-slate-900 dark:text-white flex min-h-screen flex-col bg-sky-100">
         <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
         <main className="pt-20">{children}</main>
       </div>

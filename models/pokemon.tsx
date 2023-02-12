@@ -17,7 +17,7 @@ export type Pokemon = {
     stat: { name: string };
   }[];
   types: {
-    type: { name: string };
+    type: { name: PokemonType };
   }[];
 };
 
@@ -41,3 +41,25 @@ export type evolutionChain = {
     };
   };
 };
+
+export type PokemonType =
+  | 'normal'
+  | 'fighting'
+  | 'flying'
+  | 'poison'
+  | 'ground'
+  | 'rock'
+  | 'bug'
+  | 'ghost'
+  | 'steel'
+  | 'fire'
+  | 'water'
+  | 'grass'
+  | 'electric'
+  | 'psychic'
+  | 'ice'
+  | 'dragon'
+  | 'dark'
+  | 'fairy'
+  | 'unknown'
+  | 'shadow';

@@ -1,3 +1,4 @@
+import PokemonTag from '@/components/pokemon/pokemonTypeTag';
 import { Pokemon } from '@/models/pokemon';
 import axios from 'axios';
 import { GetServerSideProps } from 'next';
@@ -18,7 +19,7 @@ const PokemonPage: React.FC<{
       <div className="padding-x w-full">
         {/* pokemon image */}
         <div className="flex w-full flex-col gap-4 md:flex-row">
-          <div className="dark:bg-sky-800 relative aspect-square w-full rounded-3xl bg-sky-400 md:w-full lg:w-5/12">
+          <div className="relative aspect-square w-full rounded-3xl bg-sky-400 dark:bg-sky-800 md:w-full lg:w-5/12">
             <button
               className="absolute top-3 left-3 grid h-8 w-8 place-content-center rounded-full bg-white text-lg text-yellow-300"
               onClick={() => setShiny(!shiny)}
@@ -49,18 +50,15 @@ const PokemonPage: React.FC<{
 
           {/* pokemon details */}
           <div className="w-full">
-            <div className="dark:border-white mb-2 flex justify-between border-b-4 border-black pb-2 text-2xl font-bold">
-              <h1 className="flex items-center gap-2">
-                {pokemon.name}
-                <div className="flex gap-1 text-xs">
-                  {pokemon.types.map((type) => (
-                    <div className="dark:bg-sky-800 h-5 rounded-full bg-sky-400 px-2">
-                      {type.type.name}
-                    </div>
-                  ))}
-                </div>
-              </h1>
+            <div className="mb-2 flex gap-2 border-b-4 border-black pb-2 text-2xl font-bold dark:border-white">
               <i className="text-slate-500">#{pokemon.id}</i>
+              {pokemon.name}
+              <div className="flex gap-1">
+                {pokemon.types.map((type) => (
+                  // <PokemonTag type={type.type.name}/>
+                  <PokemonTag key={type.type.name} type={type.type.name} />
+                ))}
+              </div>
             </div>
             <div>
               <table className="w-full border-none">
@@ -88,13 +86,13 @@ const PokemonPage: React.FC<{
           <table className="w-full border-separate text-center">
             <thead>
               <tr>
-                <td className="dark:border-sky-300 dark:bg-sky-800 rounded-md border-2 border-sky-800 bg-sky-300">
+                <td className="rounded-md border-2 border-sky-800 bg-sky-300 dark:border-sky-300 dark:bg-sky-800">
                   name
                 </td>
-                <td className="dark:border-sky-300 dark:bg-sky-800 rounded-md border-2 border-sky-800 bg-sky-300">
+                <td className="rounded-md border-2 border-sky-800 bg-sky-300 dark:border-sky-300 dark:bg-sky-800">
                   base stat
                 </td>
-                <td className="dark:border-sky-300 dark:bg-sky-800 rounded-md border-2 border-sky-800 bg-sky-300">
+                <td className="rounded-md border-2 border-sky-800 bg-sky-300 dark:border-sky-300 dark:bg-sky-800">
                   effort
                 </td>
               </tr>
@@ -102,13 +100,13 @@ const PokemonPage: React.FC<{
             <tbody>
               {pokemon.stats.map((stat) => (
                 <tr key={stat.stat.name}>
-                  <td className="dark:border-slate-700 rounded-md border-2 border-sky-500">
+                  <td className="rounded-md border-2 border-sky-500 dark:border-slate-700">
                     {stat.stat.name}
                   </td>
-                  <td className="dark:border-slate-700 rounded-md border-2 border-sky-500">
+                  <td className="rounded-md border-2 border-sky-500 dark:border-slate-700">
                     {stat.base_stat}
                   </td>
-                  <td className="dark:border-slate-700 rounded-md border-2 border-sky-500">
+                  <td className="rounded-md border-2 border-sky-500 dark:border-slate-700">
                     {stat.effort}
                   </td>
                 </tr>
