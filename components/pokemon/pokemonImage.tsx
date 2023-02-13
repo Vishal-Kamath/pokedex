@@ -53,8 +53,7 @@ const PokemonImage: React.FC<{
       ) : (
         <Image
           alt={name}
-          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${id}.png
-                `}
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${id}.png`}
           className="aspect-square w-full"
           loading="lazy"
           width="500"
