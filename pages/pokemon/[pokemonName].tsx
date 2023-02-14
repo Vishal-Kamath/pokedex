@@ -20,7 +20,7 @@ const PokemonPage: React.FC<{
   return (
     <>
       <Head>
-        <title>PokéDex - {pokemon.name}</title>
+        <title>{`PokéDex - ${pokemon.name}`}</title>
       </Head>
       <div className="padding-x flex w-full flex-col gap-5">
         <div className="flex w-full flex-col gap-4 md:flex-row">
