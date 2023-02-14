@@ -10,7 +10,6 @@ const Layout: React.FC<{ children: JSX.Element | JSX.Element[] }> = ({
   return (
     <>
       <Head>
-        <title>PokéDex</title>
         <meta name="description" content="PokéDex" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />

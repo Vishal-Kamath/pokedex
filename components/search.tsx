@@ -12,7 +12,6 @@ const SearchBar: React.FC<{ classname: string }> = ({ classname }) => {
   const [searchIndex, setSearchIndex] = useState(-1);
 
   const [focus, setFocus] = useState(false);
-  const [mouseOver, setMouseOver] = useState(false);
 
   useEffect(() => {
     setSearchResults(
@@ -77,32 +76,21 @@ const SearchBar: React.FC<{ classname: string }> = ({ classname }) => {
             onChange={(e) => handleOnChange(e.target.value)}
             onKeyDown={(e) => handleKeyDown(e)}
             onFocus={() => setFocus(true)}
-            onBlur={() => !mouseOver && setFocus(false)}
+            onBlur={() => setFocus(false)}
           />
         </div>
 
         {/* results */}
-        <div
-          onMouseOver={() => setMouseOver(true)}
-          onMouseOut={() => setMouseOver(false)}
-        >
+        <div>
           {searchResults.length !== 0 &&
             focus &&
             searchResults.map((result, index) => {
               return index === searchIndex ? (
-                <div
-                  key={result}
-                  className="flex h-9 items-center bg-sky-100 px-8 last-of-type:rounded-b-[1.125rem]"
-                  onClick={() => handleOnChange(result)}
-                >
+                <div className="flex h-9 items-center bg-sky-100 px-8 last-of-type:rounded-b-[1.125rem]">
                   {result}
                 </div>
               ) : (
-                <div
-                  key={result}
-                  className="flex h-9 items-center px-8 last-of-type:rounded-b-[1.125rem] hover:bg-slate-100"
-                  onClick={() => handleOnChange(result)}
-                >
+                <div className="flex h-9 items-center px-8 last-of-type:rounded-b-[1.125rem] hover:bg-slate-100">
                   {result}
                 </div>
               );
