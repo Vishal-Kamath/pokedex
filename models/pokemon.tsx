@@ -7,7 +7,8 @@ export type PokemonList = {
   }[];
 };
 
-export type Pokemon = PokemonFetch & PokemonSpeciesFetch;
+export type Pokemon = PokemonFetch &
+  PokemonSpeciesFetch & { evolution_chain: PokemonEvolutionChain };
 
 export type PokemonFetch = {
   id: number;
@@ -23,6 +24,9 @@ export type PokemonFetch = {
   types: {
     type: { name: PokemonType };
   }[];
+  species: {
+    url: string;
+  }
 };
 
 export type PokemonSpeciesFetch = {
@@ -36,26 +40,30 @@ export type PokemonSpeciesFetch = {
   }[];
 };
 
+export type PokemonEvolutionChain = {
+  name: string;
+  id: string;
+  depth: number;
+  index: number;
+}[];
+
 export type evolutionChain = {
   chain: {
     species: {
       name: string;
       url: string;
     };
-    evolves_to?: {
-      species?: {
-        name: string;
-        url: string;
-      };
-      evolves_to?: {
-        species?: {
-          name: string;
-          url: string;
-        };
-      };
-    };
+    evolves_to: evolves_to;
   };
 };
+
+export type evolves_to = {
+  species: {
+    name: string;
+    url: string;
+  };
+  evolves_to?: evolves_to;
+}[];
 
 export type PokemonType =
   | 'normal'
