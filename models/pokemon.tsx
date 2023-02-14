@@ -23,6 +23,9 @@ export type PokemonFetch = {
   types: {
     type: { name: PokemonType };
   }[];
+  species: {
+    url: string;
+  }
 };
 
 export type PokemonSpeciesFetch = {
