@@ -137,9 +137,13 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     );
     const pokemon = pokemonResponse.data;
 
+<<<<<<< HEAD
     const speciesResponse = await axios<PokemonSpeciesFetch>(
       pokemon.species.url
     );
+=======
+    const speciesResponse = await axios<PokemonSpeciesFetch>(pokemon.species.url);
+>>>>>>> 42602add0e04a36b759daa53071081feee0d3e40
     const species = speciesResponse.data;
     // const evolutionurl = speciesResponse.data.evolution_chain.url;
 
