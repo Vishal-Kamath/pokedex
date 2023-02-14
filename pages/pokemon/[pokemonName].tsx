@@ -1,4 +1,3 @@
-import PokemonDisplayEvolutionChain from '@/components/pokemon/pokemonEvolutionChain';
 import PokemonImage from '@/components/pokemon/pokemonImage';
 import PokemonTag from '@/components/pokemon/pokemonTypeTag';
 import {
