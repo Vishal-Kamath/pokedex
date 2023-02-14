@@ -553,6 +553,14 @@ video {
   z-index: 20;
 }
 
+.z-0 {
+  z-index: 0;
+}
+
+.z-40 {
+  z-index: 40;
+}
+
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;

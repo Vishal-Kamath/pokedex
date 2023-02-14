@@ -11,28 +11,28 @@ const PokemonImage: React.FC<{
   const [shiny, setShiny] = useState(false);
   return (
     <div
-      className={`relative aspect-square w-full rounded-3xl md:w-full lg:w-5/12 ${
+      className={`relative z-0 aspect-square w-full rounded-3xl md:w-full lg:w-5/12 ${
         color === 'black'
           ? 'bg-black'
           : color === 'blue'
-          ? 'dark:bg-blue-800 bg-blue-600'
+          ? 'bg-blue-600 dark:bg-blue-800'
           : color === 'brown'
-          ? 'dark:bg-orange-900 bg-orange-800'
+          ? 'bg-orange-800 dark:bg-orange-900'
           : color === 'gray'
-          ? 'dark:bg-gray-800 bg-gray-600'
+          ? 'bg-gray-600 dark:bg-gray-800'
           : color === 'green'
-          ? 'dark:bg-green-800 bg-green-600'
+          ? 'bg-green-600 dark:bg-green-800'
           : color === 'pink'
-          ? 'dark:bg-pink-800 bg-pink-600'
+          ? 'bg-pink-600 dark:bg-pink-800'
           : color === 'purple'
-          ? 'dark:bg-purple-800 bg-purple-600'
+          ? 'bg-purple-600 dark:bg-purple-800'
           : color === 'red'
-          ? 'dark:bg-red-800 bg-red-600'
+          ? 'bg-red-600 dark:bg-red-800'
           : color === 'white'
           ? 'bg-white'
           : color === 'yellow'
-          ? 'dark:bg-yellow-800 bg-yellow-600'
-          : 'dark:bg-sky-800 bg-sky-400'
+          ? 'bg-yellow-600 dark:bg-yellow-800'
+          : 'bg-sky-400 dark:bg-sky-800'
       }`}
     >
       <button

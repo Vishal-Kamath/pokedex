@@ -3,7 +3,10 @@ import { FaSearch } from 'react-icons/fa';
 import pokemonList from '@/db.json';
 import { useRouter } from 'next/router';
 
-const SearchBar: React.FC<{ classname: string }> = ({ classname }) => {
+const SearchBar: React.FC<{
+  classname: string;
+  setMenuOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+}> = ({ classname, setMenuOpen }) => {
   const router = useRouter();
 
   const [search, setSearch] = useState('');
@@ -59,6 +62,7 @@ const SearchBar: React.FC<{ classname: string }> = ({ classname }) => {
   };
 
   const _search = () => {
+    setMenuOpen && setMenuOpen(false);
     router.push(`/pokemon/${searchDisplay}`);
   };
 
