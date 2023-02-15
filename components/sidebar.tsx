@@ -6,7 +6,7 @@ import searchList from '@/db.json';
 
 const SideBar: React.FC<{
   menuOpen: boolean;
-  setMenuOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+  setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }> = ({ menuOpen, setMenuOpen }) => {
   const router = useRouter();
   const searchBarRef = useRef<HTMLInputElement>();
@@ -127,6 +127,7 @@ const SideBar: React.FC<{
         <div className="flex flex-col gap-1">
           <Link
             href={'/'}
+            onClick={() => setMenuOpen(false)}
             className={`${
               router.pathname === '/' ||
               router.pathname === '/pokemon/[pokemonName]'
@@ -138,6 +139,7 @@ const SideBar: React.FC<{
           </Link>
           <Link
             href={'/berries'}
+            onClick={() => setMenuOpen(false)}
             className={`${
               router.pathname === '/berries' ||
               router.pathname === '/berries/[berryName]'
