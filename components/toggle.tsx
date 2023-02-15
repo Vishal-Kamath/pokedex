@@ -7,20 +7,22 @@ const Toggle: React.FC = () => {
 
   const handleClick = () => {
     setChecked(!checked);
+    localStorage.setItem('dayNnight', JSON.stringify(checked));
+    if (checked) document.documentElement.classList.add('dark');
+    else document.documentElement.classList.remove('dark');
   };
 
-  useEffect(() => {
+  const onLoad = () => {
     let storageChecked = JSON.parse(
       localStorage.getItem('dayNnight') || 'false'
     ) as boolean;
     setChecked(storageChecked);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('dayNnight', JSON.stringify(checked));
-    if (checked) document.documentElement.classList.add('dark');
+    console.log('on load');
+    if (storageChecked) document.documentElement.classList.add('dark');
     else document.documentElement.classList.remove('dark');
-  }, [checked]);
+  };
+
+  useEffect(onLoad, []);
 
   return (
     <div className="relative ml-auto flex h-4 w-8 items-center">
