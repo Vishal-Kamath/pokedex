@@ -23,7 +23,7 @@ const Home: NextPage<{ pokemonList: PokemonList }> = ({ pokemonList }) => {
                 key={pokemon.name}
                 className="rounded-xl border-4 border-sky-200 hover:border-sky-300 hover:bg-sky-100 dark:border-slate-800 dark:hover:border-sky-700 dark:hover:bg-sky-900"
               >
-                <div className="mx-2 pt-2 text-center text-2xl font-semibold">
+                <div className="pt-2 text-center text-2xl font-semibold">
                   #{id} {pokemon.name}
                 </div>
                 <Image

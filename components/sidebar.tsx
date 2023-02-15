@@ -9,7 +9,6 @@ const SideBar: React.FC<{
   setMenuOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 }> = ({ menuOpen, setMenuOpen }) => {
   const router = useRouter();
-  console.log(router.pathname);
   const [search, setSearch] = useState('');
   const [searchResults, setSearchResults] = useState<string[]>([]);
   const [searchDisplay, setSearchDisplay] = useState('');
@@ -17,12 +16,12 @@ const SideBar: React.FC<{
 
   const [focus, setFocus] = useState(false);
 
-  const searchfor: 'pokemon' | 'Berries' =
+  const searchfor: 'Pokémon' | 'Berries' =
     router.pathname === '/' || router.pathname === '/pokemon/[pokemonName]'
-      ? 'pokemon'
-      : router.pathname === '/berry'
+      ? 'Pokémon'
+      : router.pathname === '/berries'
       ? 'Berries'
-      : 'pokemon';
+      : 'Pokémon';
 
   useEffect(() => {
     setSearchResults(
@@ -30,7 +29,7 @@ const SideBar: React.FC<{
         .filter((pokemon) => pokemon.startsWith(search))
         .splice(0, 10)
     );
-  }, [search]);
+  }, [search, searchfor]);
 
   useEffect(() => {
     if (searchIndex === -1) return setSearchDisplay(search);
@@ -44,11 +43,11 @@ const SideBar: React.FC<{
   };
 
   const handleArrowDown = () => {
-    if (searchIndex + 1 > 9) return;
+    if (searchIndex + 1 > 9) return setSearchIndex(0);
     setSearchIndex(searchIndex + 1);
   };
   const handleArrowUp = () => {
-    if (searchIndex - 1 < -1) return;
+    if (searchIndex - 1 < -1) return setSearchIndex(9);
     setSearchIndex(searchIndex - 1);
   };
 
@@ -75,7 +74,7 @@ const SideBar: React.FC<{
   return (
     <div
       className={`${
-        !menuOpen && 'hidden'
+        !menuOpen && 'max-md:hidden'
       } fixed z-40 flex h-full w-full flex-col gap-5 overflow-y-auto max-md:top-0 max-md:left-0 max-md:bg-sky-200 max-md:px-[4vw] max-md:pt-20 dark:max-md:bg-slate-900 md:w-1/6`}
     >
       <SearchBar
@@ -88,7 +87,7 @@ const SideBar: React.FC<{
       {focus ? (
         <div>
           <div className="flex h-9 items-center rounded-md border-2 border-sky-200 bg-sky-100 px-3 font-bold dark:border-sky-700 dark:bg-sky-900">
-            {searchfor === 'pokemon' ? 'Pokémon' : searchfor}
+            {searchfor}
           </div>
           <div className="mt-3 ml-3">
             {searchResults.length !== 0 &&
@@ -97,7 +96,7 @@ const SideBar: React.FC<{
                 return index === searchIndex ? (
                   <div
                     key={result}
-                    className="flex h-9  cursor-pointer items-center gap-5 border-l-2 border-sky-300 bg-slate-100 px-5 dark:border-sky-700 dark:bg-slate-800"
+                    className="flex h-9 cursor-pointer items-center gap-5 border-l-2 border-sky-300 bg-slate-100 px-5 leading-none dark:border-sky-700 dark:bg-slate-800"
                     onClick={() => _search(result)}
                   >
                     <span>•</span>
@@ -106,7 +105,7 @@ const SideBar: React.FC<{
                 ) : (
                   <div
                     key={result}
-                    className="flex h-9 cursor-pointer items-center gap-5 border-l-2 px-5 hover:bg-slate-100 dark:hover:bg-slate-800"
+                    className="flex h-9 cursor-pointer items-center gap-5 border-l-2 px-5 leading-none hover:bg-slate-100 dark:hover:bg-slate-800"
                     onClick={() => _search(result)}
                   >
                     <span>•</span>
@@ -124,15 +123,15 @@ const SideBar: React.FC<{
               router.pathname === '/' ||
               router.pathname === '/pokemon/[pokemonName]'
                 ? 'border-sky-200 bg-sky-100 font-bold dark:border-sky-700 dark:bg-sky-900'
-                : 'bg-slate-50 dark:bg-slate-800'
-            } flex h-9 items-center rounded-md border-2  px-3`}
+                : 'bg-slate-50 dark:border-slate-700 dark:bg-slate-800'
+            } flex h-9 items-center rounded-md border-2 px-3`}
           >
             Pokémon
           </Link>
           <Link
-            href={'/berry'}
+            href={'/berries'}
             className={`${
-              router.pathname === '/berry'
+              router.pathname === '/berries'
                 ? 'border-sky-200 bg-sky-100 font-bold dark:border-sky-700 dark:bg-sky-900'
                 : 'bg-slate-50 dark:border-slate-700 dark:bg-slate-800'
             } flex h-9 items-center rounded-md border-2 px-3`}

@@ -7,11 +7,17 @@ export const PaginationButton: React.FC = () => {
   const pageNo = Number(router.query.pageNo || 0);
 
   const _prev = () => {
-    if (pageNo - 1 === 0) return router.push('/');
-    router.push({ pathname: '/', query: { pageNo: String(pageNo - 1) } });
+    if (pageNo - 1 === 0) return router.push(router.pathname);
+    router.push({
+      pathname: router.pathname,
+      query: { pageNo: String(pageNo - 1) },
+    });
   };
   const _next = () => {
-    router.push({ pathname: '/', query: { pageNo: String(pageNo + 1) } });
+    router.push({
+      pathname: router.pathname,
+      query: { pageNo: String(pageNo + 1) },
+    });
   };
   return (
     <div className="my-4 flex justify-between">
