@@ -20,8 +20,8 @@ const PokemonPage: NextPage<{
       <Head>
         <title>{`PokéDex - ${pokemon.name}`}</title>
       </Head>
-      <div className="ml-auto flex w-full flex-col gap-5 md:w-3/4">
-        <div className="flex w-full flex-col gap-4 md:flex-row">
+      <div className="ml-auto flex w-full flex-col gap-5 md:w-1/2 lg:w-3/4">
+        <div className="flex w-full flex-col gap-4 lg:flex-row">
           {/* pokemon image */}
           <PokemonImage
             name={pokemon.name}
