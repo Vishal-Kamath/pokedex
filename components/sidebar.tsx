@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import SearchBar from './search';
 import searchList from '@/db.json';
 
@@ -9,9 +9,11 @@ const SideBar: React.FC<{
   setMenuOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 }> = ({ menuOpen, setMenuOpen }) => {
   const router = useRouter();
+  const searchBarRef = useRef<HTMLInputElement>();
   const [search, setSearch] = useState('');
   const [searchResults, setSearchResults] = useState<string[]>([]);
   const [searchIndex, setSearchIndex] = useState(-1);
+  const [mouseOver, setMouseOver] = useState(false);
 
   const [focus, setFocus] = useState(false);
 
@@ -67,7 +69,10 @@ const SideBar: React.FC<{
 
   const _search = (value: string) => {
     setMenuOpen && setMenuOpen(false);
-    router.push(`/pokemon/${value}`);
+    router.pathname === '/'
+      ? router.push(`/pokemon/${value}`)
+      : router.push(`/${router.pathname.split('/')[1]}/${value}`);
+    searchBarRef.current?.focus();
   };
   return (
     <div
@@ -76,14 +81,19 @@ const SideBar: React.FC<{
       } fixed z-40 flex h-full w-full flex-col gap-5 overflow-y-auto max-md:top-0 max-md:left-0 max-md:bg-sky-200 max-md:px-[4vw] max-md:pt-20 dark:max-md:bg-slate-900 md:w-2/5 lg:w-[18.5%] xl:max-w-[17.5rem]`}
     >
       <SearchBar
+        searchBarRef={searchBarRef}
         _search={_search}
         handleKeyDown={handleKeyDown}
         handleOnChange={handleOnChange}
         searchDisplay={searchDisplay}
+        mouseOver={mouseOver}
         setFocus={setFocus}
       />
       {focus ? (
-        <div>
+        <div
+          onMouseEnter={() => setMouseOver(true)}
+          onMouseLeave={() => setMouseOver(false)}
+        >
           <div className="flex h-9 items-center rounded-md border-2 border-sky-200 bg-sky-100 px-3 font-bold dark:border-sky-700 dark:bg-sky-900">
             {searchfor}
           </div>
