@@ -11,15 +11,19 @@ const SideBar: React.FC<{
   const router = useRouter();
   const [search, setSearch] = useState('');
   const [searchResults, setSearchResults] = useState<string[]>([]);
-  const [searchDisplay, setSearchDisplay] = useState('');
   const [searchIndex, setSearchIndex] = useState(-1);
 
   const [focus, setFocus] = useState(false);
 
+  const searchDisplay =
+    searchResults[searchIndex] !== undefined
+      ? searchResults[searchIndex]
+      : search;
   const searchfor: 'Pokémon' | 'Berries' =
     router.pathname === '/' || router.pathname === '/pokemon/[pokemonName]'
       ? 'Pokémon'
-      : router.pathname === '/berries'
+      : router.pathname === '/berries' ||
+        router.pathname === '/berries/[berryName]'
       ? 'Berries'
       : 'Pokémon';
 
@@ -31,14 +35,8 @@ const SideBar: React.FC<{
     );
   }, [search, searchfor]);
 
-  useEffect(() => {
-    if (searchIndex === -1) return setSearchDisplay(search);
-    setSearchDisplay(searchResults[searchIndex]);
-  }, [searchIndex]);
-
   const handleOnChange = (value: string) => {
     setSearch(value);
-    setSearchDisplay(value);
     setSearchIndex(-1);
   };
 
@@ -131,7 +129,8 @@ const SideBar: React.FC<{
           <Link
             href={'/berries'}
             className={`${
-              router.pathname === '/berries'
+              router.pathname === '/berries' ||
+              router.pathname === '/berries/[berryName]'
                 ? 'border-sky-200 bg-sky-100 font-bold dark:border-sky-700 dark:bg-sky-900'
                 : 'bg-slate-50 dark:border-slate-700 dark:bg-slate-800'
             } flex h-9 items-center rounded-md border-2 px-3`}
