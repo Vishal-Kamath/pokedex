@@ -32,7 +32,7 @@ const SideBar: React.FC<{
   useEffect(() => {
     setSearchResults(
       searchList[searchfor]
-        .filter((pokemon) => pokemon.startsWith(search))
+        .filter((pokemon) => pokemon.startsWith(search.toLowerCase()))
         .splice(0, 10)
     );
   }, [search, searchfor]);
