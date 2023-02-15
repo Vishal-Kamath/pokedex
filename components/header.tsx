@@ -26,7 +26,6 @@ const Header: React.FC<{
             <RxCross1 size={20} onClick={() => setMenuOpen(false)} />
           )}
         </div>
-        <SearchBar classname="hidden md:block w-3/5" />
       </div>
       <div className="clip-path mt-[-4px] h-5 w-1/3 border-b-4 border-red-500 bg-red-600 dark:border-red-600 dark:bg-red-800 lg:w-1/4"></div>
     </header>

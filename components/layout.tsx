@@ -2,6 +2,7 @@ import Head from 'next/head';
 import React, { useState } from 'react';
 import Header from './header';
 import SearchBar from './search';
+import SideBar from './sidebar';
 
 const Layout: React.FC<{ children: JSX.Element | JSX.Element[] }> = ({
   children,
@@ -14,14 +15,12 @@ const Layout: React.FC<{ children: JSX.Element | JSX.Element[] }> = ({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="flex min-h-screen flex-col bg-sky-100 dark:bg-slate-900 dark:text-white">
+      <div className="relative flex min-h-screen flex-col bg-white text-black dark:bg-slate-900 dark:text-white">
         <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-        {menuOpen && (
-          <div className="fixed top-0 z-40 flex min-h-screen w-full flex-col items-center bg-red-500 pt-20 dark:bg-red-700  md:hidden">
-            <SearchBar classname="" setMenuOpen={setMenuOpen} />
-          </div>
-        )}
-        <main className="pt-20">{children}</main>
+        <main className="padding-x flex pt-20">
+          <SideBar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+          {children}
+        </main>
       </div>
     </>
   );

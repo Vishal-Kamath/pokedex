@@ -1279,5 +1279,6 @@
     "miraidon-drive-mode",
     "miraidon-aquatic-mode",
     "miraidon-glide-mode"
-  ]
+  ],
+  "berry": ["berry1", "berry2"]
 }

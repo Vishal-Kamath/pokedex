@@ -4,16 +4,15 @@ import {
   Pokemon,
   PokemonFetch,
   PokemonSpeciesFetch,
-  evolutionChain,
   PokemonEvolutionChain,
   evolves_to,
 } from '@/models/pokemon';
 import axios from 'axios';
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import Head from 'next/head';
 import React from 'react';
 
-const PokemonPage: React.FC<{
+const PokemonPage: NextPage<{
   pokemon: Pokemon;
 }> = ({ pokemon }) => {
   return (
@@ -21,7 +20,7 @@ const PokemonPage: React.FC<{
       <Head>
         <title>{`PokéDex - ${pokemon.name}`}</title>
       </Head>
-      <div className="padding-x flex w-full flex-col gap-5">
+      <div className="ml-auto flex w-full flex-col gap-5 md:w-3/4">
         <div className="flex w-full flex-col gap-4 md:flex-row">
           {/* pokemon image */}
           <PokemonImage

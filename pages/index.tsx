@@ -1,20 +1,19 @@
 import PaginationButton from '@/components/pagination';
 import { PokemonList } from '@/models/pokemon';
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import axios from 'axios';
 import Head from 'next/head';
 
-const Home: React.FC<{ pokemonList: PokemonList }> = ({ pokemonList }) => {
+const Home: NextPage<{ pokemonList: PokemonList }> = ({ pokemonList }) => {
   return (
     <>
       <Head>
         <title>PokéDex</title>
       </Head>
-      <div className="padding-x">
-        <PaginationButton />
+      <div className="ml-auto w-full md:w-3/4">
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-3">
           {pokemonList.results.map((pokemon) => {
             const id = pokemon.url.split('/')[6];
@@ -22,7 +21,7 @@ const Home: React.FC<{ pokemonList: PokemonList }> = ({ pokemonList }) => {
               <Link
                 href={`/pokemon/${pokemon.name}`}
                 key={pokemon.name}
-                className="rounded-xl border-4 border-sky-500 hover:border-sky-400 hover:bg-sky-300 dark:border-slate-800 dark:hover:border-sky-700 dark:hover:bg-sky-900"
+                className="rounded-xl border-4 border-sky-200 hover:border-sky-300 hover:bg-sky-100 dark:border-slate-800 dark:hover:border-sky-700 dark:hover:bg-sky-900"
               >
                 <div className="mx-2 pt-2 text-center text-2xl font-semibold">
                   #{id} {pokemon.name}

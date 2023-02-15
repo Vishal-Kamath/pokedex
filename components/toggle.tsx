@@ -17,7 +17,6 @@ const Toggle: React.FC = () => {
       localStorage.getItem('dayNnight') || 'false'
     ) as boolean;
     setChecked(storageChecked);
-    console.log('on load');
     if (storageChecked) document.documentElement.classList.add('dark');
     else document.documentElement.classList.remove('dark');
   };
