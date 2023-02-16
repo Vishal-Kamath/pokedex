@@ -92,7 +92,7 @@ const BerryPage: NextPage<{ berry: Berry }> = ({ berry }) => {
         {berry.held_by_pokemon.length !== 0 && (
           <div>
             <h2 className="mb-3 text-2xl">Held by pokemon</h2>
-            <div className="flex items-center justify-evenly rounded-md bg-slate-100 py-3 dark:bg-slate-800">
+            <div className="flex flex-wrap items-center justify-evenly rounded-md bg-slate-100 py-3 dark:bg-slate-800">
               {berry.held_by_pokemon.map((pokemon) => {
                 const id = pokemon.pokemon.url.split('/')[6];
                 return (
