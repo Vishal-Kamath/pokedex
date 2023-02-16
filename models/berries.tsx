@@ -26,5 +26,17 @@ export type BerryFetch = {
 };
 
 export type BerryItem = {
-  effect_entries: {};
+  category: {
+    name: string;
+  };
+  cost: number;
+  effect_entries: {
+    effect: string;
+  }[];
+  held_by_pokemon: {
+    pokemon: {
+      name: string;
+      url: string;
+    };
+  };
 };

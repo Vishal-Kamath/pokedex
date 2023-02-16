@@ -38,7 +38,6 @@ const PokemonPage: NextPage<{
               {pokemon.name}
               <div className="flex gap-1">
                 {pokemon.types.map((type) => (
-                  // <PokemonTag type={type.type.name}/>
                   <PokemonTag key={type.type.name} type={type.type.name} />
                 ))}
               </div>

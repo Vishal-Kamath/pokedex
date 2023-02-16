@@ -26,7 +26,39 @@ const BerryPage: NextPage<{ berry: Berry }> = ({ berry }) => {
             <div className="mb-2 flex gap-2 border-b-4 border-black pb-2 text-2xl font-bold dark:border-white">
               <i className="text-slate-500">#{berry.id}</i>
               <span>{berry.item.name}</span>
+              <div className="rounded-full bg-slate-300 px-3 py-2 text-xs text-black">
+                {berry.category.name}
+              </div>
             </div>
+            <div className="text-gray-500">
+              {berry.effect_entries.map((entry) => (
+                <div>{entry.effect}</div>
+              ))}
+            </div>
+            <table className="w-full border-none">
+              <tbody>
+                <tr>
+                  <td>size:</td>
+                  <td>{berry.size / 10}cm</td>
+                </tr>
+                <tr>
+                  <td>cost:</td>
+                  <td>{berry.cost}</td>
+                </tr>
+                <tr>
+                  <td>firmness:</td>
+                  <td>{berry.firmness.name}</td>
+                </tr>
+                <tr>
+                  <td>growth time:</td>
+                  <td>{berry.growth_time}</td>
+                </tr>
+                <tr>
+                  <td>max harvest:</td>
+                  <td>{berry.max_harvest}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -57,6 +89,11 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
           item: berry.item,
           max_harvest: berry.max_harvest,
           size: berry.size,
+
+          category: berryItem.category,
+          cost: berryItem.cost,
+          effect_entries: berryItem.effect_entries,
+          held_by_pokemon: berryItem.held_by_pokemon,
         },
       },
     };
