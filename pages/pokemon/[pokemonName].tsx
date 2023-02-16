@@ -10,6 +10,8 @@ import {
 import axios from 'axios';
 import { GetServerSideProps, NextPage } from 'next';
 import Head from 'next/head';
+import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 const PokemonPage: NextPage<{
@@ -58,42 +60,72 @@ const PokemonPage: NextPage<{
                   </tr>
                 </tbody>
               </table>
+              <h2 className="mb-3 text-2xl">Stats</h2>
+              <table className="w-full border-separate text-center">
+                <thead>
+                  <tr>
+                    <td className="rounded-md border-2 border-sky-800 bg-sky-300 dark:border-sky-300 dark:bg-sky-800">
+                      name
+                    </td>
+                    <td className="rounded-md border-2 border-sky-800 bg-sky-300 dark:border-sky-300 dark:bg-sky-800">
+                      base stat
+                    </td>
+                    <td className="rounded-md border-2 border-sky-800 bg-sky-300 dark:border-sky-300 dark:bg-sky-800">
+                      effort
+                    </td>
+                  </tr>
+                </thead>
+                <tbody>
+                  {pokemon.stats.map((stat) => (
+                    <tr key={stat.stat.name}>
+                      <td className="rounded-md border-2 border-sky-500 dark:border-slate-700">
+                        {stat.stat.name}
+                      </td>
+                      <td className="rounded-md border-2 border-sky-500 dark:border-slate-700">
+                        {stat.base_stat}
+                      </td>
+                      <td className="rounded-md border-2 border-sky-500 dark:border-slate-700">
+                        {stat.effort}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
 
+        {/* varities */}
         <div>
-          <h2 className="mb-3 text-2xl">Stats</h2>
-          <table className="w-full border-separate text-center">
-            <thead>
-              <tr>
-                <td className="rounded-md border-2 border-sky-800 bg-sky-300 dark:border-sky-300 dark:bg-sky-800">
-                  name
-                </td>
-                <td className="rounded-md border-2 border-sky-800 bg-sky-300 dark:border-sky-300 dark:bg-sky-800">
-                  base stat
-                </td>
-                <td className="rounded-md border-2 border-sky-800 bg-sky-300 dark:border-sky-300 dark:bg-sky-800">
-                  effort
-                </td>
-              </tr>
-            </thead>
-            <tbody>
-              {pokemon.stats.map((stat) => (
-                <tr key={stat.stat.name}>
-                  <td className="rounded-md border-2 border-sky-500 dark:border-slate-700">
-                    {stat.stat.name}
-                  </td>
-                  <td className="rounded-md border-2 border-sky-500 dark:border-slate-700">
-                    {stat.base_stat}
-                  </td>
-                  <td className="rounded-md border-2 border-sky-500 dark:border-slate-700">
-                    {stat.effort}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <h2 className="mb-3 text-2xl">Varities</h2>
+          <div className="flex flex-col items-center justify-evenly rounded-md bg-slate-100 py-3 dark:bg-slate-800 lg:flex-row">
+            {pokemon.varieties.map((varity) => {
+              const id = varity.pokemon.url.split('/')[6];
+              return pokemon.name === varity.pokemon.name ? (
+                <Image
+                  title={varity.pokemon.name}
+                  alt={varity.pokemon.name}
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
+                  className="aspect-square w-full md:w-[10rem]"
+                  loading="lazy"
+                  width="500"
+                  height="500"
+                />
+              ) : (
+                <Link href={`/pokemon/${varity.pokemon.name}`}>
+                  <Image
+                    title={varity.pokemon.name}
+                    alt={varity.pokemon.name}
+                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
+                    className="aspect-square w-full md:w-[10rem]"
+                    loading="lazy"
+                    width="500"
+                    height="500"
+                  />
+                </Link>
+              );
+            })}
+          </div>
         </div>
 
         {/* Evoluton Chain */}

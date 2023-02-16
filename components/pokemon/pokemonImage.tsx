@@ -11,7 +11,7 @@ const PokemonImage: React.FC<{
   const [shiny, setShiny] = useState(false);
   return (
     <div
-      className={`relative aspect-square w-full rounded-3xl md:w-full lg:w-5/12 ${
+      className={`relative aspect-square h-full w-full rounded-3xl lg:w-5/12 ${
         color === 'black'
           ? 'bg-black'
           : color === 'blue'
