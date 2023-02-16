@@ -1,39 +1,37 @@
 import PaginationButton from '@/components/pagination';
-import { BerriesList } from '@/models/berries';
+import { ItemsList } from '@/models/items';
 import axios from 'axios';
 import { GetServerSideProps, NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const BerriesHome: NextPage<{ berries: BerriesList['results'] }> = ({
-  berries,
-}) => {
+const ItemsHome: NextPage<{ itemsList: ItemsList }> = ({ itemsList }) => {
   return (
     <>
       <Head>
-        <title>PokéDex - berries</title>
+        <title>PokéDex - items</title>
       </Head>
       <div className="ml-auto w-full md:w-1/2 lg:w-3/4">
         <div className="grid grid-cols-2 gap-2 lg:grid-cols-3 xl:grid-cols-4">
-          {berries.map((berry) => {
-            const id = berry.url.split('/')[6];
+          {itemsList.results.map((item) => {
+            const id = item.url.split('/')[6];
             return (
               <Link
-                href={`/berries/${berry.name}`}
-                key={berry.name}
+                href={`/berries/${item.name}`}
+                key={item.name}
                 className="flex flex-col items-center gap-5 rounded-xl border-4 border-sky-200 py-5 hover:border-sky-300 hover:bg-sky-100 dark:border-slate-800 dark:hover:border-sky-700 dark:hover:bg-sky-900"
               >
                 <div className="text-center text-2xl font-semibold">
-                  #{id} {berry.name}
+                  #{id} {item.name}
                 </div>
                 <Image
-                  alt={berry.name}
-                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dream-world/${berry.name}-berry.png`}
+                  alt={item.name}
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${item.name}.png`}
                   className="pixel-image aspect-square"
                   loading="lazy"
-                  width="100"
-                  height="100"
+                  width="500"
+                  height="500"
                 />
               </Link>
             );
@@ -45,25 +43,21 @@ const BerriesHome: NextPage<{ berries: BerriesList['results'] }> = ({
   );
 };
 
-export default BerriesHome;
+export default ItemsHome;
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   try {
-    const pageNo = Number(query.pageNo) | 0;
-
-    const berriesResponse = await axios<BerriesList>(
-      `https://pokeapi.co/api/v2/berry/?offset=${16 * pageNo}&limit=16`
+    const pageNo = Number(query?.pageNo) | 0;
+    const itemResponcse = await axios.get<ItemsList>(
+      `https://pokeapi.co/api/v2/item/?offset=${pageNo * 16}&limit=16`
     );
-    const berries = berriesResponse.data.results;
-
+    const itemsList = itemResponcse.data;
     return {
       props: {
-        berries,
+        itemsList,
       },
     };
   } catch (err) {
-    return {
-      notFound: true,
-    };
+    return { notFound: true };
   }
 };

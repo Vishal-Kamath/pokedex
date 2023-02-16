@@ -47,7 +47,7 @@ const Home: NextPage<{ pokemonList: PokemonList }> = ({ pokemonList }) => {
 export default Home;
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const pageNo = Number(query.pageNo) || 0;
+  const pageNo = Number(query.pageNo) | 0;
 
   const response = await axios(
     `https://pokeapi.co/api/v2/pokemon?limit=18&offset=${18 * pageNo}`

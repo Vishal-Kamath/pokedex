@@ -16,10 +16,10 @@ const BerryPage: NextPage<{ berry: Berry }> = ({ berry }) => {
             <Image
               alt={berry.item.name}
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dream-world/${berry.item.name}.png`}
-              className="aspect-square"
+              className="pixel-image aspect-square"
               loading="lazy"
-              width="200"
-              height="200"
+              width="500"
+              height="500"
             />
           </div>
           <div className="w-full">

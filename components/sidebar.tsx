@@ -21,18 +21,20 @@ const SideBar: React.FC<{
     searchResults[searchIndex] !== undefined
       ? searchResults[searchIndex]
       : search;
-  const searchfor: 'Pokémon' | 'Berries' =
+  const searchfor: 'Pokémon' | 'Berries' | 'Items' =
     router.pathname === '/' || router.pathname === '/pokemon/[pokemonName]'
       ? 'Pokémon'
       : router.pathname === '/berries' ||
         router.pathname === '/berries/[berryName]'
       ? 'Berries'
+      : router.pathname === '/items' || router.pathname === '/items/[itemName]'
+      ? 'Items'
       : 'Pokémon';
 
   useEffect(() => {
     setSearchResults(
       searchList[searchfor]
-        .filter((pokemon) => pokemon.startsWith(search.toLowerCase()))
+        .filter((data) => data.startsWith(search.toLowerCase()))
         .splice(0, 10)
     );
   }, [search, searchfor]);
@@ -148,6 +150,18 @@ const SideBar: React.FC<{
             } flex h-9 items-center rounded-md border-2 px-3`}
           >
             Berries
+          </Link>
+          <Link
+            href={'/items'}
+            onClick={() => setMenuOpen(false)}
+            className={`${
+              router.pathname === '/items' ||
+              router.pathname === '/items/[itemName]'
+                ? 'border-sky-200 bg-sky-100 font-bold dark:border-sky-700 dark:bg-sky-900'
+                : 'bg-slate-50 dark:border-slate-700 dark:bg-slate-800'
+            } flex h-9 items-center rounded-md border-2 px-3`}
+          >
+            Items
           </Link>
         </div>
       )}

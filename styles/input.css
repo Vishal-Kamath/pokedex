@@ -17,3 +17,9 @@
     0px -2.25px 0 #2563eb, 2.25px 0px 0 #2563eb, 0px 2.25px 0 #2563eb;
   letter-spacing: 2px;
 }
+
+.pixel-image {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
