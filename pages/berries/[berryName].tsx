@@ -3,6 +3,7 @@ import axios from 'axios';
 import { GetServerSideProps, NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const BerryPage: NextPage<{ berry: Berry }> = ({ berry }) => {
   return (
@@ -12,7 +13,7 @@ const BerryPage: NextPage<{ berry: Berry }> = ({ berry }) => {
       </Head>
       <div className="ml-auto flex w-full flex-col gap-5 md:w-1/2 lg:w-3/4">
         <div className="flex w-full flex-col gap-4 lg:flex-row">
-          <div className="grid place-content-center rounded-xl border-2 bg-sky-50 p-5 dark:border-slate-700 dark:bg-slate-800">
+          <div className="grid aspect-square h-full w-full max-w-xs place-content-center rounded-xl border-2 bg-sky-50 p-5 dark:border-slate-700 dark:bg-slate-800">
             <Image
               alt={berry.item.name}
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dream-world/${berry.item.name}.png`}
@@ -59,8 +60,58 @@ const BerryPage: NextPage<{ berry: Berry }> = ({ berry }) => {
                 </tr>
               </tbody>
             </table>
+            <h2 className="my-3 text-2xl">Flavors</h2>
+            <table className="w-full border-separate text-center">
+              <thead>
+                <tr>
+                  <td className="rounded-md border-2 border-sky-800 bg-sky-300 dark:border-sky-300 dark:bg-sky-800">
+                    flavor
+                  </td>
+                  <td className="rounded-md border-2 border-sky-800 bg-sky-300 dark:border-sky-300 dark:bg-sky-800">
+                    potency
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                {berry.flavors.map((flavor) => (
+                  <tr key={flavor.flavor.name}>
+                    <td className="rounded-md border-2 border-sky-500 dark:border-slate-700">
+                      {flavor.flavor.name}
+                    </td>
+                    <td className="rounded-md border-2 border-sky-500 dark:border-slate-700">
+                      {flavor.potency}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
+
+        {/* held by pokemons */}
+        {berry.held_by_pokemon.length !== 0 && (
+          <div>
+            <h2 className="mb-3 text-2xl">Held by pokemon</h2>
+            <div className="flex items-center justify-evenly rounded-md bg-slate-100 py-3 dark:bg-slate-800">
+              {berry.held_by_pokemon.map((pokemon) => {
+                const id = pokemon.pokemon.url.split('/')[6];
+                return (
+                  <Link href={`/pokemon/${pokemon.pokemon.name}`}>
+                    <Image
+                      title={pokemon.pokemon.name}
+                      alt={pokemon.pokemon.name}
+                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
+                      className="aspect-square w-full md:w-[10rem]"
+                      loading="lazy"
+                      width="500"
+                      height="500"
+                    />
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

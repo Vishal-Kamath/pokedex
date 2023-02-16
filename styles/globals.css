@@ -558,6 +558,11 @@ video {
   margin-bottom: 1rem;
 }
 
+.my-3 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
 .ml-auto {
   margin-left: auto;
 }
@@ -656,6 +661,14 @@ video {
 
 .min-w-full {
   min-width: 100%;
+}
+
+.max-w-sm {
+  max-width: 24rem;
+}
+
+.max-w-xs {
+  max-width: 20rem;
 }
 
 .border-separate {

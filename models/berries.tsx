@@ -38,5 +38,5 @@ export type BerryItem = {
       name: string;
       url: string;
     };
-  };
+  }[];
 };
