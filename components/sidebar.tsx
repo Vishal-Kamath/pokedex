@@ -80,7 +80,7 @@ const SideBar: React.FC<{
     <div
       className={`${
         !menuOpen && 'max-md:hidden'
-      } fixed z-40 flex h-full w-full flex-col gap-5 overflow-y-auto max-md:top-0 max-md:left-0 max-md:bg-sky-200 max-md:px-[4vw] max-md:pt-20 dark:max-md:bg-slate-900 md:w-2/5 lg:w-[18.5%] xl:max-w-[17.5rem]`}
+      } fixed z-40 flex h-full w-full flex-col gap-5 overflow-y-auto bg-white dark:bg-slate-900 max-md:top-0 max-md:left-0 max-md:px-[4vw] max-md:pt-20 md:w-2/5 lg:w-[18.5%] xl:max-w-[17.5rem]`}
     >
       <SearchBar
         searchBarRef={searchBarRef}
