@@ -21,15 +21,27 @@ const SideBar: React.FC<{
     searchResults[searchIndex] !== undefined
       ? searchResults[searchIndex]
       : search;
-  const searchfor: 'Pokémon' | 'Berries' | 'Items' =
-    router.pathname === '/' || router.pathname === '/pokemon/[pokemonName]'
-      ? 'Pokémon'
-      : router.pathname === '/berries' ||
-        router.pathname === '/berries/[berryName]'
-      ? 'Berries'
-      : router.pathname === '/items' || router.pathname === '/items/[itemName]'
-      ? 'Items'
-      : 'Pokémon';
+
+  const getSearchFor = (): 'Pokémon' | 'Berries' | 'Items' => {
+    switch (router.pathname) {
+      case '/':
+      case '/pokemon/[pokemonName]':
+        return 'Pokémon';
+
+      case '/berries':
+      case '/berries/[berryName]':
+        return 'Berries';
+
+      case '/items':
+      case '/items/[itemName]':
+        return 'Items';
+
+      default:
+        return 'Pokémon';
+    }
+  };
+
+  const searchfor: 'Pokémon' | 'Berries' | 'Items' = getSearchFor();
 
   useEffect(() => {
     setSearchResults(
@@ -80,91 +92,93 @@ const SideBar: React.FC<{
     <div
       className={`${
         !menuOpen && 'max-md:hidden'
-      } fixed z-40 flex h-full w-full flex-col gap-5 overflow-y-auto bg-white dark:bg-slate-900 max-md:top-0 max-md:left-0 max-md:px-[4vw] max-md:pt-20 md:w-2/5 lg:w-[18.5%] xl:max-w-[17.5rem]`}
+      } padding-x fixed top-0 left-0 z-40 min-h-screen w-full pt-20 max-md:bg-white max-md:dark:bg-slate-900`}
     >
-      <SearchBar
-        searchBarRef={searchBarRef}
-        _search={_search}
-        handleKeyDown={handleKeyDown}
-        handleOnChange={handleOnChange}
-        searchDisplay={searchDisplay}
-        mouseOver={mouseOver}
-        setFocus={setFocus}
-      />
-      {focus ? (
-        <div
-          onMouseEnter={() => setMouseOver(true)}
-          onMouseLeave={() => setMouseOver(false)}
-        >
-          <div className="flex h-9 items-center rounded-md border-2 border-sky-200 bg-sky-100 px-3 font-bold dark:border-sky-700 dark:bg-sky-900">
-            {searchfor}
+      <div className="flex w-full flex-col gap-5 md:w-1/2 md:pr-5 lg:w-1/4">
+        <SearchBar
+          searchBarRef={searchBarRef}
+          _search={_search}
+          handleKeyDown={handleKeyDown}
+          handleOnChange={handleOnChange}
+          searchDisplay={searchDisplay}
+          mouseOver={mouseOver}
+          setFocus={setFocus}
+        />
+        {focus ? (
+          <div
+            onMouseEnter={() => setMouseOver(true)}
+            onMouseLeave={() => setMouseOver(false)}
+          >
+            <div className="flex h-9 items-center rounded-md border-2 border-sky-200 bg-sky-100 px-3 font-bold dark:border-sky-700 dark:bg-sky-900">
+              {searchfor}
+            </div>
+            <div className="mt-3 ml-3">
+              {searchResults.length !== 0 &&
+                focus &&
+                searchResults.map((result, index) => {
+                  return index === searchIndex ? (
+                    <div
+                      key={result}
+                      className="flex h-9 cursor-pointer items-center gap-5 border-l-2 border-sky-300 bg-slate-100 px-5 leading-none dark:border-sky-700 dark:bg-slate-800"
+                      onClick={() => _search(result)}
+                    >
+                      <span>•</span>
+                      <span>{result}</span>
+                    </div>
+                  ) : (
+                    <div
+                      key={result}
+                      className="flex h-9 cursor-pointer items-center gap-5 border-l-2 px-5 leading-none hover:bg-slate-100 dark:hover:bg-slate-800"
+                      onClick={() => _search(result)}
+                    >
+                      <span>•</span>
+                      <span>{result}</span>
+                    </div>
+                  );
+                })}
+            </div>
           </div>
-          <div className="mt-3 ml-3">
-            {searchResults.length !== 0 &&
-              focus &&
-              searchResults.map((result, index) => {
-                return index === searchIndex ? (
-                  <div
-                    key={result}
-                    className="flex h-9 cursor-pointer items-center gap-5 border-l-2 border-sky-300 bg-slate-100 px-5 leading-none dark:border-sky-700 dark:bg-slate-800"
-                    onClick={() => _search(result)}
-                  >
-                    <span>•</span>
-                    <span>{result}</span>
-                  </div>
-                ) : (
-                  <div
-                    key={result}
-                    className="flex h-9 cursor-pointer items-center gap-5 border-l-2 px-5 leading-none hover:bg-slate-100 dark:hover:bg-slate-800"
-                    onClick={() => _search(result)}
-                  >
-                    <span>•</span>
-                    <span>{result}</span>
-                  </div>
-                );
-              })}
+        ) : (
+          <div className="flex flex-col gap-1">
+            <Link
+              href={'/'}
+              onClick={() => setMenuOpen(false)}
+              className={`${
+                router.pathname === '/' ||
+                router.pathname === '/pokemon/[pokemonName]'
+                  ? 'border-sky-200 bg-sky-100 font-bold dark:border-sky-700 dark:bg-sky-900'
+                  : 'bg-slate-50 dark:border-slate-700 dark:bg-slate-800'
+              } flex h-9 items-center rounded-md border-2 px-3`}
+            >
+              Pokémon
+            </Link>
+            <Link
+              href={'/berries'}
+              onClick={() => setMenuOpen(false)}
+              className={`${
+                router.pathname === '/berries' ||
+                router.pathname === '/berries/[berryName]'
+                  ? 'border-sky-200 bg-sky-100 font-bold dark:border-sky-700 dark:bg-sky-900'
+                  : 'bg-slate-50 dark:border-slate-700 dark:bg-slate-800'
+              } flex h-9 items-center rounded-md border-2 px-3`}
+            >
+              Berries
+            </Link>
+            <Link
+              href={'/items'}
+              onClick={() => setMenuOpen(false)}
+              className={`${
+                router.pathname === '/items' ||
+                router.pathname === '/items/[itemName]'
+                  ? 'border-sky-200 bg-sky-100 font-bold dark:border-sky-700 dark:bg-sky-900'
+                  : 'bg-slate-50 dark:border-slate-700 dark:bg-slate-800'
+              } flex h-9 items-center rounded-md border-2 px-3`}
+            >
+              Items
+            </Link>
           </div>
-        </div>
-      ) : (
-        <div className="flex flex-col gap-1">
-          <Link
-            href={'/'}
-            onClick={() => setMenuOpen(false)}
-            className={`${
-              router.pathname === '/' ||
-              router.pathname === '/pokemon/[pokemonName]'
-                ? 'border-sky-200 bg-sky-100 font-bold dark:border-sky-700 dark:bg-sky-900'
-                : 'bg-slate-50 dark:border-slate-700 dark:bg-slate-800'
-            } flex h-9 items-center rounded-md border-2 px-3`}
-          >
-            Pokémon
-          </Link>
-          <Link
-            href={'/berries'}
-            onClick={() => setMenuOpen(false)}
-            className={`${
-              router.pathname === '/berries' ||
-              router.pathname === '/berries/[berryName]'
-                ? 'border-sky-200 bg-sky-100 font-bold dark:border-sky-700 dark:bg-sky-900'
-                : 'bg-slate-50 dark:border-slate-700 dark:bg-slate-800'
-            } flex h-9 items-center rounded-md border-2 px-3`}
-          >
-            Berries
-          </Link>
-          <Link
-            href={'/items'}
-            onClick={() => setMenuOpen(false)}
-            className={`${
-              router.pathname === '/items' ||
-              router.pathname === '/items/[itemName]'
-                ? 'border-sky-200 bg-sky-100 font-bold dark:border-sky-700 dark:bg-sky-900'
-                : 'bg-slate-50 dark:border-slate-700 dark:bg-slate-800'
-            } flex h-9 items-center rounded-md border-2 px-3`}
-          >
-            Items
-          </Link>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
