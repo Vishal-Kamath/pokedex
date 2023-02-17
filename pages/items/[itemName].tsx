@@ -11,8 +11,8 @@ const ItemPage: NextPage<{ item: ItemFetch }> = ({ item }) => {
       <Head>
         <title>{`PokéDex - ${item.name}`}</title>
       </Head>
-      <div className="isolate  z-10 mb-10 ml-auto flex w-full flex-col gap-5 md:w-1/2 lg:w-3/4">
-        <div className="flex w-full flex-col gap-4 lg:flex-row">
+      <div className="isolate z-10 mb-10 ml-auto flex w-full flex-col gap-5 md:w-1/2 lg:w-3/4">
+        <div className="flex w-full flex-col items-center gap-4 lg:flex-row">
           <div className="grid aspect-square h-full w-full max-w-xs place-content-center rounded-xl border-2 bg-sky-50 p-5 dark:border-slate-700 dark:bg-slate-800">
             <Image
               alt={item.name}
