@@ -10,7 +10,7 @@ const AboutPage: NextPage = () => {
       </Head>
       <div className="isolate z-10 ml-auto flex w-full flex-col gap-5 md:w-1/2 lg:w-3/4">
         <h2 className="text-2xl font-bold">About</h2>
-        <div className="rounded-md border-2 border-emerald-400 bg-emerald-400 bg-opacity-20 px-5 py-2 text-emerald-400">
+        <div className="rounded-md border-2 border-emerald-500 bg-emerald-500 bg-opacity-20 px-5 py-2 text-emerald-500">
           <h5 className="flex items-center gap-2 font-bold">
             <BsExclamationCircleFill className="text-lg" /> Note:
           </h5>
