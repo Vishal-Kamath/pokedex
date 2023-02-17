@@ -12,6 +12,7 @@ const Footer: React.FC = () => {
         <a
           href="https://github.com/Vishal-Kamath/ui-designs-react"
           target="_blank"
+          rel="noreferrer noopener"
           className="flex items-center gap-1 text-base text-gray-400 hover:text-white"
         >
           <FaGithub /> Github
@@ -19,6 +20,7 @@ const Footer: React.FC = () => {
         <a
           href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
           target="_blank"
+          rel="noreferrer noopener"
           className="flex items-center gap-1 text-base text-gray-400 hover:text-white"
         >
           <FaLinkedin /> LinkedIn
@@ -26,6 +28,7 @@ const Footer: React.FC = () => {
         <a
           href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
           target="_blank"
+          rel="noreferrer noopener"
           className="flex items-center gap-1 text-base text-gray-400 hover:text-white"
         >
           <FaFacebook /> FaceBook
@@ -33,6 +36,7 @@ const Footer: React.FC = () => {
         <a
           href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
           target="_blank"
+          rel="noreferrer noopener"
           className="flex items-center gap-1 text-base text-gray-400 hover:text-white"
         >
           <FaInstagram /> Instagram
