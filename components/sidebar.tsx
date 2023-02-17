@@ -176,6 +176,17 @@ const SideBar: React.FC<{
             >
               Items
             </Link>
+            <Link
+              href={'/about'}
+              onClick={() => setMenuOpen(false)}
+              className={`${
+                router.pathname === '/about'
+                  ? 'border-sky-200 bg-sky-100 font-bold dark:border-sky-700 dark:bg-sky-900'
+                  : 'bg-slate-50 dark:border-slate-700 dark:bg-slate-800'
+              } flex h-9 items-center rounded-md border-2 px-3`}
+            >
+              About
+            </Link>
           </div>
         )}
       </div>
