@@ -13,7 +13,7 @@ const Home: NextPage<{ pokemonList: PokemonList }> = ({ pokemonList }) => {
       <Head>
         <title>PokéDex</title>
       </Head>
-      <div className="isolate z-10 ml-auto w-full md:w-1/2 lg:w-3/4">
+      <div className="isolate z-10 ml-auto mb-10 w-full md:w-1/2  lg:w-3/4">
         <div className="grid grid-cols-1 gap-2 lg:grid-cols-2 xl:grid-cols-3">
           {pokemonList.results.map((pokemon) => {
             const id = pokemon.url.split('/')[6];

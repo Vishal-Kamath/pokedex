@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import React, { useState } from 'react';
+import Footer from './footer';
 import Header from './header';
-import SearchBar from './search';
 import SideBar from './sidebar';
 
 const Layout: React.FC<{ children: JSX.Element | JSX.Element[] }> = ({
@@ -21,6 +21,7 @@ const Layout: React.FC<{ children: JSX.Element | JSX.Element[] }> = ({
           <SideBar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
           {children}
         </main>
+        <Footer />
       </div>
     </>
   );

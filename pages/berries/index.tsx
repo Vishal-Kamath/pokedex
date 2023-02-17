@@ -14,7 +14,7 @@ const BerriesHome: NextPage<{ berries: BerriesList['results'] }> = ({
       <Head>
         <title>PokéDex - berries</title>
       </Head>
-      <div className="isolate z-10 ml-auto w-full md:w-1/2 lg:w-3/4">
+      <div className="isolate  z-10 mb-10 ml-auto w-full md:w-1/2 lg:w-3/4">
         <div className="grid grid-cols-2 gap-2 lg:grid-cols-3 xl:grid-cols-4">
           {berries.map((berry) => {
             const id = berry.url.split('/')[6];

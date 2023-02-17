@@ -5,7 +5,6 @@ import { BiMenuAltRight } from 'react-icons/bi';
 import { RxCross1 } from 'react-icons/rx';
 import Link from 'next/link';
 import Toggle from './toggle';
-import SearchBar from './search';
 
 const Header: React.FC<{
   menuOpen: boolean;
