@@ -18,7 +18,7 @@ const ItemsHome: NextPage<{ itemsList: ItemsList }> = ({ itemsList }) => {
             const id = item.url.split('/')[6];
             return (
               <Link
-                href={`/berries/${item.name}`}
+                href={`/items/${item.name}`}
                 key={item.name}
                 className="flex flex-col items-center gap-5 rounded-xl border-4 border-sky-200 py-5 hover:border-sky-300 hover:bg-sky-100 dark:border-slate-800 dark:hover:border-sky-700 dark:hover:bg-sky-900"
               >

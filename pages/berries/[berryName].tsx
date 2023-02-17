@@ -1,4 +1,6 @@
-import { Berry, BerryFetch, BerryItem } from '@/models/berries';
+import HeldByPokemon from '@/components/heldByPokemon';
+import { Berry, BerryFetch } from '@/models/berries';
+import { ItemFetch } from '@/models/items';
 import axios from 'axios';
 import { GetServerSideProps, NextPage } from 'next';
 import Head from 'next/head';
@@ -58,6 +60,18 @@ const BerryPage: NextPage<{ berry: Berry }> = ({ berry }) => {
                   <td>max harvest:</td>
                   <td>{berry.max_harvest}</td>
                 </tr>
+                <tr>
+                  <td>attributes:</td>
+                  <td className="flex flex-wrap">
+                    {berry.attributes.map((attr, index) => {
+                      return index === 0 ? (
+                        <div>{attr.name}</div>
+                      ) : (
+                        <div>• {attr.name}</div>
+                      );
+                    })}
+                  </td>
+                </tr>
               </tbody>
             </table>
             <h2 className="my-3 text-2xl">Flavors</h2>
@@ -89,32 +103,7 @@ const BerryPage: NextPage<{ berry: Berry }> = ({ berry }) => {
         </div>
 
         {/* held by pokemons */}
-        {berry.held_by_pokemon.length !== 0 && (
-          <div>
-            <h2 className="mb-3 text-2xl">Held by pokemon</h2>
-            <div className="flex flex-wrap items-center justify-evenly rounded-md bg-slate-100 py-3 dark:bg-slate-800">
-              {berry.held_by_pokemon.map((pokemon) => {
-                const id = pokemon.pokemon.url.split('/')[6];
-                return (
-                  <Link
-                    key={pokemon.pokemon.name}
-                    href={`/pokemon/${pokemon.pokemon.name}`}
-                  >
-                    <Image
-                      title={pokemon.pokemon.name}
-                      alt={pokemon.pokemon.name}
-                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
-                      className="aspect-square w-full md:w-[10rem]"
-                      loading="lazy"
-                      width="500"
-                      height="500"
-                    />
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-        )}
+        <HeldByPokemon held_by_pokemon={berry.held_by_pokemon} />
       </div>
     </>
   );
@@ -130,7 +119,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     );
     const berry = berryResponse.data;
 
-    const berryItemResponse = await axios<BerryItem>(berry.item.url);
+    const berryItemResponse = await axios<ItemFetch>(berry.item.url);
     const berryItem = berryItemResponse.data;
 
     return {
@@ -145,6 +134,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
           size: berry.size,
 
           category: berryItem.category,
+          attributes: berryItem.attributes,
           cost: berryItem.cost,
           effect_entries: berryItem.effect_entries,
           held_by_pokemon: berryItem.held_by_pokemon,

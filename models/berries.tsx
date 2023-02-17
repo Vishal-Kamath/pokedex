@@ -1,3 +1,5 @@
+import { ItemFetch } from './items';
+
 export type BerriesList = {
   results: {
     name: string;
@@ -5,7 +7,7 @@ export type BerriesList = {
   }[];
 };
 
-export type Berry = BerryFetch & BerryItem;
+export type Berry = BerryFetch & ItemFetch;
 
 export type BerryFetch = {
   firmness: {
@@ -23,20 +25,4 @@ export type BerryFetch = {
   };
   max_harvest: number;
   size: number;
-};
-
-export type BerryItem = {
-  category: {
-    name: string;
-  };
-  cost: number;
-  effect_entries: {
-    effect: string;
-  }[];
-  held_by_pokemon: {
-    pokemon: {
-      name: string;
-      url: string;
-    };
-  }[];
 };
