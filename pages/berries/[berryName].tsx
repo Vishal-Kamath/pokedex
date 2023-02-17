@@ -33,7 +33,7 @@ const BerryPage: NextPage<{ berry: Berry }> = ({ berry }) => {
             </div>
             <div className="text-gray-500">
               {berry.effect_entries.map((entry) => (
-                <div>{entry.effect}</div>
+                <div key={entry.effect}>{entry.effect}</div>
               ))}
             </div>
             <table className="w-full border-none">
@@ -96,7 +96,7 @@ const BerryPage: NextPage<{ berry: Berry }> = ({ berry }) => {
               {berry.held_by_pokemon.map((pokemon) => {
                 const id = pokemon.pokemon.url.split('/')[6];
                 return (
-                  <Link href={`/pokemon/${pokemon.pokemon.name}`}>
+                  <Link key={pokemon.pokemon.name} href={`/pokemon/${pokemon.pokemon.name}`}>
                     <Image
                       title={pokemon.pokemon.name}
                       alt={pokemon.pokemon.name}
