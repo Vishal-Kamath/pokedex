@@ -111,7 +111,10 @@ const PokemonPage: NextPage<{
                   height="500"
                 />
               ) : (
-                <Link href={`/pokemon/${varity.pokemon.name}`}>
+                <Link
+                  href={`/pokemon/${varity.pokemon.name}`}
+                  className="aspect-square w-full md:w-[10rem]"
+                >
                   <Image
                     title={varity.pokemon.name}
                     alt={varity.pokemon.name}
