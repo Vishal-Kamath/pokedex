@@ -92,7 +92,7 @@ const SideBar: React.FC<{
     <div
       className={`${
         !menuOpen && 'max-md:hidden'
-      } padding-x fixed top-0 left-0 z-40 min-h-screen w-full pt-20 max-md:bg-white max-md:dark:bg-slate-900`}
+      } padding-x fixed top-0 left-0 z-40 min-h-screen w-full pt-20 max-md:bg-white max-md:dark:bg-slate-900 md:-z-0`}
     >
       <div className="flex w-full flex-col gap-5 md:w-1/2 md:pr-5 lg:w-1/4">
         <SearchBar

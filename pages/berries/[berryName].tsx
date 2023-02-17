@@ -11,7 +11,7 @@ const BerryPage: NextPage<{ berry: Berry }> = ({ berry }) => {
       <Head>
         <title>{`PokéDex - ${berry.item.name}`}</title>
       </Head>
-      <div className="ml-auto flex w-full flex-col gap-5 md:w-1/2 lg:w-3/4">
+      <div className="isolate z-10 ml-auto flex w-full flex-col gap-5 md:w-1/2 lg:w-3/4">
         <div className="flex w-full flex-col gap-4 lg:flex-row">
           <div className="grid aspect-square h-full w-full max-w-xs place-content-center rounded-xl border-2 bg-sky-50 p-5 dark:border-slate-700 dark:bg-slate-800">
             <Image
@@ -96,7 +96,10 @@ const BerryPage: NextPage<{ berry: Berry }> = ({ berry }) => {
               {berry.held_by_pokemon.map((pokemon) => {
                 const id = pokemon.pokemon.url.split('/')[6];
                 return (
-                  <Link key={pokemon.pokemon.name} href={`/pokemon/${pokemon.pokemon.name}`}>
+                  <Link
+                    key={pokemon.pokemon.name}
+                    href={`/pokemon/${pokemon.pokemon.name}`}
+                  >
                     <Image
                       title={pokemon.pokemon.name}
                       alt={pokemon.pokemon.name}
