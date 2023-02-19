@@ -102,6 +102,7 @@ const PokemonPage: NextPage<{
               const id = varity.pokemon.url.split('/')[6];
               return pokemon.name === varity.pokemon.name ? (
                 <Image
+                  key={varity.pokemon.name}
                   title={varity.pokemon.name}
                   alt={varity.pokemon.name}
                   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
@@ -112,6 +113,7 @@ const PokemonPage: NextPage<{
                 />
               ) : (
                 <Link
+                  key={varity.pokemon.name}
                   href={`/pokemon/${varity.pokemon.name}`}
                   className="aspect-square w-full md:w-[10rem]"
                 >

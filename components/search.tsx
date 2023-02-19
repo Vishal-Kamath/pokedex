@@ -5,14 +5,12 @@ const SearchBar: React.FC<{
   _search: (value: string) => void;
   searchBarRef: React.MutableRefObject<HTMLInputElement | undefined>;
   searchDisplay: string;
-  mouseOver: boolean;
   handleOnChange: (value: string) => void;
   handleKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   setFocus: React.Dispatch<React.SetStateAction<boolean>>;
 }> = ({
   _search,
   searchDisplay,
-  mouseOver,
   searchBarRef,
   handleOnChange,
   handleKeyDown,
@@ -31,7 +29,7 @@ const SearchBar: React.FC<{
         onChange={(e) => handleOnChange(e.target.value)}
         onKeyDown={(e) => handleKeyDown(e)}
         onFocus={() => setFocus(true)}
-        onBlur={() => !mouseOver && setFocus(false)}
+        onBlur={() => setTimeout(() => setFocus(false), 150)}
         ref={(ref) => (searchBarRef.current = ref !== null ? ref : undefined)}
       />
     </div>

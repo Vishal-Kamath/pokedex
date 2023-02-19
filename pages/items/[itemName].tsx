@@ -47,9 +47,9 @@ const ItemPage: NextPage<{ item: ItemFetch }> = ({ item }) => {
                   <td className="flex flex-wrap gap-1">
                     {item.attributes.map((attr, index) => {
                       return index === 0 ? (
-                        <div>{attr.name}</div>
+                        <div key={attr.name}>{attr.name}</div>
                       ) : (
-                        <div className="flex gap-1">
+                        <div key={attr.name} className="flex gap-1">
                           <span>•</span> {attr.name}
                         </div>
                       );

@@ -13,7 +13,6 @@ const SideBar: React.FC<{
   const [search, setSearch] = useState('');
   const [searchResults, setSearchResults] = useState<string[]>([]);
   const [searchIndex, setSearchIndex] = useState(-1);
-  const [mouseOver, setMouseOver] = useState(false);
 
   const [focus, setFocus] = useState(false);
 
@@ -54,6 +53,7 @@ const SideBar: React.FC<{
   const handleOnChange = (value: string) => {
     setSearch(value);
     setSearchIndex(-1);
+    setFocus(true);
   };
 
   const handleArrowDown = () => {
@@ -101,14 +101,10 @@ const SideBar: React.FC<{
           handleKeyDown={handleKeyDown}
           handleOnChange={handleOnChange}
           searchDisplay={searchDisplay}
-          mouseOver={mouseOver}
           setFocus={setFocus}
         />
         {focus ? (
-          <div
-            onMouseEnter={() => setMouseOver(true)}
-            onMouseLeave={() => setMouseOver(false)}
-          >
+          <div>
             <div className="flex h-9 items-center rounded-md border-2 border-sky-200 bg-sky-100 px-3 font-bold dark:border-sky-700 dark:bg-sky-900">
               {searchfor}
             </div>

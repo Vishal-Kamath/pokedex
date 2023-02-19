@@ -64,9 +64,11 @@ const BerryPage: NextPage<{ berry: Berry }> = ({ berry }) => {
                   <td className="flex flex-wrap">
                     {berry.attributes.map((attr, index) => {
                       return index === 0 ? (
-                        <div>{attr.name}</div>
+                        <div key={attr.name}>{attr.name}</div>
                       ) : (
-                        <div>• {attr.name}</div>
+                        <div key={attr.name} className="flex gap-1">
+                          <span>•</span> {attr.name}
+                        </div>
                       );
                     })}
                   </td>
