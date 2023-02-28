@@ -7,9 +7,9 @@ import searchList from '@/db.json';
 const SideBar: React.FC<{
   menuOpen: boolean;
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}> = ({ menuOpen, setMenuOpen }) => {
+  searchBarRef: React.MutableRefObject<HTMLInputElement | undefined>;
+}> = ({ menuOpen, setMenuOpen, searchBarRef }) => {
   const router = useRouter();
-  const searchBarRef = useRef<HTMLInputElement>();
   const [search, setSearch] = useState('');
   const [searchResults, setSearchResults] = useState<string[]>([]);
   const [searchIndex, setSearchIndex] = useState(-1);
