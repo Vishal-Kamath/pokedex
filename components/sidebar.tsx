@@ -86,7 +86,6 @@ const SideBar: React.FC<{
     router.pathname === '/'
       ? router.push(`/pokemon/${value}`)
       : router.push(`/${router.pathname.split('/')[1]}/${value}`);
-    searchBarRef.current?.focus();
   };
   return (
     <div
