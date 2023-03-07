@@ -1,5 +1,3 @@
-import { type } from 'os';
-
 export type PokemonList = {
   results: {
     name: string;
