@@ -1,5 +1,13 @@
 import { Metadata } from 'next';
 import './globals.css';
+import Header from '@/components/header/header';
+import { Montserrat } from '@next/font/google';
+
+const montserrat = Montserrat({
+  variable: '--montserrat-font',
+  weight: ['300', '400', '500'],
+  subsets: ['latin'],
+});
 
 export const metadata: Metadata = {
   title: 'PokéDex',
@@ -48,7 +56,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body
+        className={`${montserrat.variable} min-h-screen dark:bg-slate-950 dark:text-white`}
+      >
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
