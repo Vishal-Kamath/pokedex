@@ -1,7 +1,28 @@
 {
   "name": "pokedex",
-  "version": "0.1.0",
+  "version": "2.1.0",
   "private": true,
+  "author": {
+    "name": "Vishal Kamath",
+    "email": "vishalkamath853@gmail.com",
+    "url": "https://github.com/Vishal-Kamath"
+  },
+  "description": "Welcome to the PokéDex Website! This is a web application built using Next 13, Tailwind CSS, and the PokéAPI, that provides a comprehensive collection of information about all your favorite Pokemon species.",
+  "homepage": "https://pokedex-gamma-one-30.vercel.app/",
+  "keywords": [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "PokéDex",
+    "Pokémon",
+    "PokéAPI",
+    "PokeDex",
+    "Pokemon"
+  ],
+  "repository": {
+    "url": "https://github.com/Vishal-Kamath/pokedex"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
