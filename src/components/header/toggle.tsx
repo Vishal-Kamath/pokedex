@@ -1,5 +1,3 @@
-'use client';
-
 import React, { useEffect, useState } from 'react';
 import { HiOutlineMoon, HiOutlineSun } from 'react-icons/hi';
 
