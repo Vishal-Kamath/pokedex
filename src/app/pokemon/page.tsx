@@ -1,5 +1,4 @@
-import PokemonCard from '@/components/pokemonCard';
-import { useRouter } from 'next/router';
+import PokemonCard from '@/components/cards/pokemonCard';
 import { PokemonClient } from 'pokenode-ts';
 
 const getPokemonData = async (page: number = 1) => {
@@ -21,7 +20,9 @@ const PokemonPage = async ({
       <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {pokemons.results.map((pokemon) => {
           const id = pokemon.url.split('/')[6];
-          return <PokemonCard key={id} id={id} name={pokemon.name} />;
+          return (
+            <PokemonCard key={id + pokemon.name} id={id} name={pokemon.name} />
+          );
         })}
       </div>
     </main>
