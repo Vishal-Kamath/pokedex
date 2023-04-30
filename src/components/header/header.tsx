@@ -34,7 +34,7 @@ const Header: React.FC = () => {
           <a
             target="_blank"
             href="https://github.com/Vishal-Kamath/pokedex"
-            className="grid h-9 w-9 place-content-center rounded-full hover:bg-sky-50 dark:hover:bg-sky-950"
+            className="grid h-9 w-9 place-content-center rounded-full hover:bg-sky-300 hover:bg-opacity-30 dark:hover:bg-sky-700 dark:hover:bg-opacity-30"
           >
             <AiOutlineGithub className="h-6 w-6 text-sky-600" />
           </a>

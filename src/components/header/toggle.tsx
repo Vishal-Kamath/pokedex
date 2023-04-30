@@ -23,7 +23,7 @@ const Toggle: React.FC = () => {
   useEffect(onLoad, []);
 
   return (
-    <div className="relative grid h-9 w-9 place-content-center rounded-full hover:bg-sky-50 dark:hover:bg-sky-950">
+    <div className="relative grid h-9 w-9 place-content-center rounded-full hover:bg-sky-300 hover:bg-opacity-30 dark:hover:bg-sky-700 dark:hover:bg-opacity-30">
       <input
         type="checkbox"
         id="dayNnight"

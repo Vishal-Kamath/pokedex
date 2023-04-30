@@ -12,7 +12,7 @@ const SidebarToggle: React.FC = () => {
   const open = useAppSelector(selectSidebarOpen);
   const dispatch = useAppDispatch();
   return (
-    <div className="grid h-9 w-9 place-content-center rounded-full hover:bg-sky-50 dark:hover:bg-sky-950 sm:hidden">
+    <div className="grid h-9 w-9 place-content-center rounded-full hover:bg-sky-300 hover:bg-opacity-30 dark:hover:bg-sky-700 dark:hover:bg-opacity-30 sm:hidden">
       {open ? (
         <RxCross1
           className="text-2xl"
