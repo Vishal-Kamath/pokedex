@@ -1,5 +1,5 @@
 import React from 'react';
-import { BiMenuAltRight } from 'react-icons/bi';
+import { BiMenuAltLeft } from 'react-icons/bi';
 import { RxCross1 } from 'react-icons/rx';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import {
@@ -19,7 +19,7 @@ const SidebarToggle: React.FC = () => {
           onClick={() => dispatch(closeSidebar())}
         />
       ) : (
-        <BiMenuAltRight
+        <BiMenuAltLeft
           className="text-2xl"
           onClick={() => dispatch(openSidebar())}
         />
