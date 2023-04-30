@@ -5,7 +5,7 @@ import { SiNextdotjs, SiTailwindcss } from 'react-icons/si';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="mt-auto border-t-2 border-slate-300 bg-slate-100 px-[5vw] py-5 dark:border-slate-700 dark:bg-slate-900">
+    <footer className="mt-auto flex flex-col gap-5 border-t-2 border-slate-300 bg-slate-100 px-[5vw] py-5 dark:border-slate-700 dark:bg-slate-900">
       <div className="flex justify-between gap-7 max-lg:flex-col">
         {/* More About Me */}
         <div className="flex w-full flex-col gap-1">
@@ -94,6 +94,10 @@ const Footer: React.FC = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="flex gap-1 text-gray-600 dark:text-gray-400">
+        <span>Designed and developed by</span>
+        <a href="https://github.com/Vishal-Kamath">Vishal Kamath</a>
       </div>
     </footer>
   );
