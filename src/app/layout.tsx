@@ -1,10 +1,11 @@
 import { Metadata } from 'next';
 import './globals.css';
 import Header from '@/components/header/header';
-import { Montserrat } from '@next/font/google';
+import { Montserrat } from 'next/font/google';
 import Footer from '@/components/footer/footer';
 import SideBar from '@/components/sidebar/sidebar';
 import ProviderComponent from '@/components/providerComponent';
+import Glare from '@/components/glare';
 
 const montserrat = Montserrat({
   variable: '--montserrat-font',
@@ -61,8 +62,9 @@ export default function RootLayout({
     <html lang="en">
       <ProviderComponent>
         <body
-          className={`${montserrat.variable} flex min-h-screen flex-col bg-gradient-to-tr from-white from-50% via-sky-100 to-white dark:from-slate-950 dark:via-sky-950 dark:to-slate-950 dark:text-white`}
+          className={`${montserrat.variable} relative flex min-h-screen flex-col bg-white text-black dark:bg-slate-950 dark:text-white`}
         >
+          <Glare />
           <Header />
           <div className="flex">
             <SideBar />
