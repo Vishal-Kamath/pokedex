@@ -9,7 +9,7 @@
 
 ## Introduction
 
-Welcome to the PokéDex Website repository! This is a web application built using [Next 13](https://nextjs.org/blog/next-13), [Tailwind CSS](https://tailwindcss.com/), and the [PokéAPI](https://pokeapi.co/), that provides a comprehensive collection of information about all your favorite Pokemon species.
+Welcome to the PokéDex Website repository! This is a web application built using [Next 13](https://nextjs.org/blog/next-13), [Tailwind CSS](https://tailwindcss.com/), [PokéAPI](https://pokeapi.co/) and [pokenode-ts](https://github.com/Gabb-c/pokenode-ts), that provides a comprehensive collection of information about all your favorite Pokemon species.
 
 ### Website Link
 
@@ -54,3 +54,4 @@ This project was made possible thanks to the following resources:
 - [Next.js](https://nextjs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [PokeAPI](https://pokeapi.co/)
+- [pokenode-ts](https://github.com/Gabb-c/pokenode-ts)

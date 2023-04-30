@@ -58,6 +58,13 @@ const Footer: React.FC = () => {
                 >
                   <SiTailwindcss className="h-5 w-5 text-sky-400" />
                 </a>
+                <a
+                  href="https://github.com/Gabb-c/pokenode-ts"
+                  target="_blank"
+                  className="flex items-center gap-2 rounded-full p-2 hover:bg-slate-200 hover:text-black dark:hover:bg-slate-700 dark:hover:text-white"
+                >
+                  pokenode-ts
+                </a>
               </div>
             </div>
           </div>
