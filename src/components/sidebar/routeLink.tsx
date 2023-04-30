@@ -1,12 +1,14 @@
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
-const RouteCard: React.FC<{ title: string }> = ({ title }) => {
+const RouteLink: React.FC<{ title: string }> = ({ title }) => {
   const pathname = usePathname();
 
   const isCurrentRoute = pathname === `/${title}`;
   return (
-    <div
+    <Link
+      href={`/${title}`}
       className={`${
         isCurrentRoute
           ? 'border-sky-300 bg-sky-400 bg-opacity-25 dark:border-sky-500'
@@ -14,8 +16,8 @@ const RouteCard: React.FC<{ title: string }> = ({ title }) => {
       } flex h-9 items-center rounded-lg border-2 px-2 capitalize`}
     >
       {title}
-    </div>
+    </Link>
   );
 };
 
-export default RouteCard;
+export default RouteLink;

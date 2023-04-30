@@ -4,7 +4,7 @@ import { selectSidebarOpen } from '@/slice/sidebar.slice';
 import { useAppSelector } from '@/store/hooks';
 import React from 'react';
 import SearchBar from './searchbar';
-import RouteCard from './routeCard';
+import RouteLink from './routeLink';
 
 const SideBar: React.FC = () => {
   const open = useAppSelector(selectSidebarOpen);
@@ -19,10 +19,10 @@ const SideBar: React.FC = () => {
 
         {/* Routes */}
         <div className="flex flex-col gap-1">
-          <RouteCard title="pokemon" />
-          <RouteCard title="berries" />
-          <RouteCard title="items" />
-          <RouteCard title="about" />
+          <RouteLink title="pokemon" />
+          <RouteLink title="berries" />
+          <RouteLink title="items" />
+          <RouteLink title="about" />
         </div>
       </div>
     </nav>
