@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
             More about me
           </span>
           <p className="max-w-lg text-justify leading-5 text-gray-500">
-            Hi, I'm Vishal Kamath, a web developer striving to create
+            Hi, I{`'`}m Vishal Kamath, a web developer striving to create
             beautifully designed websites. This is a fun project that I created
             while tinkering around with Next 13. I hope you like it!
           </p>
