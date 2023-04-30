@@ -7,7 +7,7 @@ import { AiOutlineGithub } from 'react-icons/ai';
 const Header: React.FC = () => {
   return (
     <header className="fixed left-0 top-0 z-50 w-full">
-      <div className="flex w-full items-center justify-between border-b-2 bg-opacity-10 px-[5vw] py-2 backdrop-blur-sm dark:border-slate-700">
+      <div className="flex w-full items-center justify-between border-b-2 border-gray-200 bg-opacity-10 px-[5vw] py-2 backdrop-blur-sm dark:border-slate-700">
         <Link href="/" className="flex items-center gap-2">
           <Image
             alt="pokeball"
@@ -17,7 +17,7 @@ const Header: React.FC = () => {
             className="h-6 w-6"
             loading="lazy"
           />
-          <span className="font-montserrat text-xl">pokédex</span>
+          <span className="font-montserrat text-xl font-semibold">pokédex</span>
         </Link>
 
         <div className="flex gap-2">

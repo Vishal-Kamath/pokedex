@@ -11,6 +11,9 @@ module.exports = {
       fontFamily: {
         'montserrat': ['var(--montserrat-font)', 'sans-serif'],
       },
+      colors: {
+        'twitter': '#1DA1F2',
+      },
     },
   },
   plugins: [],
