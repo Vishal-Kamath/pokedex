@@ -13,9 +13,29 @@ const montserrat = Montserrat({
   subsets: ['latin'],
 });
 
+const endpoint = process.env.VERCEL_URL
+  ? 'https://' + process.env.VERCEL_URL
+  : 'http://localhost:3000';
+
 export const metadata: Metadata = {
   title: 'PokéDex',
   applicationName: 'PokéDex',
+  openGraph: {
+    title: 'PokéDex',
+    description:
+      'Welcome to the PokéDex Website! This is a web application built using Next 13, Tailwind CSS, and the PokéAPI, that provides a comprehensive collection of information about all your favorite Pokemon species.',
+    url: `${endpoint}`,
+    siteName: 'PokéDex',
+    images: [
+      {
+        url: `${endpoint}/api/og`,
+        width: 1200,
+        height: 600,
+      },
+    ],
+    locale: 'en-US',
+    type: 'website',
+  },
   icons: {
     icon: [
       { url: '/favicon.ico' },
