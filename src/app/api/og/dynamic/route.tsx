@@ -7,7 +7,7 @@ export async function GET(request: Request) {
   const img = searchParams.get('img');
 
   const endpoint = process.env.VERCEL_URL
-    ? 'https://' + process.env.VERCEL_URL
+    ? process.env.VERCEL_URL
     : 'http://localhost:3000';
 
   return new ImageResponse(
@@ -23,7 +23,7 @@ export async function GET(request: Request) {
         }}
       >
         <img
-          src="https://pokedex-gxlppzcgx-vishal-kamath.vercel.app/og_background.png"
+          src={`${endpoint}/og_background.png`}
           alt="bg"
           style={{
             position: 'absolute',
@@ -55,7 +55,7 @@ export async function GET(request: Request) {
         >
           <div style={{ display: 'flex', gap: '10px' }}>
             <img
-              src="https://pokedex-gxlppzcgx-vishal-kamath.vercel.app/pokeball.png"
+              src={`${endpoint}/pokeball.png`}
               alt="pokeball"
               width={80}
               height={80}

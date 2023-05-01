@@ -2,7 +2,7 @@ import { ImageResponse } from '@vercel/og';
 
 export async function GET() {
   const endpoint = process.env.VERCEL_URL
-    ? 'https://' + process.env.VERCEL_URL
+    ? process.env.VERCEL_URL
     : 'http://localhost:3000';
 
   return new ImageResponse(
@@ -15,7 +15,7 @@ export async function GET() {
         }}
       >
         <img
-          src="https://pokedex-gxlppzcgx-vishal-kamath.vercel.app/og_background.png"
+          src={`${endpoint}/og_background_2.png`}
           className="absolute left-0 top-0"
           alt="bg"
           width={1200}
@@ -35,7 +35,7 @@ export async function GET() {
           }}
         >
           <img
-            src="https://pokedex-gxlppzcgx-vishal-kamath.vercel.app/pokeball.png"
+            src={`${endpoint}/pokeball.png`}
             alt="pokeball"
             width={150}
             height={150}
