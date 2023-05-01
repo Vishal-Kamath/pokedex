@@ -1,4 +1,4 @@
-import PokemonCard from '@/components/cards/pokemonCard';
+import ListCard from '@/components/cards/listCard';
 import Pagination from '@/components/pagination';
 import { getPokemonListData } from '@/utils/api';
 
@@ -14,7 +14,12 @@ const PokemonsListPage = async ({
         {pokemons.results.map((pokemon) => {
           const id = pokemon.url.split('/')[6];
           return (
-            <PokemonCard key={id + pokemon.name} id={id} name={pokemon.name} />
+            <ListCard
+              key={id + pokemon.name}
+              id={id}
+              name={pokemon.name}
+              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
+            />
           );
         })}
       </div>

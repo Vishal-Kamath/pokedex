@@ -2,7 +2,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-const ItemCard: React.FC<{ id: string; name: string }> = ({ id, name }) => {
+const ListCard: React.FC<{
+  id: string;
+  name: string;
+  src: string;
+  berry?: boolean;
+}> = ({ id, name, src, berry }) => {
   return (
     <Link
       href={`/pokemon/${name}`}
@@ -11,8 +16,10 @@ const ItemCard: React.FC<{ id: string; name: string }> = ({ id, name }) => {
     >
       <Image
         alt={name}
-        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${name}.png`}
-        className="pixel-image aspect-square w-full rounded-md bg-opacity-20 p-7 group-hover:bg-sky-200 dark:group-hover:bg-sky-900"
+        src={src}
+        className={`${
+          berry && 'p-7'
+        } pixel-image aspect-square w-full rounded-md bg-opacity-20 group-hover:bg-sky-200 dark:group-hover:bg-sky-900`}
         loading="lazy"
         width="600"
         height="600"
@@ -25,4 +32,4 @@ const ItemCard: React.FC<{ id: string; name: string }> = ({ id, name }) => {
   );
 };
 
-export default ItemCard;
+export default ListCard;
