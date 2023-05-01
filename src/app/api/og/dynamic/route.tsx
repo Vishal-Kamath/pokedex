@@ -32,7 +32,7 @@ export async function GET(request: Request) {
             zIndex: '-10',
           }}
           width={1200}
-          height={600}
+          height={630}
         />
         <img
           src={`${img}`}
@@ -76,7 +76,7 @@ export async function GET(request: Request) {
     ),
     {
       width: 1200,
-      height: 600,
+      height: 630,
     }
   );
 }

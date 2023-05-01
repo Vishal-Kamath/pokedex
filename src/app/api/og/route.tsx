@@ -19,7 +19,7 @@ export async function GET() {
           className="absolute left-0 top-0"
           alt="bg"
           width={1200}
-          height={600}
+          height={630}
         />
         <div
           style={{
@@ -30,7 +30,7 @@ export async function GET() {
             justifyContent: 'center',
             alignItems: 'center',
             width: '1200px',
-            height: '600px',
+            height: '630px',
             gap: '50px',
           }}
         >
@@ -46,7 +46,7 @@ export async function GET() {
     ),
     {
       width: 1200,
-      height: 600,
+      height: 630,
     }
   );
 }
