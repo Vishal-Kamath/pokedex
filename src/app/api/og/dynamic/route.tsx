@@ -7,7 +7,7 @@ export async function GET(request: Request) {
   const img = searchParams.get('img');
 
   const endpoint = process.env.VERCEL_URL
-    ? process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
     : 'http://localhost:3000';
 
   return new ImageResponse(
