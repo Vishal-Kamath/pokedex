@@ -1,14 +1,6 @@
 import BerryCard from '@/components/cards/berryCard';
 import Pagination from '@/components/pagination';
-import { BerryClient } from 'pokenode-ts';
-
-const getBerryListData = async (page: number = 1) => {
-  const api = new BerryClient();
-
-  const offset = (page - 1) * 24;
-  const berries = await api.listBerries(offset, 24);
-  return berries;
-};
+import { getBerryListData } from '@/utils/api';
 
 const BerriesListPage = async ({
   searchParams,

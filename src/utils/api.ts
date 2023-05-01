@@ -1,0 +1,90 @@
+import { MainClient } from 'pokenode-ts';
+const api = new MainClient();
+
+// ---------------------------------------------------------
+// Pokemon Functions
+// ---------------------------------------------------------
+
+// get Pokemon List
+/**
+ * ## Get Pokemon List Data
+ * fetchs a list of pokemons
+ * @param {number} [page=1] - The page number to retrieve. Default value is 1.
+ * @param {number} [pageOffset=24] - The number of Pokemon to retrieve per page. Default value is 24.
+ * @returns
+ */
+export const getPokemonListData = async (
+  page: number = 1,
+  pageOffset: number = 24
+) => {
+  const offset = (page - 1) * pageOffset;
+  const pokemons = await api.pokemon.listPokemons(offset, 24);
+  return pokemons;
+};
+
+// get Pokemon details
+/**
+ * ## Get Pokemon Data
+ * fetchs pokemons date
+ * @param {string} [name] - name of pokemon
+ * @returns
+ */
+export async function getPokemonData(name: string) {
+  const pokemonDetails = await api.pokemon.getPokemonByName(name);
+  const pokemonSpecies = await api.pokemon.getPokemonSpeciesByName(name);
+  return { pokemonDetails, pokemonSpecies };
+}
+
+// get Pokemon Id
+/**
+ * ## Get Pokemon Id
+ * return pokemon id for name
+ * @param {string} [name] - name of pokemon
+ * @returns {Promise<number>} id
+ */
+export async function getPokemonId(name: string) {
+  const pokemon = await api.pokemon.getPokemonByName(name);
+  return pokemon.id;
+}
+
+// ---------------------------------------------------------
+// Berry Functions
+// ---------------------------------------------------------
+
+// get Berry List
+/**
+ * ## Get Berry List Data
+ * fetchs a list of berries
+ * @param {number} [page=1] - The page number to retrieve. Default value is 1.
+ * @param {number} [pageOffset=24] - The number of Pokemon to retrieve per page. Default value is 24.
+ * @returns
+ */
+export const getBerryListData = async (
+  page: number = 1,
+  pageOffset: number = 24
+) => {
+  const offset = (page - 1) * pageOffset;
+  const berries = await api.berry.listBerries(offset, 24);
+  return berries;
+};
+
+// ---------------------------------------------------------
+// Item Functions
+// ---------------------------------------------------------
+
+// get Item List
+/**
+ * ## Get Item List Data
+ * fetchs a list of items
+ * @param {number} [page=1] - The page number to retrieve. Default value is 1.
+ * @param {number} [pageOffset=24] - The number of Pokemon to retrieve per page. Default value is 24.
+ * @returns
+ */
+export const getItemListData = async (
+  page: number = 1,
+  pageOffset: number = 24
+) => {
+  const offset = (page - 1) * pageOffset;
+  const items = await api.item.listItems(offset, 24);
+  return items;
+};

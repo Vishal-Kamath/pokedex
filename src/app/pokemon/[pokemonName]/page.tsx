@@ -1,16 +1,38 @@
 import PokemonImage, { imageVariants } from '@/components/pokemon/pokemonImage';
+import { getPokemonData, getPokemonId } from '@/utils/api';
 import { VariantProps } from 'class-variance-authority';
-import { PokemonClient } from 'pokenode-ts';
 
-async function getPokemonData(name: string) {
-  const api = new PokemonClient();
-
-  const pokemonDetails = await api.getPokemonByName(name);
-  const pokemonSpecies = await api.getPokemonSpeciesByName(name);
-  return { pokemonDetails, pokemonSpecies };
+interface Prop {
+  params: { pokemonName: string };
 }
 
-const PokemonPage = async ({ params }: { params: { pokemonName: string } }) => {
+const endpoint = process.env.VERCEL_URL
+  ? 'https://' + process.env.VERCEL_URL
+  : 'http://localhost:3000';
+
+export async function generateMetadata({ params }: Prop) {
+  const id = await getPokemonId(params.pokemonName);
+
+  return {
+    title: `PokéDex - ${params.pokemonName}`,
+    applicationName: 'PokéDex',
+    openGraph: {
+      title: `PokéDex - ${params.pokemonName}`,
+      siteName: 'PokéDex',
+      images: [
+        {
+          url: `${endpoint}/api/og/dynamic?name=${params.pokemonName}&img=https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`,
+          width: 1200,
+          height: 600,
+        },
+      ],
+      locale: 'en-US',
+      type: 'website',
+    },
+  };
+}
+
+const PokemonPage = async ({ params }: Prop) => {
   const { pokemonDetails, pokemonSpecies } = await getPokemonData(
     params.pokemonName
   );

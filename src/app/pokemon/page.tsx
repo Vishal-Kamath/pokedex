@@ -1,14 +1,6 @@
 import PokemonCard from '@/components/cards/pokemonCard';
 import Pagination from '@/components/pagination';
-import { PokemonClient } from 'pokenode-ts';
-
-const getPokemonListData = async (page: number = 1) => {
-  const api = new PokemonClient();
-
-  const offset = (page - 1) * 24;
-  const pokemons = await api.listPokemons(offset, 24);
-  return pokemons;
-};
+import { getPokemonListData } from '@/utils/api';
 
 const PokemonsListPage = async ({
   searchParams,

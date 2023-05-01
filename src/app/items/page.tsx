@@ -1,14 +1,6 @@
 import ItemCard from '@/components/cards/itemCard';
 import Pagination from '@/components/pagination';
-import { ItemClient } from 'pokenode-ts';
-
-const getItemListData = async (page: number = 1) => {
-  const api = new ItemClient();
-
-  const offset = (page - 1) * 24;
-  const items = await api.listItems(offset, 24);
-  return items;
-};
+import { getItemListData } from '@/utils/api';
 
 const ItemsListPage = async ({
   searchParams,
