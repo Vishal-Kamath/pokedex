@@ -15,7 +15,7 @@ export async function GET() {
         }}
       >
         <img
-          src={`${endpoint}/og_background_2.png`}
+          src={`${endpoint}/og_background.png`}
           className="absolute left-0 top-0"
           alt="bg"
           width={1200}
