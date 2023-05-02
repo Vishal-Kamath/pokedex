@@ -1,4 +1,4 @@
-import ListCard from '@/components/cards/listCard';
+import BerryCard from '@/components/cards/berryCard';
 import Pagination from '@/components/pagination';
 import { getBerryListData } from '@/utils/api';
 
@@ -14,13 +14,11 @@ const BerriesListPage = async ({
         {berries.results.map((berry) => {
           const id = berry.url.split('/')[6];
           return (
-            <ListCard
+            <BerryCard
               key={id + berry.name}
               id={id}
               name={berry.name}
-              redirect={`/berries/${berry.name}`}
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dream-world/${berry.name}-berry.png`}
-              berry
             />
           );
         })}

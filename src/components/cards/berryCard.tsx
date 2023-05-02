@@ -2,25 +2,21 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-const ListCard: React.FC<{
-  id: string;
-  name: string;
-  src: string;
-  redirect: string;
-  berry?: boolean;
-}> = ({ id, name, redirect, src, berry }) => {
+const BerryCard: React.FC<{ id: string; name: string; src: string }> = ({
+  id,
+  name,
+  src,
+}) => {
   return (
     <Link
-      href={redirect}
+      href={`/berries/${name}`}
       key={name}
       className="group w-full rounded-md border-2 border-slate-200 bg-slate-100 bg-opacity-40 p-2 hover:border-slate-300 hover:bg-opacity-75 dark:border-slate-800 dark:bg-slate-900 dark:bg-opacity-40 dark:hover:border-slate-600 dark:hover:bg-opacity-75"
     >
       <Image
         alt={name}
         src={src}
-        className={`${
-          berry && 'p-7'
-        } pixel-image aspect-square w-full rounded-md bg-opacity-20 group-hover:bg-sky-200 dark:group-hover:bg-sky-900`}
+        className="aspect-square w-full rounded-md bg-opacity-20 p-7 group-hover:bg-sky-200 dark:group-hover:bg-sky-900"
         loading="lazy"
         width="600"
         height="600"
@@ -33,4 +29,4 @@ const ListCard: React.FC<{
   );
 };
 
-export default ListCard;
+export default BerryCard;
