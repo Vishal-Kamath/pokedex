@@ -1,17 +1,10 @@
 import { Metadata } from 'next';
 import './globals.css';
 import Header from '@/components/header/header';
-import { Montserrat } from 'next/font/google';
 import Footer from '@/components/footer/footer';
 import SideBar from '@/components/sidebar/sidebar';
 import ProviderComponent from '@/components/providerComponent';
 import Glare from '@/components/glare';
-
-const montserrat = Montserrat({
-  variable: '--montserrat-font',
-  weight: ['300', '400', '500'],
-  subsets: ['latin'],
-});
 
 const endpoint = process.env.VERCEL_URL
   ? 'https://' + process.env.VERCEL_URL
@@ -81,9 +74,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <ProviderComponent>
-        <body
-          className={`${montserrat.variable} relative flex min-h-screen flex-col bg-white text-black dark:bg-slate-950 dark:text-white`}
-        >
+        <body className="relative flex min-h-screen flex-col bg-white text-black dark:bg-slate-950 dark:text-white">
           <Glare />
           <Header />
           <div className="flex">

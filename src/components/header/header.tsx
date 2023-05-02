@@ -6,10 +6,19 @@ import Link from 'next/link';
 import Toggle from './toggle';
 import { AiOutlineGithub } from 'react-icons/ai';
 import SidebarToggle from './sidebarToggle';
+import { Montserrat } from 'next/font/google';
+
+const montserrat = Montserrat({
+  variable: '--montserrat-font',
+  weight: ['300', '400', '500'],
+  subsets: ['latin'],
+});
 
 const Header: React.FC = () => {
   return (
-    <header className="fixed left-0 top-0 z-50 w-full">
+    <header
+      className={`${montserrat.className} fixed left-0 top-0 z-50 w-full`}
+    >
       <div className="flex w-full items-center justify-between border-b-2 border-slate-300 bg-opacity-10 px-[5vw] py-2 backdrop-blur-sm dark:border-slate-700">
         <div className="flex gap-2">
           <SidebarToggle />
@@ -22,7 +31,7 @@ const Header: React.FC = () => {
               className="h-6 w-6"
               loading="lazy"
             />
-            <span className="font-montserrat text-xl font-semibold max-sm:hidden">
+            <span className="font-montserrat text-xl font-medium max-sm:hidden">
               pokédex
             </span>
           </Link>
