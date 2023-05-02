@@ -5,7 +5,7 @@ import React from 'react';
 const RouteLink: React.FC<{ title: string }> = ({ title }) => {
   const pathname = usePathname();
 
-  const isCurrentRoute = pathname === `/${title}`;
+  const isCurrentRoute = pathname.startsWith(`/${title}`);
   return (
     <Link
       href={`/${title}`}
