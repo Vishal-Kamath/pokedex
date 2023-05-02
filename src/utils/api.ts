@@ -80,7 +80,8 @@ export const getBerryListData = async (
  */
 export async function getBerryData(name: string) {
   const berryDetails = await api.berry.getBerryByName(name);
-  return berryDetails;
+  const berryItem = await api.item.getItemByName(berryDetails.item.name);
+  return { berryDetails, berryItem };
 }
 
 // ---------------------------------------------------------
