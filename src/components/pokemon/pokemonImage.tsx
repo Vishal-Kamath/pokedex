@@ -7,7 +7,7 @@ import React, { useState } from 'react';
 import { FaStar, FaRegStar } from 'react-icons/fa';
 
 export const imageVariants = cva(
-  'relative aspect-square w-full rounded-lg p-2 lg:w-[20rem] bg-opacity-75 border-2',
+  'relative aspect-square w-full rounded-lg p-2 lg:w-[20rem] lg:h-[20rem] bg-opacity-75 border-2',
   {
     variants: {
       color: {
@@ -24,7 +24,7 @@ export const imageVariants = cva(
         purple:
           'bg-purple-600 dark:bg-purple-800 border-purple-800 dark:border-purple-500',
         red: 'bg-red-600 dark:bg-red-800 border-red-800 dark:border-red-500',
-        white: 'bg-white border-white',
+        white: 'bg-white border-gray-300',
         yellow:
           'bg-yellow-600 dark:bg-yellow-800 border-yellow-800 dark:border-yellow-500',
       },

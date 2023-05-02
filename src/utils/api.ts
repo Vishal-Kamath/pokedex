@@ -32,7 +32,10 @@ export const getPokemonListData = async (
 export async function getPokemonData(name: string) {
   const pokemonDetails = await api.pokemon.getPokemonByName(name);
   const pokemonSpecies = await api.pokemon.getPokemonSpeciesByName(name);
-  return { pokemonDetails, pokemonSpecies };
+  const pokemonEvolutionChain = await api.evolution.getEvolutionChainById(
+    pokemonDetails.id
+  );
+  return { pokemonDetails, pokemonSpecies, pokemonEvolutionChain };
 }
 
 // get Pokemon Id
