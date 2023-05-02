@@ -73,7 +73,7 @@ const SearchBar: React.FC<{
         onChange={(e) => handleOnChange(e.target.value)}
         onKeyDown={handleKeyDown}
         onFocus={() => dispatch(setFocused())}
-        onBlur={() => dispatch(setBlured())}
+        onBlur={() => setTimeout(() => dispatch(setBlured()), 150)}
       />
     </div>
   );
