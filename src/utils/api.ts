@@ -25,7 +25,7 @@ export const getPokemonListData = async (
 // get Pokemon details
 /**
  * ## Get Pokemon Data
- * fetchs pokemons date
+ * fetchs pokemons data
  * @param {string} [name] - name of pokemon
  * @returns
  */
@@ -67,6 +67,18 @@ export const getBerryListData = async (
   const berries = await api.berry.listBerries(offset, 24);
   return berries;
 };
+
+// get Berry details
+/**
+ * ## Get Berry Data
+ * fetchs Berry data
+ * @param {string} [name] - name of Berry
+ * @returns
+ */
+export async function getBerryData(name: string) {
+  const berryDetails = await api.berry.getBerryByName(name);
+  return berryDetails;
+}
 
 // ---------------------------------------------------------
 // Item Functions
