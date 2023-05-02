@@ -3,7 +3,7 @@ import React from 'react';
 
 const ItemImage: React.FC<{ name: string; src: string }> = ({ name, src }) => {
   return (
-    <div className="aspect-square w-full rounded-lg border-2 border-gray-500 bg-gray-200 bg-opacity-75 p-7 dark:bg-gray-800 lg:w-[20rem]">
+    <div className="lg:h-[20rem] aspect-square w-full rounded-lg border-2 border-gray-500 bg-gray-200 bg-opacity-75 p-7 dark:bg-gray-800 lg:w-[20rem]">
       <Image
         alt={name}
         src={src}

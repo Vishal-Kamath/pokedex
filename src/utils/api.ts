@@ -104,3 +104,15 @@ export const getItemListData = async (
   const items = await api.item.listItems(offset, 24);
   return items;
 };
+
+// get Item details
+/**
+ * ## Get Item Data
+ * fetchs item data
+ * @param {string} [name] - name of Item
+ * @returns
+ */
+export async function getItemData(name: string) {
+  const itemDetails = await api.item.getItemByName(name);
+  return { itemDetails };
+}

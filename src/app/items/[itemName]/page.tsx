@@ -1,4 +1,6 @@
+import ItemDetails from '@/components/item/itemDetails';
 import ItemImage from '@/components/item/itemImage';
+import { getItemData } from '@/utils/api';
 
 interface Prop {
   params: { itemName: string };
@@ -29,12 +31,16 @@ export async function generateMetadata({ params }: Prop) {
 }
 
 const ItemPage = async ({ params }: Prop) => {
+  const { itemDetails } = await getItemData(params.itemName);
   return (
     <main className="flex w-full flex-col gap-4 px-[5vw] pb-10 pt-20 sm:pl-5">
-      <ItemImage
-        name={params.itemName}
-        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${params.itemName}.png`}
-      />
+      <div className="flex gap-7 max-lg:flex-col">
+        <ItemImage
+          name={params.itemName}
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${params.itemName}.png`}
+        />
+        <ItemDetails itemDetails={itemDetails} />
+      </div>
     </main>
   );
 };
