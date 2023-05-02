@@ -18,6 +18,7 @@ const PokemonsListPage = async ({
               key={id + pokemon.name}
               id={id}
               name={pokemon.name}
+              redirect={`/pokemon/${pokemon.name}`}
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
             />
           );

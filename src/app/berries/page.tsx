@@ -18,6 +18,7 @@ const BerriesListPage = async ({
               key={id + berry.name}
               id={id}
               name={berry.name}
+              redirect={`/berries/${berry.name}`}
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dream-world/${berry.name}-berry.png`}
               berry
             />
