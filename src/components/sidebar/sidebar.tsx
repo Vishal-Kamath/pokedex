@@ -2,12 +2,13 @@
 
 import { closeSidebar, selectSidebarOpen } from '@/slice/sidebar.slice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import React from 'react';
+import React, { useEffect } from 'react';
 import SearchBar from './searchbar';
 import RouteLink from './routeLink';
-import { selectSearchFocused } from '@/slice/search.slice';
+import { selectSearchFocused, setResults } from '@/slice/search.slice';
 import { usePathname, useRouter } from 'next/navigation';
 import SearchList from './searchList';
+import DB from '@/db.json';
 
 const SideBar: React.FC = () => {
   const router = useRouter();
@@ -28,6 +29,11 @@ const SideBar: React.FC = () => {
     router.push(`/${searchedFor}/${value}`);
     dispatch(closeSidebar());
   }
+
+  useEffect(() => {
+    const searchResults = DB[searchedFor].splice(0, 10);
+    dispatch(setResults(searchResults));
+  }, [searchedFor]);
 
   return (
     <nav
