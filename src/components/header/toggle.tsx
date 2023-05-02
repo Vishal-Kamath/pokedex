@@ -1,21 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import { selectTheme, setDark, toggleDark } from '@/slice/theme.slice';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import React, { useEffect } from 'react';
 import { HiOutlineMoon, HiOutlineSun } from 'react-icons/hi';
 
 const Toggle: React.FC = () => {
-  const [checked, setChecked] = useState<boolean>(false);
-
+  const dark = useAppSelector(selectTheme);
+  const dispatch = useAppDispatch();
   const handleClick = () => {
-    setChecked(!checked);
-    localStorage.setItem('dayNnight', JSON.stringify(checked));
-    if (checked) document.documentElement.classList.add('dark');
+    dispatch(toggleDark());
+    localStorage.setItem('dark', JSON.stringify(!dark));
+    if (!dark) document.documentElement.classList.add('dark');
     else document.documentElement.classList.remove('dark');
   };
 
   const onLoad = () => {
     let storageChecked = JSON.parse(
-      localStorage.getItem('dayNnight') || 'false'
+      localStorage.getItem('dark') || 'false'
     ) as boolean;
-    setChecked(storageChecked);
+    dispatch(setDark(storageChecked));
     if (storageChecked) document.documentElement.classList.add('dark');
     else document.documentElement.classList.remove('dark');
   };
@@ -26,8 +28,8 @@ const Toggle: React.FC = () => {
     <div className="relative grid h-9 w-9 place-content-center rounded-full hover:bg-sky-300 hover:bg-opacity-30 dark:hover:bg-sky-700 dark:hover:bg-opacity-30">
       <input
         type="checkbox"
-        id="dayNnight"
-        checked={checked}
+        id="dark"
+        checked={dark}
         onChange={handleClick}
         className="absolute left-0 top-0 z-10 h-full w-full opacity-0"
       />
