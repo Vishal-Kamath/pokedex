@@ -2,13 +2,19 @@
 module.exports = {
   darkMode: 'class',
   content: [
-    './app/**/*.{js,ts,jsx,tsx}',
-    './pages/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
-
-    // Or if using `src` directory:
-    './src/**/*.{js,ts,jsx,tsx}',
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  theme: {},
+  theme: {
+    extend: {
+      fontFamily: {
+        'montserrat': ['var(--montserrat-font)', 'sans-serif'],
+      },
+      colors: {
+        'twitter': '#1DA1F2',
+      },
+    },
+  },
   plugins: [],
 };
