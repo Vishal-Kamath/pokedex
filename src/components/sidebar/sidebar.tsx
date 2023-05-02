@@ -31,7 +31,7 @@ const SideBar: React.FC = () => {
   }
 
   useEffect(() => {
-    const searchResults = DB[searchedFor].splice(0, 10);
+    const searchResults = DB[searchedFor].slice(0, 10);
     dispatch(setResults(searchResults));
   }, [searchedFor]);
 

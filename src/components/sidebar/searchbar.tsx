@@ -29,7 +29,7 @@ const SearchBar: React.FC<{
   const handleOnChange = (value: string) => {
     const searchResults = DB[searchedFor]
       .filter((data) => data.toLowerCase().startsWith(value.toLowerCase()))
-      .splice(0, 10);
+      .slice(0, 10);
 
     dispatch(setInput(value));
     dispatch(setResults(searchResults));
