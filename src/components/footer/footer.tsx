@@ -1,6 +1,10 @@
 import Image from 'next/image';
 import React from 'react';
-import { AiOutlineGithub, AiOutlineTwitter } from 'react-icons/ai';
+import {
+  AiOutlineGithub,
+  AiFillLinkedin,
+  AiOutlineTwitter,
+} from 'react-icons/ai';
 import { SiNextdotjs, SiTailwindcss } from 'react-icons/si';
 
 const Footer: React.FC = () => {
@@ -82,6 +86,14 @@ const Footer: React.FC = () => {
               >
                 <AiOutlineGithub className="h-5 w-5 text-black dark:text-white" />
                 <span>GitHub</span>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/vishalkamath853/"
+                target="_blank"
+                className="flex items-center gap-2 rounded-full p-2 hover:bg-slate-200 hover:text-black dark:hover:bg-slate-700 dark:hover:text-white"
+              >
+                <AiFillLinkedin className="h-5 w-5 text-linkedin" />
+                <span>LinkedIn</span>
               </a>
               <a
                 href="https://twitter.com/VishalKamath853"
