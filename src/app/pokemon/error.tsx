@@ -3,11 +3,11 @@
 import { NextPage } from 'next';
 import { RxCrossCircled } from 'react-icons/rx';
 import { useEffect } from 'react';
+import Link from 'next/link';
 
 const ErrorPage: NextPage<{
   error: Error;
-  reset: () => void;
-}> = ({ error, reset }) => {
+}> = ({ error }) => {
   useEffect(() => {
     // Log the error to an error reporting service
     console.error(error);
@@ -18,12 +18,12 @@ const ErrorPage: NextPage<{
         <RxCrossCircled className="text-4xl text-red-600" />
         <span>Something went wrong</span>
       </div>
-      <button
+      <Link
+        href="/"
         className="border-none bg-transparent text-sky-400 underline outline-none dark:text-sky-600"
-        onClick={() => reset()}
       >
-        Try Again
-      </button>
+        go back home
+      </Link>
     </div>
   );
 };
