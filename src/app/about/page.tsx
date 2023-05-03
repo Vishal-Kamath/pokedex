@@ -4,34 +4,36 @@ import { BsExclamationCircleFill } from 'react-icons/bs';
 
 const PokemonPage: NextPage = () => {
   return (
-    <main className="flex w-full flex-col gap-5 px-[5vw] pb-10 pt-20 sm:pl-5">
-      <h2 className="text-2xl font-bold">About</h2>
+    <main className="flex w-full flex-col gap-7 px-[5vw] pb-10 pt-20 sm:pl-5">
+      <div className="flex flex-col gap-3">
+        <h2 className="text-2xl font-bold">About</h2>
 
-      {/* Note */}
-      <div className="flex flex-col gap-2 rounded-md border-2 border-emerald-500 bg-emerald-500 bg-opacity-20 px-5 py-2 text-emerald-500">
-        <h5 className="flex items-center gap-2 font-bold">
-          <BsExclamationCircleFill className="text-lg" /> Note:
-        </h5>
-        <p className="text-justify">
-          All assets and data resources are used from{' '}
-          <a
-            className="text-blue-500 underline"
-            href="https://pokeapi.co/"
-            target="_blank"
-          >
-            PokéAPI
-          </a>{' '}
-          and{' '}
-          <a
-            className="text-blue-500 underline"
-            href="https://github.com/Gabb-c/pokenode-ts"
-            target="_blank"
-          >
-            pokenode-ts
-          </a>
-          . This website is not produced, endorsed, supported, or affiliated
-          with Nintendo or The Pokémon Company.
-        </p>
+        {/* Note */}
+        <div className="flex flex-col gap-2 rounded-md border-2 border-emerald-500 bg-emerald-500 bg-opacity-20 px-5 py-2 text-emerald-500">
+          <h5 className="flex items-center gap-2 font-bold">
+            <BsExclamationCircleFill className="text-lg" /> Note:
+          </h5>
+          <p className="text-justify">
+            All assets and data resources are used from{' '}
+            <a
+              className="text-blue-500 underline"
+              href="https://pokeapi.co/"
+              target="_blank"
+            >
+              PokéAPI
+            </a>{' '}
+            and{' '}
+            <a
+              className="text-blue-500 underline"
+              href="https://github.com/Gabb-c/pokenode-ts"
+              target="_blank"
+            >
+              pokenode-ts
+            </a>
+            . This website is not produced, endorsed, supported, or affiliated
+            with Nintendo or The Pokémon Company.
+          </p>
+        </div>
       </div>
 
       {/* Introduction */}
@@ -48,7 +50,7 @@ const PokemonPage: NextPage = () => {
       {/* Getting Started */}
       <div className="flex flex-col gap-2">
         <h3 className="text-xl font-semibold">Getting Started</h3>
-        <div className="flex flex-col gap-2 text-gray-600 dark:text-gray-400">
+        <div className="flex flex-col gap-3 text-gray-600 dark:text-gray-400">
           <p>
             To get started with the project, you can simply clone the
             repository:
