@@ -1,14 +1,23 @@
+import { closeSidebar } from '@/slice/sidebar.slice';
+import { useAppDispatch } from '@/store/hooks';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import React from 'react';
 
 const RouteLink: React.FC<{ title: string }> = ({ title }) => {
+  const dispatch = useAppDispatch();
   const pathname = usePathname();
+  const router = useRouter();
 
   const isCurrentRoute = pathname.startsWith(`/${title}`);
+
+  const redirect = () => {
+    router.push(`/${title}`);
+    dispatch(closeSidebar());
+  };
   return (
-    <Link
-      href={`/${title}`}
+    <div
+      onClick={redirect}
       className={`${
         isCurrentRoute
           ? 'border-sky-500 bg-sky-400 bg-opacity-25 dark:border-sky-300 sm:border-sky-300 sm:dark:border-sky-500'
@@ -16,7 +25,7 @@ const RouteLink: React.FC<{ title: string }> = ({ title }) => {
       } flex h-9 items-center rounded-lg border-2 px-2 capitalize`}
     >
       {title}
-    </Link>
+    </div>
   );
 };
 
