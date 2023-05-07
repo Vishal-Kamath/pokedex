@@ -3,8 +3,10 @@
 import { cn } from '@/utils/lib';
 import { cva, VariantProps } from 'class-variance-authority';
 import Image from 'next/image';
+import { PokemonSprites } from 'pokenode-ts';
 import React, { useState } from 'react';
 import { FaStar, FaRegStar } from 'react-icons/fa';
+import { AiOutlineGif } from 'react-icons/ai';
 
 export const imageVariants = cva(
   'relative aspect-square w-full rounded-lg p-2 lg:w-[20rem] lg:h-[20rem] bg-opacity-75 border-2',
@@ -37,11 +39,24 @@ export const imageVariants = cva(
 
 interface ImageProps extends VariantProps<typeof imageVariants> {
   name: string;
+  sprites: PokemonSprites;
   id: number;
 }
 
-const PokemonImage: React.FC<ImageProps> = ({ color, id, name }) => {
+const PokemonImage: React.FC<ImageProps> = ({ color, sprites, name, id }) => {
   const [shiny, setShiny] = useState(false);
+  const [animated, setAnimated] = useState(false);
+
+  const src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
+  const shinySrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${id}.png`;
+
+  const animatedSrc =
+    sprites.versions['generation-v']['black-white'].animated.front_default ||
+    src;
+  const animatedShinySrc =
+    sprites.versions['generation-v']['black-white'].animated.front_shiny ||
+    shinySrc;
+
   return (
     <div className={cn(imageVariants({ color }))}>
       <button
@@ -49,16 +64,25 @@ const PokemonImage: React.FC<ImageProps> = ({ color, id, name }) => {
         onClick={() => setShiny(!shiny)}
       >
         {!shiny ? (
-          <FaRegStar title="click to see shiny pokemon" />
+          <FaRegStar title="Click to see shiny pokemon" />
         ) : (
-          <FaStar title="click to see normal pokemon" />
+          <FaStar title="Click to see normal pokemon" />
         )}
+      </button>
+      <button
+        className="absolute left-[3.25rem] top-3 grid h-8 w-8 place-content-center rounded-md bg-white text-lg"
+        onClick={() => setAnimated(!animated)}
+      >
+        <AiOutlineGif
+          className={animated ? 'text-sky-400' : 'text-gray-400'}
+          title={animated ? 'Show original image' : 'Show animated gif'}
+        />
       </button>
       {!shiny ? (
         <Image
           alt={name}
-          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
-          className="aspect-square w-full"
+          src={animated ? animatedSrc : src}
+          className="pixel-image aspect-square w-full"
           loading="lazy"
           width="500"
           height="500"
@@ -66,8 +90,8 @@ const PokemonImage: React.FC<ImageProps> = ({ color, id, name }) => {
       ) : (
         <Image
           alt={name}
-          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${id}.png`}
-          className="aspect-square w-full"
+          src={animated ? animatedShinySrc : shinySrc}
+          className="pixel-image aspect-square w-full"
           loading="lazy"
           width="500"
           height="500"

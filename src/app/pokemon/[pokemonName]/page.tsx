@@ -54,6 +54,7 @@ const PokemonPage = async ({ params }: Prop) => {
         <div className="flex gap-7 max-lg:flex-col">
           <PokemonImage
             name={pokemonDetails.name}
+            sprites={pokemonDetails.sprites}
             id={pokemonDetails.id}
             color={color}
           />
