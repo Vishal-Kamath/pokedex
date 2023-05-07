@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import { MainClient } from 'pokenode-ts';
 const api = new MainClient();
 
@@ -17,9 +18,13 @@ export const getPokemonListData = async (
   page: number = 1,
   pageOffset: number = 24
 ) => {
-  const offset = (page - 1) * pageOffset;
-  const pokemons = await api.pokemon.listPokemons(offset, 24);
-  return pokemons;
+  try {
+    const offset = (page - 1) * pageOffset;
+    const pokemons = await api.pokemon.listPokemons(offset, 24);
+    return pokemons;
+  } catch (err) {
+    return notFound();
+  }
 };
 
 // get Pokemon details
@@ -30,12 +35,16 @@ export const getPokemonListData = async (
  * @returns
  */
 export async function getPokemonData(name: string) {
-  const pokemonDetails = await api.pokemon.getPokemonByName(name);
-  const pokemonSpecies = await api.pokemon.getPokemonSpeciesByName(name);
-  const pokemonEvolutionChain = await api.evolution.getEvolutionChainById(
-    pokemonDetails.id
-  );
-  return { pokemonDetails, pokemonSpecies, pokemonEvolutionChain };
+  try {
+    const pokemonDetails = await api.pokemon.getPokemonByName(name);
+    const pokemonSpecies = await api.pokemon.getPokemonSpeciesByName(name);
+    const pokemonEvolutionChain = await api.evolution.getEvolutionChainById(
+      pokemonDetails.id
+    );
+    return { pokemonDetails, pokemonSpecies, pokemonEvolutionChain };
+  } catch (err) {
+    return notFound();
+  }
 }
 
 // get Pokemon Id
@@ -46,8 +55,12 @@ export async function getPokemonData(name: string) {
  * @returns {Promise<number>} id
  */
 export async function getPokemonId(name: string) {
-  const pokemon = await api.pokemon.getPokemonByName(name);
-  return pokemon.id;
+  try {
+    const pokemon = await api.pokemon.getPokemonByName(name);
+    return pokemon.id;
+  } catch (err) {
+    return notFound();
+  }
 }
 
 // ---------------------------------------------------------
@@ -66,9 +79,13 @@ export const getBerryListData = async (
   page: number = 1,
   pageOffset: number = 24
 ) => {
-  const offset = (page - 1) * pageOffset;
-  const berries = await api.berry.listBerries(offset, 24);
-  return berries;
+  try {
+    const offset = (page - 1) * pageOffset;
+    const berries = await api.berry.listBerries(offset, 24);
+    return berries;
+  } catch (err) {
+    return notFound();
+  }
 };
 
 // get Berry details
@@ -79,9 +96,13 @@ export const getBerryListData = async (
  * @returns
  */
 export async function getBerryData(name: string) {
-  const berryDetails = await api.berry.getBerryByName(name);
-  const berryItem = await api.item.getItemByName(berryDetails.item.name);
-  return { berryDetails, berryItem };
+  try {
+    const berryDetails = await api.berry.getBerryByName(name);
+    const berryItem = await api.item.getItemByName(berryDetails.item.name);
+    return { berryDetails, berryItem };
+  } catch (err) {
+    return notFound();
+  }
 }
 
 // ---------------------------------------------------------
@@ -100,9 +121,13 @@ export const getItemListData = async (
   page: number = 1,
   pageOffset: number = 24
 ) => {
-  const offset = (page - 1) * pageOffset;
-  const items = await api.item.listItems(offset, 24);
-  return items;
+  try {
+    const offset = (page - 1) * pageOffset;
+    const items = await api.item.listItems(offset, 24);
+    return items;
+  } catch (err) {
+    return notFound();
+  }
 };
 
 // get Item details
@@ -113,6 +138,10 @@ export const getItemListData = async (
  * @returns
  */
 export async function getItemData(name: string) {
-  const itemDetails = await api.item.getItemByName(name);
-  return { itemDetails };
+  try {
+    const itemDetails = await api.item.getItemByName(name);
+    return { itemDetails };
+  } catch (err) {
+    return notFound();
+  }
 }
