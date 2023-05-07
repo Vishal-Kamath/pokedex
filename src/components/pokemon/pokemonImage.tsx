@@ -82,7 +82,7 @@ const PokemonImage: React.FC<ImageProps> = ({ color, sprites, name, id }) => {
         <Image
           alt={name}
           src={animated ? animatedSrc : src}
-          className="pixel-image aspect-square w-full"
+          className={`${animated && 'pixel-image'} aspect-square w-full`}
           loading="lazy"
           width="500"
           height="500"
@@ -91,7 +91,7 @@ const PokemonImage: React.FC<ImageProps> = ({ color, sprites, name, id }) => {
         <Image
           alt={name}
           src={animated ? animatedShinySrc : shinySrc}
-          className="pixel-image aspect-square w-full"
+          className={`${animated && 'pixel-image'} aspect-square w-full`}
           loading="lazy"
           width="500"
           height="500"
