@@ -7,7 +7,7 @@ const PokemonVariety: React.FC<{
   name: string;
   varieties: PokemonSpeciesVariety[];
 }> = ({ name, varieties }) => {
-  return (
+  return varieties.length === 1 ? null : (
     <div>
       <h2 className="mb-1 text-2xl">Varities</h2>
       <div className="flex flex-col items-center justify-evenly rounded-md bg-slate-100 py-3 dark:bg-slate-800 lg:flex-row">
