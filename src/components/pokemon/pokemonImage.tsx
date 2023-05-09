@@ -69,15 +69,18 @@ const PokemonImage: React.FC<ImageProps> = ({ color, sprites, name, id }) => {
           <FaStar title="Click to see normal pokemon" />
         )}
       </button>
-      <button
-        className="absolute left-[3.25rem] top-3 grid h-8 w-8 place-content-center rounded-md bg-white text-lg"
-        onClick={() => setAnimated(!animated)}
-      >
-        <AiOutlineGif
-          className={animated ? 'text-sky-400' : 'text-gray-400'}
-          title={animated ? 'Show original image' : 'Show animated gif'}
-        />
-      </button>
+      {sprites.versions['generation-v']['black-white'].animated
+        .front_default && (
+        <button
+          className="absolute left-[3.25rem] top-3 grid h-8 w-8 place-content-center rounded-md bg-white text-lg"
+          onClick={() => setAnimated(!animated)}
+        >
+          <AiOutlineGif
+            className={animated ? 'text-sky-400' : 'text-gray-400'}
+            title={animated ? 'Show original image' : 'Show animated gif'}
+          />
+        </button>
+      )}
       {!shiny ? (
         <Image
           alt={name}
