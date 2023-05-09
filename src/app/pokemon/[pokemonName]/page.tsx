@@ -4,6 +4,7 @@ import { getPokemonData, getPokemonId } from '@/utils/api';
 import { VariantProps } from 'class-variance-authority';
 import ErrorPage from './error';
 import { capitalize } from '@/utils/lib';
+import PokemonVariety from '@/components/pokemon/pokemonVariety';
 
 interface Prop {
   params: { pokemonName: string };
@@ -61,7 +62,12 @@ const PokemonPage = async ({ params }: Prop) => {
           />
           <PokemonDetails {...pokemonDetails} />
         </div>
-        <div>{}</div>
+        <div>
+          <PokemonVariety
+            name={pokemonDetails.name}
+            varieties={pokemonSpecies.varieties}
+          />
+        </div>
       </main>
     );
   } catch (err: any) {
