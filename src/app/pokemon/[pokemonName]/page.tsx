@@ -19,11 +19,11 @@ export async function generateMetadata({ params }: Prop) {
   const id = await getPokemonId(params.pokemonName);
 
   return {
-    title: `PokéDex - ${capitalize(params.pokemonName)}`,
-    applicationName: 'PokéDex',
+    title: `pokédex - ${capitalize(params.pokemonName)}`,
+    applicationName: 'pokédex',
     openGraph: {
-      title: `PokéDex - ${capitalize(params.pokemonName)}`,
-      siteName: 'PokéDex',
+      title: `pokédex - ${capitalize(params.pokemonName)}`,
+      siteName: 'pokédex',
       images: [
         {
           url: `${endpoint}/api/og/dynamic?name=${params.pokemonName}&img=https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`,

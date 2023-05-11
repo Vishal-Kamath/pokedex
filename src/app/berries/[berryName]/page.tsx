@@ -13,11 +13,11 @@ const endpoint = process.env.VERCEL_URL
 
 export async function generateMetadata({ params }: Prop) {
   return {
-    title: `PokéDex - ${capitalize(params.berryName)}`,
-    applicationName: 'PokéDex',
+    title: `pokédex - ${capitalize(params.berryName)}`,
+    applicationName: 'pokédex',
     openGraph: {
-      title: `PokéDex - ${capitalize(params.berryName)}`,
-      siteName: 'PokéDex',
+      title: `pokédex - ${capitalize(params.berryName)}`,
+      siteName: 'pokédex',
       images: [
         {
           url: `${endpoint}/api/og/dynamic?name=${params.berryName}&img=https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dream-world/${params.berryName}-berry.png`,

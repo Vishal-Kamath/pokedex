@@ -11,16 +11,16 @@ const endpoint = process.env.VERCEL_URL
   : 'http://localhost:3000';
 
 export const metadata: Metadata = {
-  title: 'PokéDex',
-  applicationName: 'PokéDex',
+  title: 'pokédex',
+  applicationName: 'pokédex',
 
   // Open Graph
   openGraph: {
-    title: 'PokéDex',
+    title: 'pokédex',
     description:
       'Welcome to the PokéDex Website! This is a web application built using Next 13, Tailwind CSS, and the PokéAPI, that provides a comprehensive collection of information about all your favorite Pokemon species.',
     url: `${endpoint}`,
-    siteName: 'PokéDex',
+    siteName: 'pokédex',
     images: [
       {
         url: `${endpoint}/api/og`,
