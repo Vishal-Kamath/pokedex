@@ -13,6 +13,8 @@ const endpoint = process.env.VERCEL_URL
 export const metadata: Metadata = {
   title: 'PokéDex',
   applicationName: 'PokéDex',
+
+  // Open Graph
   openGraph: {
     title: 'PokéDex',
     description:
@@ -29,6 +31,8 @@ export const metadata: Metadata = {
     locale: 'en-US',
     type: 'website',
   },
+
+  // Favicons
   icons: {
     icon: [
       { url: '/favicon/favicon.ico' },
@@ -49,6 +53,11 @@ export const metadata: Metadata = {
       },
     ],
   },
+
+  // Pwa manifest
+  manifest: '/manifest.json',
+
+  // Details
   description:
     'Welcome to the PokéDex Website! This is a web application built using Next 13, Tailwind CSS, and the PokéAPI, that provides a comprehensive collection of information about all your favorite Pokemon species.',
   keywords: [
