@@ -11,9 +11,8 @@ const ItemsHeldByPokemon: React.FC<{ items: PokemonHeldItem[] }> = ({
       <h2 className="text-2xl">Items held by pokemon</h2>
       <div className="flex flex-col items-center justify-evenly rounded-md bg-slate-100 py-3 dark:bg-slate-800 lg:flex-row">
         {items.map((item) => (
-          <Link href={`/items/${item.item.name}`}>
+          <Link key={item.item.name} href={`/items/${item.item.name}`}>
             <Image
-              key={item.item.name}
               title={item.item.name}
               alt={item.item.name}
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${item.item.name}.png`}
