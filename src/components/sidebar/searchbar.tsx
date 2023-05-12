@@ -9,7 +9,7 @@ import {
   setResults,
 } from '@/slice/search.slice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import DB from '@/db.json';
 
@@ -66,11 +66,29 @@ const SearchBar: React.FC<{
     }
   };
 
+  useEffect(() => {
+    const searchBar = document.getElementById('search_bar') as HTMLInputElement;
+    const focusOnSKeyDown = (e: KeyboardEvent) => {
+      if (e.code === 'KeyS') {
+        setTimeout(() => searchBar.focus(), 100);
+        // i used set timeout because i don't want the input field to
+        // register the first 'S'. Without the timeout when you press 'S'
+        // the input box is focused and 'S' in inputed in the the input box
+      }
+    };
+
+    document.addEventListener('keydown', focusOnSKeyDown);
+    return () => {
+      document.removeEventListener('keydown', focusOnSKeyDown);
+    };
+  }, []);
+
   return (
     <div className="flex h-9 w-full items-center gap-5 overflow-hidden rounded-full border-2 border-slate-700 px-2 dark:border-slate-300 sm:border-slate-300 sm:dark:border-slate-700">
       <FaSearch className="h-4 w-4 text-sky-600" />
       <input
         type="text"
+        id="search_bar"
         className="h-full w-full bg-transparent outline-none"
         value={display}
         onChange={(e) => handleOnChange(e.target.value)}
