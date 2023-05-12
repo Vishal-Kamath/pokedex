@@ -1,8 +1,7 @@
 # PokéDex Website
 
 <div align="center">
-  <picture><img src="./.readme-assets/PokéDex.png" alt="PokéDex Logo" /></picture>
-  <h3>By <a href="https://github.com/Vishal-Kamath">Vishal Kamath</a></h3> 
+  <picture><img src="./.readme-assets/title_card.png" alt="pokédex title card" /></picture>
 </div>
 
 <hr/>
@@ -55,3 +54,7 @@ This project was made possible thanks to the following resources:
 - [Tailwind CSS](https://tailwindcss.com/)
 - [PokeAPI](https://pokeapi.co/)
 - [pokenode-ts](https://github.com/Gabb-c/pokenode-ts)
+
+## More about me
+
+Hi, I'm [Vishal Kamath](https://github.com/Vishal-Kamath), a web developer striving to create beautifully designed websites. This is a fun project that I created while tinkering around with Next 13. I hope you like it!
