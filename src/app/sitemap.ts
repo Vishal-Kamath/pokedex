@@ -1,10 +1,8 @@
 import DBList from '@/db.json';
-
-const endpoint = process.env.VERCEL_URL
-  ? 'https://' + process.env.VERCEL_URL
-  : 'http://localhost:3000';
+import { getEndpoint } from '@/utils/lib';
 
 export default async function sitemap() {
+  const endpoint = getEndpoint();
   const { pokemon, berries, items } = DBList;
 
   const mainRoutes = ['pokemon', 'berries', 'items', 'about'].map(

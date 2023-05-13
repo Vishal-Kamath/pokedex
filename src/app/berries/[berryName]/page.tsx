@@ -1,14 +1,13 @@
 import BerryDetails from '@/components/berry/berryDetails';
 import BerryImage from '@/components/berry/berryImage';
 import { getBerryData } from '@/utils/api';
+import { getEndpoint } from '@/utils/lib';
 
 interface Prop {
   params: { berryName: string };
 }
 
-const endpoint = process.env.VERCEL_URL
-  ? 'https://' + process.env.VERCEL_URL
-  : 'http://localhost:3000';
+const endpoint = getEndpoint();
 
 export async function generateMetadata({ params }: Prop) {
   return {

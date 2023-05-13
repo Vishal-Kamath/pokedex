@@ -5,14 +5,13 @@ import { VariantProps } from 'class-variance-authority';
 import ErrorPage from './error';
 import PokemonVariety from '@/components/pokemon/pokemonVariety';
 import ItemsHeldByPokemon from '@/components/pokemon/itemsHeldByPokemon';
+import { getEndpoint } from '@/utils/lib';
 
 interface Prop {
   params: { pokemonName: string };
 }
 
-const endpoint = process.env.VERCEL_URL
-  ? 'https://' + process.env.VERCEL_URL
-  : 'http://localhost:3000';
+const endpoint = getEndpoint();
 
 export async function generateMetadata({ params }: Prop) {
   const id = await getPokemonId(params.pokemonName);

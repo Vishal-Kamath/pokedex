@@ -1,13 +1,13 @@
 import ItemDetails from '@/components/item/itemDetails';
 import ItemImage from '@/components/item/itemImage';
 import { getItemData } from '@/utils/api';
+import { getEndpoint } from '@/utils/lib';
+
 interface Prop {
   params: { itemName: string };
 }
 
-const endpoint = process.env.VERCEL_URL
-  ? 'https://' + process.env.VERCEL_URL
-  : 'http://localhost:3000';
+const endpoint = getEndpoint();
 
 export async function generateMetadata({ params }: Prop) {
   return {

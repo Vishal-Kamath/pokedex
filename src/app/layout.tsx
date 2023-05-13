@@ -5,10 +5,9 @@ import Footer from '@/components/footer/footer';
 import SideBar from '@/components/sidebar/sidebar';
 import ProviderComponent from '@/components/providerComponent';
 import Glare from '@/components/glare';
+import { getEndpoint } from '@/utils/lib';
 
-const endpoint = process.env.VERCEL_URL
-  ? 'https://' + process.env.VERCEL_URL
-  : 'http://localhost:3000';
+const endpoint = getEndpoint();
 
 export const metadata: Metadata = {
   title: 'pokédex',
