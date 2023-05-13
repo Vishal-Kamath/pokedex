@@ -3,7 +3,6 @@ import PokemonImage, { imageVariants } from '@/components/pokemon/pokemonImage';
 import { getPokemonData, getPokemonId } from '@/utils/api';
 import { VariantProps } from 'class-variance-authority';
 import ErrorPage from './error';
-import { capitalize } from '@/utils/lib';
 import PokemonVariety from '@/components/pokemon/pokemonVariety';
 import ItemsHeldByPokemon from '@/components/pokemon/itemsHeldByPokemon';
 
@@ -19,10 +18,10 @@ export async function generateMetadata({ params }: Prop) {
   const id = await getPokemonId(params.pokemonName);
 
   return {
-    title: `pokédex - ${capitalize(params.pokemonName)}`,
+    title: `pokédex - ${params.pokemonName}`,
     applicationName: 'pokédex',
     openGraph: {
-      title: `pokédex - ${capitalize(params.pokemonName)}`,
+      title: `pokédex - ${params.pokemonName}`,
       siteName: 'pokédex',
       images: [
         {

@@ -1,7 +1,6 @@
 import BerryDetails from '@/components/berry/berryDetails';
 import BerryImage from '@/components/berry/berryImage';
 import { getBerryData } from '@/utils/api';
-import { capitalize } from '@/utils/lib';
 
 interface Prop {
   params: { berryName: string };
@@ -13,10 +12,10 @@ const endpoint = process.env.VERCEL_URL
 
 export async function generateMetadata({ params }: Prop) {
   return {
-    title: `pokédex - ${capitalize(params.berryName)}`,
+    title: `pokédex - ${params.berryName}`,
     applicationName: 'pokédex',
     openGraph: {
-      title: `pokédex - ${capitalize(params.berryName)}`,
+      title: `pokédex - ${params.berryName}`,
       siteName: 'pokédex',
       images: [
         {

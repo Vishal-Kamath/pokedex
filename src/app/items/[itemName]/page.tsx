@@ -1,8 +1,6 @@
 import ItemDetails from '@/components/item/itemDetails';
 import ItemImage from '@/components/item/itemImage';
 import { getItemData } from '@/utils/api';
-import { capitalize } from '@/utils/lib';
-
 interface Prop {
   params: { itemName: string };
 }
@@ -13,10 +11,10 @@ const endpoint = process.env.VERCEL_URL
 
 export async function generateMetadata({ params }: Prop) {
   return {
-    title: `pokédex - ${capitalize(params.itemName)}`,
+    title: `pokédex - ${params.itemName}`,
     applicationName: 'pokédex',
     openGraph: {
-      title: `pokédex - ${capitalize(params.itemName)}`,
+      title: `pokédex - ${params.itemName}`,
       siteName: 'pokédex',
       images: [
         {
