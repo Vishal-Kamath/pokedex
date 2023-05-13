@@ -9,7 +9,7 @@ import { SiNextdotjs, SiTailwindcss } from 'react-icons/si';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="mt-auto flex flex-col gap-5 border-t-2 border-slate-300 bg-slate-100 px-[5vw] py-5 dark:border-slate-700 dark:bg-slate-900">
+    <footer className="mt-auto flex flex-col gap-5 border-t-2 border-slate-300 bg-slate-100 px-[5vw] py-9 dark:border-slate-700 dark:bg-slate-900">
       <div className="flex justify-between gap-7 max-lg:flex-col">
         {/* More About Me */}
         <div className="flex w-full flex-col gap-1">
