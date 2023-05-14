@@ -5,7 +5,7 @@ import {
 } from '@/slice/search.slice';
 import { useAppSelector } from '@/store/hooks';
 import React from 'react';
-import { FaSearch } from 'react-icons/fa';
+import SearchListItem from './searchListItem';
 
 const SearchList: React.FC<{
   searchedFor: string;
@@ -23,27 +23,14 @@ const SearchList: React.FC<{
       <div className="flex flex-col">
         {results.length !== 0 &&
           focused &&
-          results.map((result, listIndex) => {
-            return listIndex === index ? (
-              <div
-                key={result}
-                className="flex h-9 cursor-pointer items-center gap-5 rounded-md border-sky-300 bg-slate-100 px-2 leading-none dark:border-sky-700 dark:bg-slate-800"
-                onClick={() => search(result)}
-              >
-                <FaSearch className="text-sky-500" />
-                <span>{result}</span>
-              </div>
-            ) : (
-              <div
-                key={result}
-                className="flex h-9 cursor-pointer items-center gap-5 rounded-md px-2 leading-none hover:bg-slate-100 dark:hover:bg-slate-800"
-                onClick={() => search(result)}
-              >
-                <FaSearch className="text-slate-500" />
-                <span>{result}</span>
-              </div>
-            );
-          })}
+          results.map((result, listIndex) => (
+            <SearchListItem
+              key={result.item}
+              focused={listIndex === index}
+              search={search}
+              {...result}
+            />
+          ))}
       </div>
     </div>
   );

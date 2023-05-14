@@ -5,7 +5,11 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import React, { useEffect } from 'react';
 import SearchBar from './searchbar';
 import RouteLink from './routeLink';
-import { selectSearchFocused, setResults } from '@/slice/search.slice';
+import {
+  SearchItem,
+  selectSearchFocused,
+  setResults,
+} from '@/slice/search.slice';
 import { usePathname, useRouter } from 'next/navigation';
 import SearchList from './searchList';
 import DB from '@/db.json';
@@ -31,7 +35,11 @@ const SideBar: React.FC = () => {
   }
 
   useEffect(() => {
-    const searchResults = DB[searchedFor].slice(0, 10);
+    const searchResults = DB[searchedFor].slice(0, 10).map((item) => ({
+      item: item,
+      type: 'search',
+    })) as SearchItem[];
+
     dispatch(setResults(searchResults));
   }, [searchedFor]);
 

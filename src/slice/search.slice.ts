@@ -1,9 +1,14 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import type { RootState } from '@/store';
 
+export type SearchItem = {
+  item: string;
+  type: 'search' | 'history';
+};
+
 type SearchType = {
   input: string;
-  results: string[];
+  results: SearchItem[];
   index: number;
   focused: boolean;
 };
@@ -33,7 +38,7 @@ export const search = createSlice({
     setIndex: (state, action: PayloadAction<number>) => {
       state.index = action.payload;
     },
-    setResults: (state, action: PayloadAction<string[]>) => {
+    setResults: (state, action: PayloadAction<SearchItem[]>) => {
       state.results = action.payload;
     },
   },

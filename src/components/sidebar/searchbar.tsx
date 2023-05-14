@@ -1,4 +1,5 @@
 import {
+  SearchItem,
   selectSearchIndex,
   selectSearchInput,
   selectSearchResults,
@@ -24,12 +25,16 @@ const SearchBar: React.FC<{
   const results = useAppSelector(selectSearchResults);
 
   const display =
-    index === -1 ? input : !!results[index] ? results[index] : input;
+    index === -1 ? input : !!results[index].item ? results[index].item : input;
 
   const handleOnChange = (value: string) => {
     const searchResults = DB[searchedFor]
       .filter((data) => data.toLowerCase().startsWith(value.toLowerCase()))
-      .slice(0, 10);
+      .slice(0, 10)
+      .map((item) => ({
+        item: item,
+        type: 'search',
+      })) as SearchItem[];
 
     dispatch(setInput(value));
     dispatch(setResults(searchResults));
