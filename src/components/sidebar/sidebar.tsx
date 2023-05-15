@@ -42,7 +42,6 @@ const SideBar: React.FC = () => {
 
   useEffect(() => {
     const history = LocalStorageHistory.getHistoryFromLocalStorage();
-    console.log(history);
     const historyList = history.map((item) => ({
       item: item,
       type: 'history',
