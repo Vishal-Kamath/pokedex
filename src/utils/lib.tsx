@@ -1,3 +1,4 @@
+import { SearchItem } from '@/slice/search.slice';
 import { ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -27,3 +28,14 @@ export class LocalStorageHistory {
     return uniqueHistoryArray;
   }
 }
+
+export const getUniqueItemsSearchList = (list: SearchItem[]): SearchItem[] => {
+  const hash: { [name: string]: boolean } = {};
+  const finalList = list.filter((item) => {
+    if (hash[item.item]) return false;
+
+    hash[item.item] = true;
+    return true;
+  });
+  return finalList;
+};

@@ -13,7 +13,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import React, { useEffect } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import DB from '@/db.json';
-import { LocalStorageHistory } from '@/utils/lib';
+import { LocalStorageHistory, getUniqueItemsSearchList } from '@/utils/lib';
 
 const SearchBar: React.FC<{
   searchedFor: 'pokemon' | 'berries' | 'items';
@@ -43,8 +43,12 @@ const SearchBar: React.FC<{
         type: 'search',
       })) as SearchItem[];
 
+    const finalList = getUniqueItemsSearchList(
+      historyList.concat(searchResults)
+    ).slice(0, 10);
+
     dispatch(setInput(value));
-    dispatch(setResults([...historyList, ...searchResults].slice(0, 10)));
+    dispatch(setResults(finalList));
     dispatch(setIndex(-1));
     dispatch(setFocused());
   };

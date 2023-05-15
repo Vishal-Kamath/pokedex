@@ -13,7 +13,7 @@ import {
 import { usePathname, useRouter } from 'next/navigation';
 import SearchList from './searchList';
 import DB from '@/db.json';
-import { LocalStorageHistory } from '@/utils/lib';
+import { LocalStorageHistory, getUniqueItemsSearchList } from '@/utils/lib';
 
 const SideBar: React.FC = () => {
   const router = useRouter();
@@ -53,7 +53,10 @@ const SideBar: React.FC = () => {
       type: 'search',
     })) as SearchItem[];
 
-    dispatch(setResults([...historyList, ...searchResults].slice(0, 10)));
+    const finalList = getUniqueItemsSearchList(
+      historyList.concat(searchResults)
+    ).slice(0, 10);
+    dispatch(setResults(finalList));
   }, [searchedFor]);
 
   return (
