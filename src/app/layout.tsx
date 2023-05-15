@@ -13,6 +13,8 @@ export const metadata: Metadata = {
   title: 'pokédex',
   applicationName: 'pokédex',
 
+  metadataBase: new URL(endpoint),
+
   // Open Graph
   openGraph: {
     title: 'pokédex',
