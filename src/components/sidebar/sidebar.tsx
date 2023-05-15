@@ -35,7 +35,7 @@ const SideBar: React.FC = () => {
 
     const history = LocalStorageHistory.getHistoryFromLocalStorage();
     history.unshift(value);
-    localStorage.setItem('history', JSON.stringify(history));
+    localStorage.setItem('history', JSON.stringify(history.slice(0, 5)));
 
     dispatch(closeSidebar());
   }
