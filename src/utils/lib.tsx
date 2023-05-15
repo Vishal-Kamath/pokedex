@@ -22,7 +22,8 @@ export class LocalStorageHistory {
       localStorage.setItem('history', JSON.stringify([]));
       return [];
     }
-
-    return history;
+    const uniqueHistoryArray = Array.from(new Set(history));
+    localStorage.setItem('history', JSON.stringify(uniqueHistoryArray));
+    return uniqueHistoryArray;
   }
 }
