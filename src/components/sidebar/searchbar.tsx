@@ -11,7 +11,7 @@ import {
 } from '@/slice/search.slice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import React, { useEffect } from 'react';
-import { FaSearch } from 'react-icons/fa';
+import { AiOutlineSearch } from 'react-icons/ai';
 import DB from '@/db.json';
 import { LocalStorageHistory, getUniqueItemsSearchList } from '@/utils/lib';
 
@@ -101,7 +101,7 @@ const SearchBar: React.FC<{
 
   return (
     <div className="flex h-9 w-full items-center gap-5 overflow-hidden rounded-full border-2 border-slate-700 px-2 dark:border-slate-300 sm:border-slate-300 sm:dark:border-slate-700">
-      <FaSearch className="h-4 w-4 text-sky-600" />
+      <AiOutlineSearch className="h-5 w-5 text-sky-600" />
       <input
         type="text"
         id="search_bar"
