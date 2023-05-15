@@ -13,6 +13,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import React, { useEffect } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import DB from '@/db.json';
+import { LocalStorageHistory } from '@/utils/lib';
 
 const SearchBar: React.FC<{
   searchedFor: 'pokemon' | 'berries' | 'items';
@@ -28,6 +29,12 @@ const SearchBar: React.FC<{
     index === -1 ? input : !!results[index].item ? results[index].item : input;
 
   const handleOnChange = (value: string) => {
+    const history = LocalStorageHistory.getHistoryFromLocalStorage();
+    const historyList = history.map((item) => ({
+      item: item,
+      type: 'history',
+    })) as SearchItem[];
+
     const searchResults = DB[searchedFor]
       .filter((data) => data.toLowerCase().startsWith(value.toLowerCase()))
       .slice(0, 10)
@@ -37,7 +44,7 @@ const SearchBar: React.FC<{
       })) as SearchItem[];
 
     dispatch(setInput(value));
-    dispatch(setResults(searchResults));
+    dispatch(setResults([...historyList, ...searchResults].slice(0, 10)));
     dispatch(setIndex(-1));
     dispatch(setFocused());
   };

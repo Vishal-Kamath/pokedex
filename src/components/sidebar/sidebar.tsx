@@ -13,6 +13,7 @@ import {
 import { usePathname, useRouter } from 'next/navigation';
 import SearchList from './searchList';
 import DB from '@/db.json';
+import { LocalStorageHistory } from '@/utils/lib';
 
 const SideBar: React.FC = () => {
   const router = useRouter();
@@ -31,16 +32,28 @@ const SideBar: React.FC = () => {
 
   function search(value: string) {
     router.push(`/${searchedFor}/${value}`);
+
+    const history = LocalStorageHistory.getHistoryFromLocalStorage();
+    history.unshift(value);
+    localStorage.setItem('history', JSON.stringify(history));
+
     dispatch(closeSidebar());
   }
 
   useEffect(() => {
+    const history = LocalStorageHistory.getHistoryFromLocalStorage();
+    console.log(history);
+    const historyList = history.map((item) => ({
+      item: item,
+      type: 'history',
+    })) as SearchItem[];
+
     const searchResults = DB[searchedFor].slice(0, 10).map((item) => ({
       item: item,
       type: 'search',
     })) as SearchItem[];
 
-    dispatch(setResults(searchResults));
+    dispatch(setResults([...historyList, ...searchResults].slice(0, 10)));
   }, [searchedFor]);
 
   return (

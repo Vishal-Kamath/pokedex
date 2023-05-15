@@ -12,3 +12,17 @@ export function getEndpoint() {
 
   return endpoint;
 }
+
+export class LocalStorageHistory {
+  static getHistoryFromLocalStorage(): string[] {
+    const historyUnParsed = localStorage.getItem('history') || '{}';
+    const history = JSON.parse(historyUnParsed);
+
+    if (!Array.isArray(history)) {
+      localStorage.setItem('history', JSON.stringify([]));
+      return [];
+    }
+
+    return history;
+  }
+}
