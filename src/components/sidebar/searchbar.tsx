@@ -2,8 +2,6 @@ import {
   selectSearchIndex,
   selectSearchInput,
   selectSearchResults,
-  setBlured,
-  setFocused,
   setIndex,
   setInput,
   triggerNewSearch,
@@ -14,8 +12,9 @@ import { AiOutlineSearch } from 'react-icons/ai';
 
 const SearchBar: React.FC<{
   searchedFor: 'pokemon' | 'berries' | 'items';
+  setToggleSidebarToResults: React.Dispatch<React.SetStateAction<boolean>>;
   search: (value: string) => void;
-}> = ({ searchedFor, search }) => {
+}> = ({ searchedFor, setToggleSidebarToResults, search }) => {
   const dispatch = useAppDispatch();
 
   const input = useAppSelector(selectSearchInput);
@@ -29,7 +28,7 @@ const SearchBar: React.FC<{
     dispatch(triggerNewSearch({ searchedFor, searchValue: value }));
     dispatch(setInput(value));
     dispatch(setIndex(-1));
-    dispatch(setFocused());
+    setToggleSidebarToResults(true);
   };
 
   const handleArrowDown = () => {
@@ -52,11 +51,11 @@ const SearchBar: React.FC<{
       handleArrowUp();
     }
     if (e.code === 'Enter') {
-      e.currentTarget.blur();
       e.preventDefault();
       search(display);
     }
     if (e.code === 'Escape') {
+      setToggleSidebarToResults(false);
       e.currentTarget.blur();
     }
   };
@@ -65,7 +64,7 @@ const SearchBar: React.FC<{
     const searchBar = document.getElementById('search_bar') as HTMLInputElement;
     const focusOnSKeyDown = (e: KeyboardEvent) => {
       if (e.code === 'KeyS') {
-        setTimeout(() => searchBar.focus(), 100);
+        setTimeout(() => setToggleSidebarToResults(true), 100);
         // i used set timeout because i don't want the input field to
         // register the first 'S'. Without the timeout when you press 'S'
         // the input box is focused and 'S' in inputed in the the input box
@@ -79,7 +78,7 @@ const SearchBar: React.FC<{
   }, []);
 
   return (
-    <div className="flex h-9 w-full items-center gap-5 overflow-hidden rounded-full border-2 border-slate-700 px-2 dark:border-slate-300 sm:border-slate-300 sm:dark:border-slate-700">
+    <div className="flex h-9 w-full items-center gap-3 overflow-hidden rounded-full border-2 border-slate-700 px-2 dark:border-slate-300 sm:border-slate-300 sm:dark:border-slate-700">
       <AiOutlineSearch className="h-5 w-5 text-sky-600" />
       <input
         type="text"
@@ -88,8 +87,7 @@ const SearchBar: React.FC<{
         value={display}
         onChange={(e) => handleOnChange(e.target.value)}
         onKeyDown={handleKeyDown}
-        onFocus={() => dispatch(setFocused())}
-        onBlur={() => setTimeout(() => dispatch(setBlured()), 150)}
+        onFocus={() => setToggleSidebarToResults(true)}
       />
     </div>
   );

@@ -8,7 +8,7 @@ import { useAppDispatch } from '@/store/hooks';
 import { SearchedFor } from './sidebar';
 
 export const itemVariantClass = cva(
-  'flex w-full h-9 cursor-pointer items-center gap-5 rounded-md px-2 leading-none',
+  'flex w-full h-9 cursor-pointer items-center gap-3 rounded-md px-2 leading-none',
   {
     variants: {
       focused: {
