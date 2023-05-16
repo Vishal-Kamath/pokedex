@@ -8,12 +8,13 @@ import { useAppDispatch } from '@/store/hooks';
 import { SearchedFor } from './sidebar';
 
 export const itemVariantClass = cva(
-  'flex w-full h-9 cursor-pointer items-center justify-between rounded-md px-2 leading-none',
+  'flex w-full h-9 cursor-pointer items-center gap-5 rounded-md px-2 leading-none',
   {
     variants: {
       focused: {
-        true: 'border-sky-300 bg-slate-100 dark:border-sky-700 dark:bg-slate-800',
-        false: 'group-hover:bg-slate-100 dark:group-hover:bg-slate-800',
+        true: 'bg-slate-100/[0.5] dark:bg-slate-800/[0.5]',
+        false:
+          'group-hover:bg-slate-100/[0.5] dark:group-hover:bg-slate-800/[0.7]',
       },
     },
   }
@@ -38,12 +39,12 @@ const SearchListItem: React.FC<
   const dispatch = useAppDispatch();
 
   return type === 'search' ? (
-    <div
-      key={item}
-      className={cn(itemVariantClass({ focused }))}
-      onClick={() => search(item)}
-    >
-      <div className="flex items-center gap-5">
+    <div className="group">
+      <div
+        key={item}
+        className={cn(itemVariantClass({ focused }))}
+        onClick={() => search(item)}
+      >
         <AiOutlineSearch className={cn(itemIconVariantClass({ focused }))} />
         <span>{item}</span>
       </div>
@@ -55,15 +56,13 @@ const SearchListItem: React.FC<
         className={cn(itemVariantClass({ focused }))}
         onClick={() => search(item)}
       >
-        <div className="flex items-center gap-5">
-          <AiOutlineClockCircle
-            className={cn(itemIconVariantClass({ focused }))}
-          />
-          <span>{item}</span>
-        </div>
+        <AiOutlineClockCircle
+          className={cn(itemIconVariantClass({ focused }))}
+        />
+        <span>{item}</span>
       </div>
       <RxCross1
-        className="absolute right-1 top-1/2 aspect-square h-6 w-6 -translate-y-1/2 rounded-[4px] p-1 hover:bg-slate-200 hover:text-red-600 dark:hover:bg-slate-700"
+        className="absolute right-1 top-1/2 aspect-square h-6 w-6 -translate-y-1/2 rounded-[4px] bg-opacity-25 p-1 hover:bg-slate-200 hover:text-red-600 dark:hover:bg-slate-700"
         onClick={() => {
           LocalStorageHistory.removeItemFromLocalStorage(item);
           dispatch(triggerNewSearch({ searchedFor }));
