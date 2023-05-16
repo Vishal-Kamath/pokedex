@@ -5,15 +5,12 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import React, { useEffect } from 'react';
 import SearchBar from './searchbar';
 import RouteLink from './routeLink';
-import {
-  SearchItem,
-  selectSearchFocused,
-  setResults,
-} from '@/slice/search.slice';
+import { selectSearchFocused, triggerNewSearch } from '@/slice/search.slice';
 import { usePathname, useRouter } from 'next/navigation';
 import SearchList from './searchList';
-import DB from '@/db.json';
-import { LocalStorageHistory, getUniqueItemsSearchList } from '@/utils/lib';
+import { LocalStorageHistory } from '@/utils/lib';
+
+export type SearchedFor = 'pokemon' | 'berries' | 'items';
 
 const SideBar: React.FC = () => {
   const router = useRouter();
@@ -28,7 +25,7 @@ const SideBar: React.FC = () => {
     !!['pokemon', 'berries', 'items'].find((value) => value === searchPath)
       ? searchPath
       : 'pokemon'
-  ) as 'pokemon' | 'berries' | 'items';
+  ) as SearchedFor;
 
   function search(value: string) {
     router.push(`/${searchedFor}/${value}`);
@@ -37,25 +34,12 @@ const SideBar: React.FC = () => {
     history.unshift(value);
     localStorage.setItem('history', JSON.stringify(history.slice(0, 5)));
 
+    dispatch(triggerNewSearch({ searchedFor }));
     dispatch(closeSidebar());
   }
 
   useEffect(() => {
-    const history = LocalStorageHistory.getHistoryFromLocalStorage();
-    const historyList = history.map((item) => ({
-      item: item,
-      type: 'history',
-    })) as SearchItem[];
-
-    const searchResults = DB[searchedFor].slice(0, 10).map((item) => ({
-      item: item,
-      type: 'search',
-    })) as SearchItem[];
-
-    const finalList = getUniqueItemsSearchList(
-      historyList.concat(searchResults)
-    ).slice(0, 10);
-    dispatch(setResults(finalList));
+    dispatch(triggerNewSearch({ searchedFor }));
   }, [searchedFor]);
 
   return (

@@ -1,6 +1,8 @@
 import { SearchItem } from '@/slice/search.slice';
 import { ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import DB from '@/db.json';
+import { SearchedFor } from '@/components/sidebar/sidebar';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -27,7 +29,44 @@ export class LocalStorageHistory {
     localStorage.setItem('history', JSON.stringify(uniqueHistoryArray));
     return uniqueHistoryArray;
   }
+
+  static removeItemFromLocalStorage(name: string): void {
+    const history = this.getHistoryFromLocalStorage();
+    const filteredHistory = history.filter((item) => item !== name);
+    localStorage.setItem('history', JSON.stringify(filteredHistory));
+  }
 }
+
+export const getSearchResults = ({
+  searchedFor,
+  searchValue,
+}: {
+  searchedFor: SearchedFor;
+  searchValue?: string;
+}) => {
+  const history = LocalStorageHistory.getHistoryFromLocalStorage();
+  const historyList = history.map((item) => ({
+    item: item,
+    type: 'history',
+  })) as SearchItem[];
+
+  const searchResults = DB[searchedFor]
+    .filter((value) => {
+      if (!!searchValue)
+        return value.toLowerCase().startsWith(searchValue.toLowerCase());
+      return true;
+    })
+    .slice(0, 10)
+    .map((item) => ({
+      item: item,
+      type: 'search',
+    })) as SearchItem[];
+
+  const finalList = getUniqueItemsSearchList(
+    historyList.concat(searchResults)
+  ).slice(0, 10);
+  return finalList;
+};
 
 export const getUniqueItemsSearchList = (list: SearchItem[]): SearchItem[] => {
   const hash: { [name: string]: boolean } = {};

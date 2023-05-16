@@ -1,5 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import type { RootState } from '@/store';
+import { getSearchResults } from '@/utils/lib';
+import { SearchedFor } from '@/components/sidebar/sidebar';
 
 export type SearchItem = {
   item: string;
@@ -38,13 +40,19 @@ export const search = createSlice({
     setIndex: (state, action: PayloadAction<number>) => {
       state.index = action.payload;
     },
-    setResults: (state, action: PayloadAction<SearchItem[]>) => {
-      state.results = action.payload;
+    triggerNewSearch: (
+      state,
+      action: PayloadAction<{
+        searchedFor: SearchedFor;
+        searchValue?: string;
+      }>
+    ) => {
+      state.results = getSearchResults(action.payload);
     },
   },
 });
 
-export const { setBlured, setFocused, setIndex, setInput, setResults } =
+export const { setBlured, setFocused, setIndex, setInput, triggerNewSearch } =
   search.actions;
 
 // Other code such as selectors can use the imported `RootState` type

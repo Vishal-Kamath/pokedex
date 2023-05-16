@@ -1,16 +1,19 @@
-import { SearchItem } from '@/slice/search.slice';
+import { SearchItem, triggerNewSearch } from '@/slice/search.slice';
 import React from 'react';
 import { AiOutlineSearch, AiOutlineClockCircle } from 'react-icons/ai';
+import { RxCross1 } from 'react-icons/rx';
 import { cva } from 'class-variance-authority';
-import { cn } from '@/utils/lib';
+import { LocalStorageHistory, cn, getSearchResults } from '@/utils/lib';
+import { useAppDispatch } from '@/store/hooks';
+import { SearchedFor } from './sidebar';
 
 export const itemVariantClass = cva(
-  'flex h-9 cursor-pointer items-center gap-5 rounded-md px-2 leading-none',
+  'flex w-full h-9 cursor-pointer items-center justify-between rounded-md px-2 leading-none',
   {
     variants: {
       focused: {
         true: 'border-sky-300 bg-slate-100 dark:border-sky-700 dark:bg-slate-800',
-        false: 'hover:bg-slate-100 dark:hover:bg-slate-800',
+        false: 'group-hover:bg-slate-100 dark:group-hover:bg-slate-800',
       },
     },
   }
@@ -27,27 +30,45 @@ export const itemIconVariantClass = cva('w-5', {
 
 const SearchListItem: React.FC<
   {
+    searchedFor: SearchedFor;
     search: (value: string) => void;
     focused: boolean;
   } & SearchItem
-> = ({ focused, item, search, type }) => {
+> = ({ focused, item, search, searchedFor, type }) => {
+  const dispatch = useAppDispatch();
+
   return type === 'search' ? (
     <div
       key={item}
       className={cn(itemVariantClass({ focused }))}
       onClick={() => search(item)}
     >
-      <AiOutlineSearch className={cn(itemIconVariantClass({ focused }))} />
-      <span>{item}</span>
+      <div className="flex items-center gap-5">
+        <AiOutlineSearch className={cn(itemIconVariantClass({ focused }))} />
+        <span>{item}</span>
+      </div>
     </div>
   ) : (
-    <div
-      key={item}
-      className={cn(itemVariantClass({ focused }))}
-      onClick={() => search(item)}
-    >
-      <AiOutlineClockCircle className={cn(itemIconVariantClass({ focused }))} />
-      <span>{item}</span>
+    <div className="group relative flex gap-1">
+      <div
+        key={item}
+        className={cn(itemVariantClass({ focused }))}
+        onClick={() => search(item)}
+      >
+        <div className="flex items-center gap-5">
+          <AiOutlineClockCircle
+            className={cn(itemIconVariantClass({ focused }))}
+          />
+          <span>{item}</span>
+        </div>
+      </div>
+      <RxCross1
+        className="absolute right-1 top-1/2 aspect-square h-6 w-6 -translate-y-1/2 rounded-[4px] p-1 hover:bg-slate-200 hover:text-red-600 dark:hover:bg-slate-700"
+        onClick={() => {
+          LocalStorageHistory.removeItemFromLocalStorage(item);
+          dispatch(triggerNewSearch({ searchedFor }));
+        }}
+      />
     </div>
   );
 };

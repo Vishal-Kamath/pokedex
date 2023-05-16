@@ -1,5 +1,4 @@
 import {
-  SearchItem,
   selectSearchIndex,
   selectSearchInput,
   selectSearchResults,
@@ -7,13 +6,11 @@ import {
   setFocused,
   setIndex,
   setInput,
-  setResults,
+  triggerNewSearch,
 } from '@/slice/search.slice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import React, { useEffect } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
-import DB from '@/db.json';
-import { LocalStorageHistory, getUniqueItemsSearchList } from '@/utils/lib';
 
 const SearchBar: React.FC<{
   searchedFor: 'pokemon' | 'berries' | 'items';
@@ -29,26 +26,8 @@ const SearchBar: React.FC<{
     index === -1 ? input : !!results[index].item ? results[index].item : input;
 
   const handleOnChange = (value: string) => {
-    const history = LocalStorageHistory.getHistoryFromLocalStorage();
-    const historyList = history.map((item) => ({
-      item: item,
-      type: 'history',
-    })) as SearchItem[];
-
-    const searchResults = DB[searchedFor]
-      .filter((data) => data.toLowerCase().startsWith(value.toLowerCase()))
-      .slice(0, 10)
-      .map((item) => ({
-        item: item,
-        type: 'search',
-      })) as SearchItem[];
-
-    const finalList = getUniqueItemsSearchList(
-      historyList.concat(searchResults)
-    ).slice(0, 10);
-
+    dispatch(triggerNewSearch({ searchedFor, searchValue: value }));
     dispatch(setInput(value));
-    dispatch(setResults(finalList));
     dispatch(setIndex(-1));
     dispatch(setFocused());
   };

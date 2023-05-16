@@ -6,9 +6,10 @@ import {
 import { useAppSelector } from '@/store/hooks';
 import React from 'react';
 import SearchListItem from './searchListItem';
+import { SearchedFor } from './sidebar';
 
 const SearchList: React.FC<{
-  searchedFor: string;
+  searchedFor: SearchedFor;
   search: (value: string) => void;
 }> = ({ searchedFor, search }) => {
   const index = useAppSelector(selectSearchIndex);
@@ -26,6 +27,7 @@ const SearchList: React.FC<{
           results.map((result, listIndex) => (
             <SearchListItem
               key={result.item}
+              searchedFor={searchedFor}
               focused={listIndex === index}
               search={search}
               {...result}
