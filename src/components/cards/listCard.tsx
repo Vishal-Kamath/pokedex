@@ -42,7 +42,7 @@ const ListCard: FC<Props> = ({
 }) => {
   return (
     <Link
-      href={`/pokemon/${name}`}
+      href={`/${imageVariant}/${name}`}
       key={name}
       className={cn(
         'group flex w-full flex-col gap-2 rounded-md border-2 border-slate-200 bg-slate-100 bg-opacity-40 p-2 hover:border-slate-300 hover:bg-opacity-75 dark:border-slate-800 dark:bg-slate-900 dark:bg-opacity-40 dark:hover:border-slate-600 dark:hover:bg-opacity-75',
