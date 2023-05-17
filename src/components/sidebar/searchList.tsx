@@ -19,7 +19,7 @@ const SearchList: React.FC<{
 
         <button
           onClick={() => setToggleSidebarToResults(false)}
-          className="rounded-[4px] bg-sky-200 p-1 px-2 text-xs font-extralight dark:bg-sky-700"
+          className="rounded-[4px] border-2 border-sky-300 bg-sky-200 p-1 px-2 text-xs font-extralight dark:border-sky-600 dark:bg-sky-700"
         >
           ESC
         </button>
