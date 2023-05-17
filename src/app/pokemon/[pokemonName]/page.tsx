@@ -62,10 +62,7 @@ const PokemonPage = async ({ params }: Prop) => {
           <PokemonDetails {...pokemonDetails} />
         </div>
         <div className="flex flex-col gap-4">
-          <PokemonVariety
-            name={pokemonDetails.name}
-            varieties={pokemonSpecies.varieties}
-          />
+          <PokemonVariety varieties={pokemonSpecies.varieties} />
           <ItemsHeldByPokemon items={pokemonDetails.held_items} />
         </div>
       </main>

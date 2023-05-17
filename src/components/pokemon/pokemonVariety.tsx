@@ -1,45 +1,24 @@
-import Image from 'next/image';
-import Link from 'next/link';
 import { PokemonSpeciesVariety } from 'pokenode-ts';
-import React from 'react';
+import { FC } from 'react';
+import ListCard from '../cards/listCard';
 
-const PokemonVariety: React.FC<{
-  name: string;
+const PokemonVariety: FC<{
   varieties: PokemonSpeciesVariety[];
-}> = ({ name, varieties }) => {
+}> = ({ varieties }) => {
   return varieties.length === 1 ? null : (
     <div>
       <h2 className="mb-1 text-2xl">Varities</h2>
-      <div className="flex flex-col items-center justify-evenly rounded-md bg-slate-100 py-3 dark:bg-slate-800 lg:flex-row">
+      <div className="grid grid-cols-1 gap-2 rounded-md border-2 border-slate-100 bg-slate-50 bg-opacity-40 p-3 dark:border-slate-900 dark:bg-slate-800 dark:bg-opacity-40 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {varieties.map((varity) => {
           const id = varity.pokemon.url.split('/')[6];
-          return name === varity.pokemon.name ? (
-            <Image
-              key={varity.pokemon.name}
-              title={varity.pokemon.name}
-              alt={varity.pokemon.name}
+          return (
+            <ListCard
+              key={`varity:${id}`}
+              id={id}
+              name={varity.pokemon.name}
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
-              className="aspect-square w-full md:w-[10rem]"
-              loading="lazy"
-              width="500"
-              height="500"
+              imageVariant={'pokemon'}
             />
-          ) : (
-            <Link
-              key={varity.pokemon.name}
-              href={`/pokemon/${varity.pokemon.name}`}
-              className="aspect-square w-full md:w-[10rem]"
-            >
-              <Image
-                title={varity.pokemon.name}
-                alt={varity.pokemon.name}
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
-                className="aspect-square w-full md:w-[10rem]"
-                loading="lazy"
-                width="500"
-                height="500"
-              />
-            </Link>
           );
         })}
       </div>
