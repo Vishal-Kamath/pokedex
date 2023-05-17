@@ -1,4 +1,4 @@
-import ItemCard from '@/components/cards/itemCard';
+import ListCard from '@/components/cards/listCard';
 import Pagination from '@/components/pagination';
 import { getItemListData } from '@/utils/api';
 
@@ -14,11 +14,12 @@ const ItemsListPage = async ({
         {items.results.map((item) => {
           const id = item.url.split('/')[6];
           return (
-            <ItemCard
+            <ListCard
               key={id + item.name}
               id={id}
               name={item.name}
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${item.name}.png`}
+              imageVariant={'items'}
             />
           );
         })}
