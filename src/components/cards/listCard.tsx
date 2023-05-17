@@ -55,8 +55,8 @@ const ListCard: FC<Props> = ({
         src={src}
         className={cn(cardVariants({ imageVariant }))}
         loading="lazy"
-        width="600"
-        height="600"
+        width="250"
+        height="250"
       />
       <div className="flex justify-center gap-1 rounded-md bg-slate-300 bg-opacity-40 py-2 font-semibold dark:bg-slate-700 dark:bg-opacity-40">
         <span className="text-gray-500">#{id}</span>
