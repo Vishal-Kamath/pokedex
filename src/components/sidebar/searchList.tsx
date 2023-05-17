@@ -3,6 +3,7 @@ import { useAppSelector } from '@/store/hooks';
 import React from 'react';
 import SearchListItem from './searchListItem';
 import { SearchedFor } from './sidebar';
+import { getSearchedForIcon } from './routeLink';
 
 const SearchList: React.FC<{
   searchedFor: SearchedFor;
@@ -12,10 +13,15 @@ const SearchList: React.FC<{
   const index = useAppSelector(selectSearchIndex);
   const results = useAppSelector(selectSearchResults);
 
+  const icon = getSearchedForIcon(searchedFor);
+
   return (
     <div className="flex flex-col">
-      <div className="flex h-9 items-center justify-between rounded-md border-2 border-sky-200 bg-sky-100 pl-3 pr-1 font-semibold capitalize dark:border-sky-700 dark:bg-sky-900">
-        <span>{searchedFor}</span>
+      <div className="flex h-9 items-center justify-between rounded-md border-2 border-sky-200 bg-sky-100 pr-1 capitalize dark:border-sky-700 dark:bg-sky-900">
+        <div className="flex items-center gap-[14px] px-2">
+          {icon}
+          <span>{searchedFor}</span>
+        </div>
 
         <button
           onClick={() => setToggleSidebarToResults(false)}
