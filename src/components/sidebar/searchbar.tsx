@@ -64,7 +64,10 @@ const SearchBar: React.FC<{
     const searchBar = document.getElementById('search_bar') as HTMLInputElement;
     const focusOnSKeyDown = (e: KeyboardEvent) => {
       if (e.code === 'KeyS') {
-        setTimeout(() => setToggleSidebarToResults(true), 100);
+        setTimeout(() => {
+          setToggleSidebarToResults(true)
+          searchBar.focus()
+        }, 100);
         // i used set timeout because i don't want the input field to
         // register the first 'S'. Without the timeout when you press 'S'
         // the input box is focused and 'S' in inputed in the the input box
