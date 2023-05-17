@@ -81,9 +81,10 @@ const SearchBar: React.FC<{
   }, []);
 
   return (
-    <div className="flex h-9 w-full items-center gap-3 overflow-hidden rounded-full border-2 border-slate-700 px-2 dark:border-slate-300 sm:border-slate-300 sm:dark:border-slate-700">
+    <div className="flex h-9 w-full items-center gap-3 overflow-hidden rounded-full border-2 border-slate-500 px-2 focus-within:border-gray-600 hover:border-sky-600 dark:border-slate-300 dark:focus-within:border-gray-400 dark:hover:border-sky-400 sm:border-slate-300 sm:dark:border-slate-700">
       <AiOutlineSearch className="h-5 w-5 text-sky-600" />
       <input
+        tabIndex={1}
         type="text"
         id="search_bar"
         className="h-full w-full bg-transparent outline-none"
