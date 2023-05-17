@@ -37,6 +37,7 @@ const Footer: React.FC = () => {
               <div className="flex gap-3">
                 <a
                   href="https://pokeapi.co/"
+                  aria-label="opens the official pokeapi website in a new tab"
                   target="_blank"
                   className="grid w-fit place-content-center rounded-full p-2 hover:bg-slate-200 dark:hover:bg-slate-700"
                 >
@@ -50,6 +51,7 @@ const Footer: React.FC = () => {
                 </a>
                 <a
                   href="https://nextjs.org/"
+                  aria-label="opens the official next js website in a new tab"
                   target="_blank"
                   className="grid w-fit place-content-center rounded-full p-2 hover:bg-slate-200 dark:hover:bg-slate-700"
                 >
@@ -57,6 +59,7 @@ const Footer: React.FC = () => {
                 </a>
                 <a
                   href="https://tailwindcss.com/"
+                  aria-label="opens the official tailwind css website in a new tab"
                   target="_blank"
                   className="grid w-fit place-content-center rounded-full p-2 hover:bg-slate-200 dark:hover:bg-slate-700"
                 >
@@ -64,6 +67,7 @@ const Footer: React.FC = () => {
                 </a>
                 <a
                   href="https://github.com/Gabb-c/pokenode-ts"
+                  aria-label="opens the pokenode-ts git repository in a new tab"
                   target="_blank"
                   className="flex items-center gap-2 rounded-full p-2 hover:bg-slate-200 hover:text-black dark:hover:bg-slate-700 dark:hover:text-white"
                 >

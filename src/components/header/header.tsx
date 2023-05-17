@@ -42,6 +42,7 @@ const Header: React.FC = () => {
 
           <a
             target="_blank"
+            aria-label="open the project git repository in a new tab"
             href="https://github.com/Vishal-Kamath/pokedex"
             className="grid h-9 w-9 place-content-center rounded-full hover:bg-sky-300 hover:bg-opacity-30 dark:hover:bg-sky-700 dark:hover:bg-opacity-30"
           >
