@@ -26,9 +26,13 @@ const Toggle: React.FC = () => {
 
   return (
     <div className="relative grid h-9 w-9 place-content-center rounded-full hover:bg-sky-300 hover:bg-opacity-30 dark:hover:bg-sky-700 dark:hover:bg-opacity-30">
+      <label className="hidden" htmlFor="dark" aria-hidden="true">
+        input checkbox that toggles between light and dark mode
+      </label>
       <input
         type="checkbox"
         id="dark"
+        name="dark"
         checked={dark}
         onChange={handleClick}
         className="absolute left-0 top-0 z-10 h-full w-full opacity-0"
