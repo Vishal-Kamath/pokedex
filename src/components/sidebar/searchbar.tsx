@@ -13,7 +13,7 @@ import { AiOutlineSearch } from 'react-icons/ai';
 const SearchBar: React.FC<{
   searchedFor: 'pokemon' | 'berries' | 'items';
   setToggleSidebarToResults: React.Dispatch<React.SetStateAction<boolean>>;
-  search: (value: string) => void;
+  search(value: string, redirect?: boolean): void;
 }> = ({ searchedFor, setToggleSidebarToResults, search }) => {
   const dispatch = useAppDispatch();
 
@@ -52,7 +52,7 @@ const SearchBar: React.FC<{
     }
     if (e.code === 'Enter') {
       e.preventDefault();
-      search(display);
+      search(display, true);
     }
     if (e.code === 'Escape') {
       setToggleSidebarToResults(false);
@@ -65,8 +65,8 @@ const SearchBar: React.FC<{
     const focusOnSKeyDown = (e: KeyboardEvent) => {
       if (e.code === 'KeyS') {
         setTimeout(() => {
-          setToggleSidebarToResults(true)
-          searchBar.focus()
+          setToggleSidebarToResults(true);
+          searchBar.focus();
         }, 100);
         // i used set timeout because i don't want the input field to
         // register the first 'S'. Without the timeout when you press 'S'
