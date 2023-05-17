@@ -17,23 +17,33 @@ export function getEndpoint() {
 }
 
 export class LocalStorageHistory {
-  static getHistoryFromLocalStorage(): string[] {
-    const historyUnParsed = localStorage.getItem('history') || '{}';
+  static getHistoryFromLocalStorage(searchedFor: SearchedFor): string[] {
+    const historyUnParsed =
+      localStorage.getItem(`historyFor${searchedFor}`) || '{}';
     const history = JSON.parse(historyUnParsed);
 
     if (!Array.isArray(history)) {
-      localStorage.setItem('history', JSON.stringify([]));
+      localStorage.setItem(`historyFor${searchedFor}`, JSON.stringify([]));
       return [];
     }
     const uniqueHistoryArray = Array.from(new Set(history)).slice(0, 5);
-    localStorage.setItem('history', JSON.stringify(uniqueHistoryArray));
+    localStorage.setItem(
+      `historyFor${searchedFor}`,
+      JSON.stringify(uniqueHistoryArray)
+    );
     return uniqueHistoryArray;
   }
 
-  static removeItemFromLocalStorage(name: string): void {
-    const history = this.getHistoryFromLocalStorage();
+  static removeItemFromLocalStorage(
+    name: string,
+    searchedFor: SearchedFor
+  ): void {
+    const history = this.getHistoryFromLocalStorage(searchedFor);
     const filteredHistory = history.filter((item) => item !== name);
-    localStorage.setItem('history', JSON.stringify(filteredHistory));
+    localStorage.setItem(
+      `historyFor${searchedFor}`,
+      JSON.stringify(filteredHistory)
+    );
   }
 }
 
@@ -44,7 +54,7 @@ export const getSearchResults = ({
   searchedFor: SearchedFor;
   searchValue?: string;
 }) => {
-  const history = LocalStorageHistory.getHistoryFromLocalStorage();
+  const history = LocalStorageHistory.getHistoryFromLocalStorage(searchedFor);
   const historyList = history.map((item) => ({
     item: item,
     type: 'history',

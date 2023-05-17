@@ -64,7 +64,7 @@ const SearchListItem: React.FC<
       <RxCross1
         className="absolute right-1 top-1/2 aspect-square h-6 w-6 -translate-y-1/2 rounded-[4px] bg-opacity-25 p-1 hover:bg-slate-200 hover:text-red-600 dark:hover:bg-slate-700"
         onClick={() => {
-          LocalStorageHistory.removeItemFromLocalStorage(item);
+          LocalStorageHistory.removeItemFromLocalStorage(item, searchedFor);
           dispatch(triggerNewSearch({ searchedFor }));
         }}
       />

@@ -32,9 +32,12 @@ const SideBar: React.FC = () => {
   function search(value: string) {
     router.push(`/${searchedFor}/${value}`);
 
-    const history = LocalStorageHistory.getHistoryFromLocalStorage();
+    const history = LocalStorageHistory.getHistoryFromLocalStorage(searchedFor);
     history.unshift(value);
-    localStorage.setItem('history', JSON.stringify(history.slice(0, 5)));
+    localStorage.setItem(
+      `historyFor${searchedFor}`,
+      JSON.stringify(history.slice(0, 5))
+    );
 
     dispatch(triggerNewSearch({ searchedFor }));
     dispatch(closeSidebar());
