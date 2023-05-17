@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import SearchBar from './searchbar';
 import RouteLink from './routeLink';
 import { triggerNewSearch } from '@/slice/search.slice';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import SearchList from './searchList';
 import { LocalStorageHistory } from '@/utils/lib';
 
@@ -15,7 +15,6 @@ export type SearchedFor = 'pokemon' | 'berries' | 'items';
 const SideBar: React.FC = () => {
   const [toggleSidebarToResults, setToggleSidebarToResults] = useState(false);
 
-  const router = useRouter();
   const dispatch = useAppDispatch();
 
   const open = useAppSelector(selectSidebarOpen);
@@ -30,8 +29,6 @@ const SideBar: React.FC = () => {
   ) as SearchedFor;
 
   function search(value: string) {
-    router.push(`/${searchedFor}/${value}`);
-
     const history = LocalStorageHistory.getHistoryFromLocalStorage(searchedFor);
     history.unshift(value);
     localStorage.setItem(

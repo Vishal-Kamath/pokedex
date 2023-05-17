@@ -1,6 +1,6 @@
 import { closeSidebar } from '@/slice/sidebar.slice';
 import { useAppDispatch } from '@/store/hooks';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { FC } from 'react';
 import { SearchedFor } from './sidebar';
 
@@ -8,6 +8,7 @@ import { SearchedFor } from './sidebar';
 import { TbCherry } from 'react-icons/tb';
 import { BsBox, BsExclamationCircle } from 'react-icons/bs';
 import PokeballOutline from '@/components/svg/pokeball_outline';
+import Link from 'next/link';
 
 export function getSearchedForIcon(name: SearchedFor | 'about') {
   if (name === 'pokemon')
@@ -20,12 +21,10 @@ export function getSearchedForIcon(name: SearchedFor | 'about') {
 const RouteLink: FC<{ title: SearchedFor | 'about' }> = ({ title }) => {
   const dispatch = useAppDispatch();
   const pathname = usePathname();
-  const router = useRouter();
 
   const isCurrentRoute = pathname.startsWith(`/${title}`);
 
   const redirect = () => {
-    router.push(`/${title}`);
     dispatch(closeSidebar());
   };
 
@@ -33,7 +32,8 @@ const RouteLink: FC<{ title: SearchedFor | 'about' }> = ({ title }) => {
   const icon = getSearchedForIcon(title);
 
   return (
-    <div
+    <Link
+      href={`/${title}`}
       onClick={redirect}
       className={`${
         isCurrentRoute
@@ -43,7 +43,7 @@ const RouteLink: FC<{ title: SearchedFor | 'about' }> = ({ title }) => {
     >
       {icon}
       <span>{title}</span>
-    </div>
+    </Link>
   );
 };
 
