@@ -55,10 +55,16 @@ export const getSearchResults = ({
   searchValue?: string;
 }) => {
   const history = LocalStorageHistory.getHistoryFromLocalStorage(searchedFor);
-  const historyList = history.map((item) => ({
-    item: item,
-    type: 'history',
-  })) as SearchItem[];
+  const historyList = history
+    .filter((value) => {
+      if (!!searchValue)
+        return value.toLowerCase().startsWith(searchValue.toLowerCase());
+      return true;
+    })
+    .map((item) => ({
+      item: item,
+      type: 'history',
+    })) as SearchItem[];
 
   const searchResults = DB[searchedFor]
     .filter((value) => {
