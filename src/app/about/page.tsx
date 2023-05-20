@@ -61,7 +61,7 @@ const PokemonPage: NextPage = () => {
             copyText="git clone https://github.com/Vishal-Kamath/pokedex.git"
           >
             <span>
-              <span className="text-yellow-300">git clone </span>
+              <span className="text-yellow-500">git clone </span>
               https://github.com/Vishal-Kamath/pokedex.git
             </span>
           </CodeSegmentCard>
@@ -86,7 +86,7 @@ const PokemonPage: NextPage = () => {
 
           <CodeSegmentCard title="Terminal" copyText="npm run dev">
             <span>
-              <span className="text-yellow-300">npm </span>
+              <span className="text-yellow-500">npm </span>
               run dev
             </span>
           </CodeSegmentCard>
