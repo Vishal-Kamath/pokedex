@@ -25,7 +25,7 @@ export const itemIconVariantClass = cva('w-5', {
   variants: {
     focused: {
       true: 'text-sky-500',
-      false: 'text-slate-500',
+      false: 'text-slate-700 dark:text-slate-300',
     },
   },
 });

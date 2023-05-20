@@ -17,15 +17,15 @@ const SearchList: React.FC<{
 
   return (
     <div className="flex flex-col">
-      <div className="flex h-9 items-center justify-between rounded-md border-2 border-sky-200 bg-sky-100 pr-1 capitalize dark:border-sky-700 dark:bg-sky-900">
-        <div className="flex items-center gap-[14px] px-2">
+      <div className="flex h-9 items-center gap-[2px]">
+        <div className="flex h-full w-full items-center gap-[14px] rounded-l-md rounded-r-sm border-2 border-sky-200 bg-sky-100 px-2 capitalize dark:border-sky-700 dark:bg-sky-900">
           {icon}
           <span>{searchedFor}</span>
         </div>
 
         <button
           onClick={() => setToggleSidebarToResults(false)}
-          className="rounded-[4px] border-2 border-sky-300 bg-sky-200 p-1 px-2 text-xs font-extralight dark:border-sky-600 dark:bg-sky-700"
+          className="h-full rounded-l-sm rounded-r-md border-2 border-sky-200 bg-sky-100 px-2 text-xs font-extralight dark:border-sky-700 dark:bg-sky-900"
         >
           ESC
         </button>
