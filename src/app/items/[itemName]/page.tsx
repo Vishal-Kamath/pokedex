@@ -1,3 +1,4 @@
+import HeldByPokemon from '@/components/item/heldByPokemon';
 import ItemDetails from '@/components/item/itemDetails';
 import ItemImage from '@/components/item/itemImage';
 import { getItemData } from '@/utils/api';
@@ -40,6 +41,9 @@ const ItemPage = async ({ params }: Prop) => {
           type={'item'}
         />
         <ItemDetails itemDetails={itemDetails} />
+      </div>
+      <div className="flex flex-col gap-4">
+        <HeldByPokemon heldByPokemons={itemDetails.held_by_pokemon} />
       </div>
     </main>
   );

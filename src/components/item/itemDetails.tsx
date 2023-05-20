@@ -4,7 +4,6 @@ import React from 'react';
 type Props = Awaited<ReturnType<typeof getItemData>>;
 
 const ItemDetails: React.FC<Props> = ({ itemDetails }) => {
-  
   return (
     <div className="flex w-full flex-col gap-3">
       {/* Tite bar */}
@@ -24,45 +23,47 @@ const ItemDetails: React.FC<Props> = ({ itemDetails }) => {
       </div>
 
       {/* item data */}
-      <table className="[&>*>*]:px-2 [&>*>*]:py-2">
-        <tr>
-          <td>name:</td>
-          <td className="flex flex-wrap gap-2">
-            {itemDetails.names.map((name) => (
-              <div
-                key={name.name}
-                className="flex w-fit gap-1 rounded-md bg-sky-200 px-2 py-1 text-xs text-black"
-              >
-                <span>{name.language.name}</span>
-                <span>/</span>
-                <span>{name.name}</span>
-              </div>
-            ))}
-          </td>
-        </tr>
+      <table>
+        <tbody className="[&>*>*]:px-2 [&>*>*]:py-2">
+          <tr>
+            <td>names:</td>
+            <td className="flex flex-wrap gap-2">
+              {itemDetails.names.map((name) => (
+                <div
+                  key={name.language.name + name.name}
+                  className="flex w-fit gap-1 rounded-md bg-sky-200 px-2 py-1 text-xs text-black"
+                >
+                  <span>{name.language.name}</span>
+                  <span>/</span>
+                  <span>{name.name}</span>
+                </div>
+              ))}
+            </td>
+          </tr>
 
-        <tr>
-          <td>cost:</td>
-          <td>
-            <span className="w-fit rounded-md bg-amber-300 px-2 py-1 text-xs text-black">
-              {itemDetails.cost}
-            </span>
-          </td>
-        </tr>
-
-        <tr>
-          <td>attributes:</td>
-          <td className="flex flex-wrap gap-2">
-            {itemDetails.attributes.map((attr) => (
-              <span
-                key={attr.name}
-                className="w-fit rounded-md bg-orange-300 px-2 py-1 text-xs text-black"
-              >
-                {attr.name}
+          <tr>
+            <td>cost:</td>
+            <td>
+              <span className="w-fit rounded-md bg-amber-300 px-2 py-1 text-xs text-black">
+                {itemDetails.cost}
               </span>
-            ))}
-          </td>
-        </tr>
+            </td>
+          </tr>
+
+          <tr>
+            <td>attributes:</td>
+            <td className="flex flex-wrap gap-2">
+              {itemDetails.attributes.map((attr) => (
+                <span
+                  key={attr.name}
+                  className="w-fit rounded-md bg-orange-300 px-2 py-1 text-xs text-black"
+                >
+                  {attr.name}
+                </span>
+              ))}
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
   );
