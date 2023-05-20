@@ -37,6 +37,7 @@ const ItemPage = async ({ params }: Prop) => {
         <ItemImage
           name={params.itemName}
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${params.itemName}.png`}
+          type={'item'}
         />
         <ItemDetails itemDetails={itemDetails} />
       </div>

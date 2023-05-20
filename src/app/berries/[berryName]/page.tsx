@@ -1,5 +1,5 @@
 import BerryDetails from '@/components/berry/berryDetails';
-import BerryImage from '@/components/berry/berryImage';
+import ItemImage from '@/components/item/itemImage';
 import { getBerryData } from '@/utils/api';
 import { getEndpoint } from '@/utils/lib';
 
@@ -34,9 +34,10 @@ const BerryPage = async ({ params }: Prop) => {
   return (
     <main className="flex w-full flex-col gap-4 px-[5vw] pb-10 pt-20 sm:pl-5">
       <div className="flex gap-7 max-lg:flex-col">
-        <BerryImage
+        <ItemImage
           name={params.berryName}
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dream-world/${params.berryName}-berry.png`}
+          type={'berry'}
         />
         <BerryDetails berryDetails={berryDetails} berryItem={berryItem} />
       </div>
