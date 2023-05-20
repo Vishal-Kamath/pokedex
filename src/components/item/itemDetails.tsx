@@ -6,7 +6,7 @@ type Props = Awaited<ReturnType<typeof getItemData>>;
 const ItemDetails: React.FC<Props> = ({ itemDetails }) => {
   return (
     <div className="flex w-full flex-col gap-3">
-      {/* Tite bar */}
+      {/* Title bar */}
       <div className="mb-2 flex gap-2 border-b-4 border-black pb-2 text-2xl font-bold dark:border-white">
         <i className="text-slate-500">#{itemDetails.id}</i>
         <span>{itemDetails.name}</span>

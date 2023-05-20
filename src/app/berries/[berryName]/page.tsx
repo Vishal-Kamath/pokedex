@@ -1,4 +1,5 @@
 import BerryDetails from '@/components/berry/berryDetails';
+import HeldByPokemon from '@/components/item/heldByPokemon';
 import ItemImage from '@/components/item/itemImage';
 import { getBerryData } from '@/utils/api';
 import { getEndpoint } from '@/utils/lib';
@@ -40,6 +41,9 @@ const BerryPage = async ({ params }: Prop) => {
           type={'berry'}
         />
         <BerryDetails berryDetails={berryDetails} berryItem={berryItem} />
+      </div>
+      <div className="flex flex-col gap-4">
+        <HeldByPokemon heldByPokemons={berryItem.held_by_pokemon} />
       </div>
     </main>
   );
