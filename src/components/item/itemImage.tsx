@@ -1,7 +1,10 @@
+'use client';
+
 import { cn } from '@/utils/lib';
 import { VariantProps, cva } from 'class-variance-authority';
 import Image from 'next/image';
-import React from 'react';
+import { FC, useState } from 'react';
+import { FiCameraOff } from 'react-icons/fi';
 
 const imageVariant = cva(
   'aspect-square w-full rounded-lg border-2 bg-opacity-75 p-7 lg:h-[20rem] lg:w-[20rem]',
@@ -23,17 +26,32 @@ interface Props extends VariantProps<typeof imageVariant> {
   src: string;
 }
 
-const ItemImage: React.FC<Props> = ({ name, src, type }) => {
+const ImageNotFound: FC = () => {
+  return (
+    <div className="flex aspect-square h-full w-full flex-col items-center justify-center gap-4 opacity-50">
+      <FiCameraOff className="aspect-square h-1/2 w-1/2 text-gray-700" />
+      <div className="text-lg font-semibold">NOT FOUND</div>
+    </div>
+  );
+};
+
+const ItemImage: FC<Props> = ({ name, src, type }) => {
+  const [notFound, setNotFound] = useState(false);
   return (
     <div className={cn(imageVariant({ type }))}>
-      <Image
-        alt={name}
-        src={src}
-        className="pixel-image aspect-square w-full object-contain object-center"
-        loading="lazy"
-        width="500"
-        height="500"
-      />
+      {notFound ? (
+        <ImageNotFound />
+      ) : (
+        <Image
+          alt={name}
+          src={src}
+          className="pixel-image aspect-square w-full object-contain object-center"
+          loading="lazy"
+          width="500"
+          height="500"
+          onError={() => setNotFound(true)}
+        />
+      )}
     </div>
   );
 };

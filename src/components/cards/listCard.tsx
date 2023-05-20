@@ -1,8 +1,11 @@
+'use client';
+
 import { cn } from '@/utils/lib';
 import { VariantProps, cva } from 'class-variance-authority';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FC, HTMLAttributes } from 'react';
+import { FC, HTMLAttributes, useState } from 'react';
+import { FiCameraOff } from 'react-icons/fi';
 
 const cardVariants = cva('', {
   variants: {
@@ -28,6 +31,15 @@ interface Props
   src: string;
 }
 
+const ImageNotFound: FC = () => {
+  return (
+    <div className="flex aspect-square h-full w-full flex-col items-center justify-center gap-4 opacity-50">
+      <FiCameraOff className="aspect-square h-1/2 w-1/2 text-gray-700" />
+      <div className="text-lg font-semibold">NOT FOUND</div>
+    </div>
+  );
+};
+
 const ListCard: FC<Props> = ({
   id,
   name,
@@ -40,6 +52,7 @@ const ListCard: FC<Props> = ({
   className,
   ...props
 }) => {
+  const [notFound, setNotFound] = useState(false);
   return (
     <Link
       href={`/${imageVariant}/${name}`}
@@ -50,14 +63,19 @@ const ListCard: FC<Props> = ({
       )}
       {...props}
     >
-      <Image
-        alt={name}
-        src={src}
-        className={cn(cardVariants({ imageVariant }))}
-        loading="lazy"
-        width="250"
-        height="250"
-      />
+      {notFound ? (
+        <ImageNotFound />
+      ) : (
+        <Image
+          alt={name}
+          src={src}
+          className={cn(cardVariants({ imageVariant }))}
+          loading="lazy"
+          width="250"
+          height="250"
+          onError={() => setNotFound(true)}
+        />
+      )}
       <div className="flex justify-center gap-1 rounded-md bg-slate-300 bg-opacity-40 py-2 font-semibold dark:bg-slate-700 dark:bg-opacity-40">
         <span className="text-gray-500">#{id}</span>
         <span className="capitalize">{name}</span>
