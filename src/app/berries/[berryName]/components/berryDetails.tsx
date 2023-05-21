@@ -1,27 +1,10 @@
 import { getBerryData } from '@/utils/api';
-import { cn } from '@/utils/lib';
 import { FC } from 'react';
+import { StatsBadge } from '@/components/common/statsBadge';
 
 type Props = Awaited<ReturnType<typeof getBerryData>>;
 
-const StatsBadge: FC<{ className: string; name: string; value: string }> = ({
-  className,
-  name,
-  value,
-}) => (
-  <div
-    className={cn(
-      className,
-      'flex gap-1 rounded-md px-3 py-1 text-xs text-black'
-    )}
-  >
-    <span>{name}</span>
-    <span>/</span>
-    <span>{value}</span>
-  </div>
-);
-
-const BerryDetails: React.FC<Props> = ({ berryItem, berryDetails }) => {
+const BerryDetails: FC<Props> = ({ berryItem, berryDetails }) => {
   return (
     <div className="flex w-full flex-col gap-3">
       {/* Title bar*/}

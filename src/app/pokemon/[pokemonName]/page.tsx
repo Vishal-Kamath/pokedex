@@ -1,10 +1,13 @@
-import PokemonDetails from '@/components/pokemon/pokemonDetails';
-import PokemonImage, { imageVariants } from '@/components/pokemon/pokemonImage';
+import {
+  ItemsHeldByPokemon,
+  PokemonDetails,
+  PokemonVariety,
+  PokemonImage,
+} from './components';
+import { imageVariants } from './components/pokemonImage';
 import { getPokemonData, getPokemonId } from '@/utils/api';
 import { VariantProps } from 'class-variance-authority';
 import ErrorPage from './error';
-import PokemonVariety from '@/components/pokemon/pokemonVariety';
-import ItemsHeldByPokemon from '@/components/pokemon/itemsHeldByPokemon';
 import { getEndpoint } from '@/utils/lib';
 import { Metadata } from 'next';
 

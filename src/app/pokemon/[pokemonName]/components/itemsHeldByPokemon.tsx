@@ -1,6 +1,6 @@
 import { PokemonHeldItem } from 'pokenode-ts';
 import React from 'react';
-import ListCard from '../cards/listCard';
+import ListCard from '@/components/cards/listCard';
 
 const ItemsHeldByPokemon: React.FC<{ items: PokemonHeldItem[] }> = ({
   items,

@@ -1,33 +1,15 @@
-import { getPokemonData } from '@/utils/api';
 import { VariantProps } from 'class-variance-authority';
 import { FC } from 'react';
 import PokemonTag, { tagVariants } from './pokemonTag';
 import { FlavorText, Pokemon } from 'pokenode-ts';
-import { cn } from '@/utils/lib';
-
-const StatsBadge: FC<{ className: string; name: string; value: string }> = ({
-  className,
-  name,
-  value,
-}) => (
-  <div
-    className={cn(
-      className,
-      'flex gap-1 rounded-md px-3 py-1 text-xs text-black'
-    )}
-  >
-    <span>{name}</span>
-    <span>/</span>
-    <span>{value}</span>
-  </div>
-);
+import { StatsBadge } from '@/components/common/statsBadge';
 
 type Props = {
   pokemonDetails: Pokemon;
   description: FlavorText[];
 };
 
-const PokemonDetails: React.FC<Props> = ({ pokemonDetails, description }) => {
+const PokemonDetails: FC<Props> = ({ pokemonDetails, description }) => {
   return (
     <div className="w-full">
       {/* Header */}

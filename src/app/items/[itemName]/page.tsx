@@ -1,6 +1,6 @@
-import HeldByPokemon from '@/components/item/heldByPokemon';
-import ItemDetails from '@/components/item/itemDetails';
-import ItemImage from '@/components/item/itemImage';
+import ItemImage from '@/components/common/itemImage';
+import HeldByPokemon from '@/components/common/heldByPokemon';
+import { ItemDetails } from './components';
 import { getItemData } from '@/utils/api';
 import { getEndpoint } from '@/utils/lib';
 

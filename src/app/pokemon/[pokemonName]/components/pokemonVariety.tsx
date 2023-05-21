@@ -1,6 +1,6 @@
 import { PokemonSpeciesVariety } from 'pokenode-ts';
 import { FC } from 'react';
-import ListCard from '../cards/listCard';
+import ListCard from '@/components/cards/listCard';
 
 const PokemonVariety: FC<{
   varieties: PokemonSpeciesVariety[];
