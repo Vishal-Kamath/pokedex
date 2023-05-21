@@ -57,7 +57,7 @@ export const metadata: Metadata = {
 
   // Pwa manifest
   manifest: '/manifest.webmanifest',
-  themeColor: '#f0f9ff',
+  themeColor: '#ffffff',
   appleWebApp: {
     capable: true,
     title: 'pokédex',

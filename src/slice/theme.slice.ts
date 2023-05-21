@@ -1,13 +1,15 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import type { RootState } from '@/store';
 
-type ThemeType = {
-  dark: boolean;
+export type ThemeType = 'dark' | 'light' | 'system';
+
+type ThemeStateType = {
+  theme: ThemeType;
 };
 
 // Define the initial state using that type
-const initialState: ThemeType = {
-  dark: false,
+const initialState: ThemeStateType = {
+  theme: 'system',
 };
 
 export const theme = createSlice({
@@ -15,18 +17,15 @@ export const theme = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    toggleDark: (state) => {
-      state.dark = !state.dark;
-    },
-    setDark: (state, action: PayloadAction<boolean>) => {
-      state.dark = action.payload;
+    setTheme: (state, action: PayloadAction<ThemeType>) => {
+      state.theme = action.payload;
     },
   },
 });
 
-export const { toggleDark, setDark } = theme.actions;
+export const { setTheme } = theme.actions;
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectTheme = (state: RootState) => state.theme.dark;
+export const selectTheme = (state: RootState) => state.theme.theme;
 
 export default theme.reducer;
