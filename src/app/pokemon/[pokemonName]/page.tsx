@@ -55,14 +55,10 @@ const PokemonPage = async ({ params }: Prop) => {
   try {
     const data = await getPokemonData(params.pokemonName);
 
-    if (
-      !data?.pokemonDetails ||
-      !data?.pokemonDetails ||
-      !data.pokemonEvolutionChain
-    ) {
+    if (!data?.pokemonDetails || !data?.pokemonDetails) {
       return <ErrorPage error={Error('missing pokemon data')} />;
     }
-    const { pokemonDetails, pokemonEvolutionChain, pokemonSpecies } = data;
+    const { pokemonDetails, pokemonSpecies } = data;
     const color = pokemonSpecies.color.name as VariantProps<
       typeof imageVariants
     >['color'];
@@ -75,7 +71,10 @@ const PokemonPage = async ({ params }: Prop) => {
             id={pokemonDetails.id}
             color={color}
           />
-          <PokemonDetails {...pokemonDetails} />
+          <PokemonDetails
+            pokemonDetails={pokemonDetails}
+            description={pokemonSpecies.flavor_text_entries}
+          />
         </div>
         <div className="flex flex-col gap-4">
           <PokemonVariety varieties={pokemonSpecies.varieties} />

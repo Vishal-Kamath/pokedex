@@ -40,10 +40,7 @@ export async function getPokemonData(name: string) {
     const pokemonSpecies = await api.pokemon.getPokemonSpeciesByName(
       pokemonDetails.species.name
     );
-    const pokemonEvolutionChain = await api.evolution.getEvolutionChainById(
-      Number(pokemonSpecies.evolution_chain.url.split('/')[6])
-    );
-    return { pokemonDetails, pokemonSpecies, pokemonEvolutionChain };
+    return { pokemonDetails, pokemonSpecies };
   } catch (err) {
     return notFound();
   }
