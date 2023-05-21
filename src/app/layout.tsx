@@ -57,6 +57,12 @@ export const metadata: Metadata = {
 
   // Pwa manifest
   manifest: '/manifest.json',
+  themeColor: '#f0f9ff',
+  appleWebApp: {
+    capable: true,
+    title: 'My Website',
+    statusBarStyle: 'black-translucent',
+  },
 
   // Details
   description:

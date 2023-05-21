@@ -3,7 +3,7 @@
   "background_color": "#fff",
   "display": "standalone",
   "scope": "/",
-  "start_url": "/",
+  "start_url": "/pokemon",
   "name": "pok\u00e9dex",
   "short_name": "pok\u00e9dex",
   "description": "Welcome to the Pok\u00e9Dex Website! This is a web application built using Next 13, Tailwind CSS, and the Pok\u00e9API, that provides a comprehensive collection of information about all your favorite Pokemon species.",
@@ -11,7 +11,8 @@
     {
       "src": "/pwa/icon-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "/pwa/icon-256x256.png",
