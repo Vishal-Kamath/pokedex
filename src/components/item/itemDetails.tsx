@@ -16,7 +16,7 @@ const ItemDetails: React.FC<Props> = ({ itemDetails }) => {
       </div>
 
       {/* Details */}
-      <div className="text-gray-500">
+      <div className="font-semibold text-gray-500">
         {itemDetails.effect_entries.map((entry) => (
           <div key={entry.effect}>{entry.effect}</div>
         ))}

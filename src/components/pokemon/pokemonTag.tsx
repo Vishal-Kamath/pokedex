@@ -3,7 +3,7 @@ import { VariantProps, cva } from 'class-variance-authority';
 import React from 'react';
 
 export const tagVariants = cva(
-  'h-8 grid place-content-center rounded-md px-3 text-sm',
+  'h-8 grid place-content-center rounded-md px-4 text-sm',
   {
     variants: {
       background: {

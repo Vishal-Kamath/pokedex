@@ -23,9 +23,9 @@ const StatsBadge: FC<{ className: string; name: string; value: string }> = ({
 
 const BerryDetails: React.FC<Props> = ({ berryItem, berryDetails }) => {
   return (
-    <div className="w-full">
+    <div className="flex w-full flex-col gap-3">
       {/* Title bar*/}
-      <div className="mb-2 flex gap-2 border-b-4 border-black pb-2 text-2xl font-bold dark:border-white">
+      <div className="mb-2 flex gap-4 border-b-4 border-black pb-2 text-2xl font-bold dark:border-white">
         <i className="text-slate-500">#{berryDetails.id}</i>
         <span>{berryDetails.item.name}</span>
         <div className="rounded-md bg-violet-300 px-3 py-2 text-xs text-black">
@@ -34,7 +34,7 @@ const BerryDetails: React.FC<Props> = ({ berryItem, berryDetails }) => {
       </div>
 
       {/* entries */}
-      <div className="text-gray-500">
+      <div className="font-semibold text-gray-500">
         {berryItem.effect_entries.map((entry) => (
           <div key={entry.effect}>{entry.effect}</div>
         ))}
@@ -42,7 +42,7 @@ const BerryDetails: React.FC<Props> = ({ berryItem, berryDetails }) => {
 
       {/* Stats */}
       <div className="flex flex-col gap-2">
-        <span>Stats</span>
+        <h2 className="text-xl">Stats</h2>
         <div className="flex flex-wrap gap-2">
           <StatsBadge
             className="bg-blue-200"
@@ -79,7 +79,9 @@ const BerryDetails: React.FC<Props> = ({ berryItem, berryDetails }) => {
           ))}
         </div>
       </div>
-      <h2 className="my-3 text-2xl">Flavors</h2>
+
+      <h2 className="text-xl">Flavors</h2>
+
       <table className="w-full border-collapse text-center">
         <thead>
           <tr>
