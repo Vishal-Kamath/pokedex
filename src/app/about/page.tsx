@@ -1,6 +1,12 @@
 import CodeSegmentCard from '@/components/cards/codeSegmentCard';
-import { NextPage } from 'next';
+import { Metadata, NextPage } from 'next';
 import { BsExclamationCircleFill } from 'react-icons/bs';
+
+export const metadata: Metadata = {
+  title: 'pokédex - about',
+  description:
+    'Welcome to the PokéDex Website! This is a web application built using Next 13, Tailwind CSS, PokéAPI, and pokenode-ts. This is the about page that gives a short introduction and steps to run the app locally',
+};
 
 const PokemonPage: NextPage = () => {
   return (

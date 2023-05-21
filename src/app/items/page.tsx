@@ -1,6 +1,11 @@
 import ListCard from '@/components/cards/listCard';
 import Pagination from '@/components/pagination';
 import { getItemListData } from '@/utils/api';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: `pokédex - items`,
+};
 
 const ItemsListPage = async ({
   searchParams,

@@ -14,6 +14,21 @@ export async function generateMetadata({ params }: Prop) {
   return {
     title: `pokédex - ${params.berryName}`,
     applicationName: 'pokédex',
+
+    description: `Welcome to the PokéDex Website! This is a web application built using Next 13, Tailwind CSS, PokéAPI, and pokenode-ts. This is a details page for ${params.berryName}`,
+    keywords: [
+      'Next.js',
+      'React',
+      'TypeScript',
+      'Tailwind CSS',
+      'PokéDex',
+      'Pokémon',
+      'PokéAPI',
+      'PokeDex',
+      'Pokemon',
+      params.berryName,
+    ],
+
     openGraph: {
       title: `pokédex - ${params.berryName}`,
       siteName: 'pokédex',

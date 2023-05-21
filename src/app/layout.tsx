@@ -56,17 +56,17 @@ export const metadata: Metadata = {
   },
 
   // Pwa manifest
-  manifest: '/manifest.json',
+  manifest: '/manifest.webmanifest',
   themeColor: '#f0f9ff',
   appleWebApp: {
     capable: true,
-    title: 'My Website',
+    title: 'pokédex',
     statusBarStyle: 'black-translucent',
   },
 
   // Details
   description:
-    'Welcome to the PokéDex Website! This is a web application built using Next 13, Tailwind CSS, and the PokéAPI, that provides a comprehensive collection of information about all your favorite Pokemon species.',
+    'Welcome to the PokéDex Website! This is a web application built using Next 13, Tailwind CSS, PokéAPI, and pokenode-ts that provides a comprehensive collection of information about all your favorite Pokemon species.',
   keywords: [
     'Next.js',
     'React',

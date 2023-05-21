@@ -6,6 +6,7 @@ import ErrorPage from './error';
 import PokemonVariety from '@/components/pokemon/pokemonVariety';
 import ItemsHeldByPokemon from '@/components/pokemon/itemsHeldByPokemon';
 import { getEndpoint } from '@/utils/lib';
+import { Metadata } from 'next';
 
 interface Prop {
   params: { pokemonName: string };
@@ -13,12 +14,27 @@ interface Prop {
 
 const endpoint = getEndpoint();
 
-export async function generateMetadata({ params }: Prop) {
+export async function generateMetadata({ params }: Prop): Promise<Metadata> {
   const id = await getPokemonId(params.pokemonName);
 
   return {
     title: `pokédex - ${params.pokemonName}`,
     applicationName: 'pokédex',
+
+    description: `Welcome to the PokéDex Website! This is a web application built using Next 13, Tailwind CSS, PokéAPI, and pokenode-ts. This is a details page for ${params.pokemonName}`,
+    keywords: [
+      'Next.js',
+      'React',
+      'TypeScript',
+      'Tailwind CSS',
+      'PokéDex',
+      'Pokémon',
+      'PokéAPI',
+      'PokeDex',
+      'Pokemon',
+      params.pokemonName,
+    ],
+
     openGraph: {
       title: `pokédex - ${params.pokemonName}`,
       siteName: 'pokédex',
