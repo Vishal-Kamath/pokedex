@@ -61,17 +61,22 @@ const Toggle: FC = () => {
   const theme = useAppSelector(selectTheme);
   const dispatch = useAppDispatch();
 
-  let initial = useRef(true);
-
   // dropdown open and close
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const openDropdown = () => setDropdownOpen(true);
   const closeDropdown = () => setDropdownOpen(false);
 
-  const onClickSetTheme = (theme: ThemeType) => {
-    dispatch(setTheme(theme));
-    closeDropdown();
-  };
+  // close dropdown
+  useEffect(() => {
+    const closeWithDelay = () => {
+      if (dropdownOpen) setTimeout(closeDropdown, 50);
+    };
+    document.addEventListener('click', closeWithDelay);
+
+    return () => {
+      document.removeEventListener('click', closeWithDelay);
+    };
+  }, [dropdownOpen]);
 
   useIsomorphicLayoutEffect(() => {
     let theme = localStorage.theme;
@@ -93,7 +98,6 @@ const Toggle: FC = () => {
 
   useEffect(() => {
     let mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    console.log(mediaQuery);
 
     mediaQuery.addEventListener('change', update);
 
@@ -145,6 +149,7 @@ const Toggle: FC = () => {
           !dropdownOpen && 'hidden',
           'absolute right-0 top-0 flex w-[9rem] translate-y-14 flex-col justify-start overflow-hidden rounded-lg border-2 border-slate-300 bg-white shadow-lg dark:border-slate-700 dark:bg-slate-900'
         )}
+        // check if cursor inside bound
       >
         {settings.map((setting) => (
           <button
@@ -153,7 +158,7 @@ const Toggle: FC = () => {
               'text-md flex w-full items-center gap-3 px-3 py-1 font-medium hover:bg-sky-500 hover:bg-opacity-25',
               setting.theme === theme && 'text-sky-500'
             )}
-            onClick={() => onClickSetTheme(setting.theme)}
+            onClick={() => dispatch(setTheme(setting.theme))}
           >
             <setting.icon className="text-lg" />
             <span>{setting.label}</span>
