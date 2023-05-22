@@ -10,9 +10,10 @@
 
 Welcome to the PokéDex Website repository! This is a web application built using [Next 13](https://nextjs.org/blog/next-13), [Tailwind CSS](https://tailwindcss.com/), [PokéAPI](https://pokeapi.co/) and [pokenode-ts](https://github.com/Gabb-c/pokenode-ts), that provides a comprehensive collection of information about all your favorite Pokemon species.
 
-### Website Link
+### Website Links
 
-- [https://pokedex-gamma-one-30.vercel.app](https://pokedex-gamma-one-30.vercel.app/)
+- **_latest release_** - [https://pokedex-gamma-one-30.vercel.app](https://pokedex-gamma-one-30.vercel.app/)
+- **_v1_** - [https://pokedex-kfigispp7-vishal-kamath.vercel.app](https://pokedex-kfigispp7-vishal-kamath.vercel.app)
 
 ## Getting Started
 
