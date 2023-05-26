@@ -6,7 +6,8 @@ import { SearchedFor } from './sidebar';
 
 // Icons
 import { TbCherry } from 'react-icons/tb';
-import { BsBox, BsExclamationCircle } from 'react-icons/bs';
+import { BsBox } from 'react-icons/bs';
+import { AiOutlineInfoCircle } from 'react-icons/ai';
 import PokeballOutline from '@/components/svg/pokeball_outline';
 import Link from 'next/link';
 
@@ -17,7 +18,7 @@ export function getSearchedForIcon(name: SearchedFor | 'about') {
     );
   if (name === 'berries') return <TbCherry />;
   if (name === 'items') return <BsBox />;
-  if (name === 'about') return <BsExclamationCircle />;
+  if (name === 'about') return <AiOutlineInfoCircle />;
 }
 
 const RouteLink: FC<{ title: SearchedFor | 'about' }> = ({ title }) => {
