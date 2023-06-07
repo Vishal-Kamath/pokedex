@@ -6,10 +6,11 @@ const Analytics: FC = () => {
     <>
       <Script
         async
+        id="analytics-1"
         src="https://www.googletagmanager.com/gtag/js?id=G-M3TNG81V67"
         strategy="afterInteractive"
       ></Script>
-      <Script>
+      <Script id="analytics-2">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
